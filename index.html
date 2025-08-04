@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan putovanja - Skopelos, Grčka 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.2em;
+        }
+        
+        .status-confirmed {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+        
+        .status-urgent {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .budget-table {
+            margin: 20px 0;
+        }
+        
+        .budget-total {
+            background: #e8f5e8;
+            font-weight: bold;
+            color: #2d5f3f;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #3498db;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3498db;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #3498db;
+        }
+        
+        .day-header {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist li::before {
+            content: '☐';
+            margin-right: 10px;
+            font-size: 1.2em;
+            color: #6c757d;
+        }
+        
+        .priority-high {
+            border-left: 5px solid #dc3545;
+        }
+        
+        .priority-medium {
+            border-left: 5px solid #ffc107;
+        }
+        
+        .priority-low {
+            border-left: 5px solid #28a745;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .contact-item {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .restaurant-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .restaurant-card {
+            background: #fff8e1;
+            border: 1px solid #ffcc02;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .restaurant-card h5 {
+            color: #f57f17;
+            margin-bottom: 8px;
+        }
+        
+        .print-only {
+            display: none;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .print-only {
+                display: block;
+            }
+            
+            .timeline-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🏖️ Plan putovanja - Skopelos, Grčka 2025 🇬🇷</h1>
+            <p class="subtitle">Aleksandar Jovićić i Ajna Halimović | 22. august - 5. septembar 2025</p>
+        </header>
+        
+        <div class="content">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📅 Osnovne informacije</h4>
+                    <p><strong>Period:</strong> 22. august - 5. septembar 2025. (15 dana)</p>
+                    <p><strong>Valuta:</strong> Euro (€)</p>
+                    <p><strong>Vremenska zona:</strong> EEST (GMT+3), <strong>jedan sat ispred Sarajeva</strong></p>
+                </div>
+                
+                <div class="info-card status-confirmed">
+                    <h4>✈️ Letovi - Potvrđeno</h4>
+                    <p><strong>Odlazak:</strong> FR5005 Ryanair</p>
+                    <p>22. august, 10:10 → 12:30</p>
+                    <p><strong>Povratak:</strong> FR5004 Ryanair</p>
+                    <p>5. septembar, 09:25 → 09:45</p>
+                </div>
+                
+                <div class="info-card status-confirmed">
+                    <h4>⛴️ Trajekt - Potvrđeno</h4>
+                    <p><strong>Odlazak:</strong> 23. august, 08:30 → 12:20</p>
+                    <p><strong>Povratak:</strong> 4. septembar, 15:00 → 18:55</p>
+                    <p>Seajets SPEEDRUNNER JET</p>
+                </div>
+            </div>
+
+            <h2>💰 Finansijski pregled</h2>
+            <table class="budget-table">
+                <thead>
+                    <tr>
+                        <th>Kategorija</th>
+                        <th>Iznos</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Avionske karte</td>
+                        <td>€177.47</td>
+                        <td>✅ Plaćeno</td>
+                    </tr>
+                    <tr>
+                        <td>Trajekt</td>
+                        <td>€203.60</td>
+                        <td>✅ Plaćeno</td>
+                    </tr>
+                    <tr>
+                        <td>The Pine Trees (akontacija)</td>
+                        <td>€180.00</td>
+                        <td>✅ Plaćeno</td>
+                    </tr>
+                    <tr class="budget-total">
+                        <td><strong>UKUPNO PLAĆENO</strong></td>
+                        <td><strong>€561.07</strong></td>
+                        <td>✅</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="budget-table">
+                <thead>
+                    <tr>
+                        <th>Za plaćanje</th>
+                        <th>Iznos</th>
+                        <th>Napomena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>To Ktima tis Matinas</td>
+                        <td>€117.00</td>
+                        <td>Na licu mesta</td>
+                    </tr>
+                    <tr>
+                        <td>The Pine Trees (ostatak)</td>
+                        <td>€390.00</td>
+                        <td>Na licu mesta</td>
+                    </tr>
+                    <tr>
+                        <td>Klimatska taksa</td>
+                        <td>€20.00</td>
+                        <td>Na licu mesta</td>
+                    </tr>
+                    <tr>
+                        <td>Smeštaj Solun (2 noći)</td>
+                        <td>~€120.00</td>
+                        <td>Potrebna rezervacija</td>
+                    </tr>
+                    <tr>
+                        <td>Hrana i piće</td>
+                        <td>€800-1000</td>
+                        <td>Procena</td>
+                    </tr>
+                    <tr>
+                        <td>Lokalni prevoz</td>
+                        <td>€150-200</td>
+                        <td>Procena</td>
+                    </tr>
+                    <tr>
+                        <td>Aktivnosti i izleti</td>
+                        <td>€200-300</td>
+                        <td>Procena</td>
+                    </tr>
+                    <tr>
+                        <td>Suveniri</td>
+                        <td>€100-150</td>
+                        <td>Procena</td>
+                    </tr>
+                    <tr>
+                        <td>Putno osiguranje</td>
+                        <td>€40</td>
+                        <td>€20 po osobi</td>
+                    </tr>
+                    <tr>
+                        <td>eSIM kartica</td>
+                        <td>~€12</td>
+                        <td>Internet</td>
+                    </tr>
+                    <tr class="budget-total">
+                        <td><strong>UKUPAN BUDŽET</strong></td>
+                        <td><strong>€2510-2910</strong></td>
+                        <td>🎯</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>🏨 Smeštaj</h2>
+            <div class="info-grid">
+                <div class="info-card status-pending">
+                    <h4>🏨 Solun - Dolazak</h4>
+                    <p><strong>Datum:</strong> 22-23. august (1 noć)</p>
+                    <p><strong>Lokacija:</strong> Blizu luke</p>
+                    <p><strong>Status:</strong> ❌ POTREBNO REZERVISATI</p>
+                </div>
+                
+                <div class="info-card status-confirmed">
+                    <h4>🏡 To Ktima tis Matinas</h4>
+                    <p><strong>Datum:</strong> 23-25. august (2 noći)</p>
+                    <p><strong>Lokacija:</strong> Stafilos, Skopelos</p>
+                    <p><strong>Cijena:</strong> €117</p>
+                    <p><strong>Ocjena:</strong> 9.5/10 ⭐</p>
+                </div>
+                
+                <div class="info-card status-confirmed">
+                    <h4>🌲 The Pine Trees</h4>
+                    <p><strong>Datum:</strong> 25. august - 4. septembar (10 noći)</p>
+                    <p><strong>Lokacija:</strong> Agnontas, Skopelos</p>
+                    <p><strong>Cijena:</strong> €570 ukupno</p>
+                    <p><strong>Ocjena:</strong> 9.8/10 ⭐</p>
+                </div>
+                
+                <div class="info-card status-pending">
+                    <h4>🏨 Solun - Odlazak</h4>
+                    <p><strong>Datum:</strong> 4-5. septembar (1 noć)</p>
+                    <p><strong>Lokacija:</strong> Blizu aerodroma</p>
+                    <p><strong>Status:</strong> ❌ POTREBNO REZERVISATI</p>
+                </div>
+            </div>
+
+            <h2>📅 Detaljni raspored po danima</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="day-header">📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</div>
+                    <ul>
+                        <li>08:00 - Polazak za aerodrom Sarajevo</li>
+                        <li>10:10 - Let FR5005 (Sarajevo → Solun)</li>
+                        <li>12:30 - Dolazak u Solun (lokalno vrijeme)</li>
+                        <li>13:00-15:00 - Prevoz do smeštaja u Solunu</li>
+                        <li>15:00-18:00 - Check-in i odmor</li>
+                        <li>18:00-20:00 - Šetnja po centru Soluna</li>
+                        <li>20:00 - Večera u restoranu</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="day-header">⛴️ Dan 2 - Subota, 23. august 2025. - Putovanje na Skopelos</div>
+                    <ul>
+                        <li>06:00 - Doručak i check-out</li>
+                        <li>07:00 - Putovanje do luke</li>
+                        <li>08:00 - Ukrcavanje na trajekt</li>
+                        <li>08:30 - Polazak trajekta (SPEEDRUNNER JET)</li>
+                        <li>12:20 - Dolazak na Skopelos</li>
+                        <li>13:00 - Check-in u To Ktima tis Matinas (Stafilos)</li>
+                        <li>14:00-16:00 - Ručak i odmor</li>
+                        <li>16:00-19:00 - Istraživanje Stafilosa i obližnjih plaža</li>
+                        <li>19:00 - Večera</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="day-header">🏖️ Dan 3 - Nedjelja, 24. august 2025. - Istraživanje Stafilosa</div>
+                    <ul>
+                        <li>09:00 - Doručak</li>
+                        <li>10:00-13:00 - Plaža Stafilos</li>
+                        <li>13:00-15:00 - Ručak i siesta</li>
+                        <li>15:00-18:00 - Istraživanje lokalnih taverni i trgovina</li>
+                        <li>18:00-19:00 - Pripreme za prelazak na drugi smeštaj</li>
+                        <li>19:00 - Večera</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="day-header">🚚 Dan 4 - Ponedjeljak, 25. august 2025. - Prelazak u Agnontas</div>
+                    <ul>
+                        <li>09:00 - Doručak i check-out iz To Ktima tis Matinas</li>
+                        <li>10:00 - Putovanje do Agnontasa</li>
+                        <li>11:00 - Check-in u The Pine Trees</li>
+                        <li>12:00-15:00 - Ručak i upoznavanje sa novom lokacijom</li>
+                        <li>15:00-18:00 - Plaža Agnontas</li>
+                        <li>18:00 - Šetnja po selu</li>
+                        <li>19:30 - Večera</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="day-header">🏖️ Dan 5-13 - Utorak, 26. august - Srijeda, 3. septembar 2025. - Istraživanje Skopelosa</div>
+                    <h4>🏖️ Plaže za posjećivanje:</h4>
+                    <ul>
+                        <li>Milia Beach (kristalno čista voda)</li>
+                        <li>Panormos Beach (organizovana plaža)</li>
+                        <li>Limnonari Beach (skrivena plaža)</li>
+                        <li>Kastani Beach (filmska lokacija "Mamma Mia!")</li>
+                        <li>Hovolo Beach (mirna plaža)</li>
+                    </ul>
+                    
+                    <h4>🏛️ Kulturne znamenitosti:</h4>
+                    <ul>
+                        <li>Skopelos Town (glavno mjesto)</li>
+                        <li>Crkva Agios Ioannis (iz filma "Mamma Mia!")</li>
+                        <li>Muzej folklora</li>
+                        <li>Tradicionalni vinogradi</li>
+                    </ul>
+                    
+                    <h4>🎯 Aktivnosti:</h4>
+                    <ul>
+                        <li>Iznajmljivanje skutera/automobila</li>
+                        <li>Trekking staze</li>
+                        <li>Ronjenje sa snorkelom</li>
+                        <li>Vožnja čamcem oko ostrva</li>
+                        <li>Posjećivanje susjednog ostrva Alonissos</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="day-header">⛴️ Dan 14 - Četvrtak, 4. septembar 2025. - Povratak u Solun</div>
+                    <ul>
+                        <li>09:00 - Doručak i check-out</li>
+                        <li>10:00-13:00 - Pakovanje i poslednje kupovine</li>
+                        <li>13:00 - Odlazak na luku</li>
+                        <li>14:30 - Ukrcavanje na trajekt</li>
+                        <li>15:00 - Polazak trajekta</li>
+                        <li>18:55 - Dolazak u Solun</li>
+                        <li>19:30 - Check-in u smeštaj blizu aerodroma</li>
+                        <li>20:30 - Večera u Solunu</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="day-header">✈️ Dan 15 - Petak, 5. septembar 2025. - Povratak kući</div>
+                    <ul>
+                        <li>06:00 - Doručak i check-out</li>
+                        <li>07:00 - Putovanje na aerodrom</li>
+                        <li>09:25 - Let FR5004 (Solun → Sarajevo)</li>
+                        <li>09:45 - Dolazak u Sarajevo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🍽️ Preporuke za restorane</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h5>🏖️ Agnontas područje</h5>
+                    <p><strong>Delfini Taverna</strong> - svježe ribe i morski plodovi</p>
+                    <p><strong>Pavlos Taverna</strong> - tradicionalna grčka kuhinja</p>
+                    <p><strong>Agnanti Restaurant</strong> - pogled na more</p>
+                </div>
+                
+                <div class="restaurant-card">
+                    <h5>🌊 Stafilos područje</h5>
+                    <p><strong>Alexander Restaurant</strong> - lokalne specijalnosti</p>
+                    <p><strong>Taverna Klimataria</strong> - obiteljski restoran</p>
+                </div>
+                
+                <div class="restaurant-card">
+                    <h5>🏛️ Skopelos Town</h5>
+                    <p><strong>Anatoli Taverna</strong> - najbolja moussaka na ostrvu</p>
+                    <p><strong>Melos Taverna</strong> - romantična večera</p>
+                    <p><strong>Perivoli Restaurant</strong> - moderna grčka kuhinja</p>
+                </div>
+            </div>
+
+            <h2>⚠️ Nerešene stavke - HITNO</h2>
+            <div class="info-grid">
+                <div class="info-card status-urgent priority-high">
+                    <h4>🔴 Prioritet 1 (do kraja augusta)</h4>
+                    <ul class="checklist">
+                        <li>Rezervacija smeštaja u Solunu 22-23. august (blizu luke)</li>
+                        <li>Rezervacija smeštaja u Solunu 4-5. septembar (blizu aerodroma)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card priority-medium">
+                    <h4>🟡 Prioritet 2 (do početka septembra)</h4>
+                    <ul class="checklist">
+                        <li>Prevoz aerodrom ↔ smeštaj u Solunu</li>
+                        <li>Prevoz luka ↔ smeštaj u Solunu</li>
+                        <li>Lokalni prevoz na Skopelosu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>📋 Podsetnici pred put</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📅 Par dana pre polaska:</h4>
+                    <ul class="checklist">
+                        <li><strong>Uplatiti putno osiguranje:</strong> €20 po osobi za 14 dana (ukupno ~€40)</li>
+                        <li><strong>Izabrati i kupiti eSIM karticu za Grčku:</strong>
+                            <br>• Opcija A: Airalo - 10GB/30 dana (~$12)
+                            <br>• Opcija B: UPeSIM - 20GB/30 dana (~$12)
+                            <br>• Oba koriste Cosmote mrežu (najbolja pokrivenost na Skopelosu)</li>
+                        <li>Potvrditi dimenzije i težinu prtljaga (Ryanair pravila)</li>
+                        <li>Pripremiti gadžete (powerbank, filmovi, punjači)</li>
+                        <li>Pripremiti opremu za plažu</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>⏰ 48h pre polaska trajekta:</h4>
+                    <ul class="checklist">
+                        <li>Obaviti web check-in za trajekt (Seajets) i sačuvati e-karte</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>⏰ 24h pre leta:</h4>
+                    <ul class="checklist">
+                        <li><strong>Obaviti online check-in za letove (Ryanair):</strong> OBAVEZNO da se izbegnu troškovi na aerodromu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>📞 Korisni kontakti</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <strong>🚨 Hitna pomoć Grčka:</strong> 166
+                </div>
+                <div class="contact-item">
+                    <strong>👮 Policija:</strong> 100
+                </div>
+                <div class="contact-item">
+                    <strong>🏛️ Turistička policija:</strong> 171
+                </div>
+                <div class="contact-item">
+                    <strong>🇧🇦 Ambasada BiH u Grčkoj:</strong> +30 210 674 0337
+                </div>
+            </div>
+
+            <h2>🧳 Lista pakovanja</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>👕 Odjeća:</h4>
+                    <ul>
+                        <li>Kupaci kostimi (2-3 para)</li>
+                        <li>Ljetnja odjeća (majice, šortovi, haljine)</li>
+                        <li>Jedna toplija jakna za večeri</li>
+                        <li>Udobna obuća za hodanje</li>
+                        <li>Sandale/šlape za plažu</li>
+                        <li>Elegantna odjeća za večeru</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>🎒 Ostalo:</h4>
+                    <ul>
+                        <li>Krema za sunčanje (SPF 30+)</li>
+                        <li>Naočare za sunce</li>
+                        <li>Šešir/kačket</li>
+                        <li>Adapter za struju (tip C/F)</li>
+                        <li>Powerbank</li>
+                        <li>Kamera/GoPro</li>
+                        <li>Lijekovi (osnovni)</li>
+                        <li>Snorkel oprema</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="print-only">
+                <p style="text-align: center; margin-top: 30px; font-style: italic; color: #666;">
+                    Plan ažuriran: 4. august 2
