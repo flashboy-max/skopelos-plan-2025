@@ -399,56 +399,14 @@
             object-fit: cover;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             margin: 10px 0;
             border: 2px solid #2196f3;
         }
         
         .thumbnail:hover {
-            transform: scale(1.05);
-        }
-        
-        .lightbox {
-            display: none !important;
-            position: fixed !important;
-            z-index: 999999 !important;
-            left: 0 !important;
-            top: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background-color: rgba(0,0,0,0.9) !important;
-            justify-content: center !important;
-            align-items: center !important;
-        }
-        
-        .lightbox.show {
-            display: flex !important;
-        }
-        
-        .lightbox-content {
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            object-fit: contain;
-        }
-        
-        .close-lightbox {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            color: white;
-            font-size: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10000;
-            user-select: none;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-        
-        .close-lightbox:hover {
-            color: #ff6b6b;
-            transform: scale(1.1);
+            transform: scale(1.08);
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
         }
         
         /* Header images */
@@ -465,7 +423,7 @@
         .header-image {
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             max-height: 150px;
             object-fit: cover;
@@ -474,6 +432,7 @@
         
         .header-image:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         
         .image-caption {
@@ -507,16 +466,16 @@
                     <img src="Ajna%20i%20JA.JPG"
                          alt="Ajna i Aleksandar"
                          class="header-image"
-                         onclick="openLightbox(this.src, this.alt)"
-                         title="Kliknite za veću sliku">
+                         onclick="window.open(this.src, '_blank')"
+                         title="Kliknite da otvorite sliku u novom prozoru">
                     <p class="image-caption">Ajna i Aleksandar</p>
                 </div>
                 <div>
                     <img src="Panormos%20Beach.jpg"
                          alt="Panormos Beach, Skopelos"
                          class="header-image"
-                         onclick="openLightbox(this.src, this.alt)"
-                         title="Kliknite za veću sliku">
+                         onclick="window.open(this.src, '_blank')"
+                         title="Kliknite da otvorite sliku u novom prozoru">
                     <p class="image-caption">Panormos Beach, Skopelos</p>
                 </div>
             </div>
@@ -1160,8 +1119,8 @@
                         <img src="every%20Wednesday%20is%20Mamma%20Mia%20Night.jpg"
                              alt="Every Wednesday is Mamma Mia Night"
                              class="thumbnail"
-                             onclick="openLightbox(this.src, this.alt)"
-                             title="Kliknite da vidite veću sliku">
+                             onclick="window.open(this.src, '_blank')"
+                             title="Kliknite da otvorite sliku u novom prozoru">
                     </div>
                 </div>
                 
@@ -1190,26 +1149,87 @@
             </div>
 
             <h2>🍽️ Preporuke za restorane</h2>
+            <p style="margin-bottom: 20px; color: #6c757d; font-style: italic;">
+                Odabrani restorani po područjima sa osnovnim informacijama o specijalitetima i atmosferi
+            </p>
+            
             <div class="restaurant-list">
                 <div class="restaurant-card">
-                    <h5>🏖️ Agnontas područje</h5>
-                    <p><strong>Delfini Taverna</strong> - svježe ribe i morski plodovi</p>
-                    <p><strong>Pavlos Taverna</strong> - tradicionalna grčka kuhinja</p>
-                    <p><strong>Agnanti Restaurant</strong> - pogled na more</p>
+                    <h5><span class="icon">🏖️</span> Agnontas područje</h5>
+                    <div style="margin: 15px 0;">
+                        <p><strong>🐟 Delfini Taverna</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Svježe ribe i morski plodovi direktno iz lokalnih ribarskih čamaca. Tradicionalna priprema sa pogledom na more.
+                        </p>
+                        
+                        <p><strong>🍽️ Pavlos Taverna</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Autentična grčka kuhinja sa porodičnim receptima. Poznati po mousaci i grilled octopus-u.
+                        </p>
+                        
+                        <p><strong>🌅 Agnanti Restaurant</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Spektakularan pogled na more i zalazak sunca. Idealno za romantične večere uz mediteransku kuhinju.
+                        </p>
+                        
+                        <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                            <p style="font-size: 0.85em; margin: 0;"><strong>📍 Lokacija:</strong> Svi restorani u pešačkoj zoni od Pine Trees smeštaja (2-5 min hoda)</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="restaurant-card">
-                    <h5>🌊 Stafilos područje</h5>
-                    <p><strong>Alexander Restaurant</strong> - lokalne specijalnosti</p>
-                    <p><strong>Taverna Klimataria</strong> - obiteljski restoran</p>
+                    <h5><span class="icon">🌊</span> Stafilos područje</h5>
+                    <div style="margin: 15px 0;">
+                        <p><strong>🍖 Alexander Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Lokalne specijalnosti sa fokusom na tradicionalne recepte Skopelosa. Domaći sir i lokalne masline.
+                        </p>
+                        
+                        <p><strong>👨‍👩‍👧‍👦 Taverna Klimataria</strong> <span style="color: #28a745; font-weight: bold;">€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Obiteljski restoran sa toplom atmosferom. Velike porcije, pristupačne cijene i domaći ukus.
+                        </p>
+                        
+                        <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                            <p style="font-size: 0.85em; margin: 0;"><strong>📍 Lokacija:</strong> Blizu To Ktima tis Matinas smeštaja (23-25. avgust)</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="restaurant-card">
-                    <h5>🏛️ Skopelos Town</h5>
-                    <p><strong>Anatoli Taverna</strong> - najbolja moussaka na ostrvu</p>
-                    <p><strong>Melos Taverna</strong> - romantična večera</p>
-                    <p><strong>Perivoli Restaurant</strong> - moderna grčka kuhinja</p>
+                    <h5><span class="icon">🏛️</span> Skopelos Town (Chora)</h5>
+                    <div style="margin: 15px 0;">
+                        <p><strong>🥘 Anatoli Taverna</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Proglašena za najbolju mousaku na ostrvu. Elegantan ambijent sa tradicionalnim grčkim ukrasima.
+                        </p>
+                        
+                        <p><strong>💕 Melos Taverna</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Romantična večera uz svijeće i pogled na luku. Idealno za posebne prilike i proslave.
+                        </p>
+                        
+                        <p><strong>🍷 Perivoli Restaurant</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
+                            Moderna interpretacija grčke kuhinje. Inovativni pristupi tradicionalnim jelima sa dobrom vinom kartom.
+                        </p>
+                        
+                        <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                            <p style="font-size: 0.85em; margin: 0;"><strong>📍 Lokacija:</strong> Centar Skopelos grada - dostupno autobusom ili taxi-jem</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <h4 style="color: #856404; margin-bottom: 10px;">💡 Korisni savjeti za restorane</h4>
+                <ul style="margin: 0; color: #856404;">
+                    <li><strong>Rezervacije:</strong> Preporučuju se za večere, posebno u visokoj sezoni (august)</li>
+                    <li><strong>Radno vrijeme:</strong> Većina restorana radi 18:00-24:00 za večeru</li>
+                    <li><strong>Bakšiš:</strong> 5-10% je uobičajeno u Grčkoj</li>
+                    <li><strong>Cijena kategorije:</strong> € = do 15€ po osobi | €€ = 15-25€ | €€€ = 25€+</li>
+                </ul>
             </div>
 
             <h2>⚠️ Nerešene stavke - HITNO</h2>
@@ -1238,10 +1258,12 @@
                     <h4>📅 Par dana pre polaska:</h4>
                     <ul class="checklist">
                         <li><strong>Uplatiti putno osiguranje:</strong> €20 po osobi za 14 dana (ukupno ~€40)</li>
+                        <li><strong>Obavijestiti banke o putovanju:</strong> Pozovite banku i obavijestite da će se kartice (Visa/Mastercard) koristiti u Grčkoj da ne dođe do blokiranja</li>
                         <li><strong>Izabrati i kupiti eSIM karticu za Grčku:</strong>
                             <br>• Opcija A: Airalo - 10GB/30 dana (~$12)
                             <br>• Opcija B: UPeSIM - 20GB/30 dana (~$12)
                             <br>• Oba koriste Cosmote mrežu (najbolja pokrivenost na Skopelosu)</li>
+                        <li><strong>Skinuti offline mape:</strong> Google Maps offline za Skopelos i Solun za navigaciju bez interneta</li>
                         <li>Potvrditi dimenzije i težinu prtljaga (Ryanair pravila)</li>
                         <li>Pripremiti gadžete (powerbank, filmovi, punjači)</li>
                         <li>Pripremiti opremu za plažu</li>
@@ -1275,7 +1297,31 @@
                     <strong>🏛️ Turistička policija:</strong> 171
                 </div>
                 <div class="contact-item">
-                    <strong>🇧🇦 Ambasada BiH u Grčkoj:</strong> +30 210 674 0337
+                    <strong>🇧🇦 Ambasada BiH u Grčkoj:</strong> +30 210 641 1375
+                </div>
+                <div class="contact-item">
+                    <strong>🚑 Evropski broj za hitne slučajeve:</strong> 112
+                </div>
+                <div class="contact-item">
+                    <strong>⛴️ Seajets (trajekt):</strong> +30 210 710 7710
+                </div>
+                <div class="contact-item">
+                    <strong>✈️ Ryanair podrška:</strong> +353 1 812 1212
+                </div>
+                <div class="contact-item">
+                    <strong>🏥 Zdravstveni centar Skopelos:</strong> +30 24240 22222
+                </div>
+                <div class="contact-item">
+                    <strong>🚕 Taxi Skopelos:</strong> +30 24240 309005 / +30 697 269 3375
+                </div>
+                <div class="contact-item">
+                    <strong>ℹ️ Turistički info Skopelos:</strong> +30 6946 277250 / +30 24240 22900
+                </div>
+                <div class="contact-item">
+                    <strong>🏨 To Ktima tis Matinas:</strong> Kontakt iz rezervacije
+                </div>
+                <div class="contact-item">
+                    <strong>🌲 The Pine Trees:</strong> Kontakt iz rezervacije
                 </div>
             </div>
 
@@ -1286,10 +1332,14 @@
                     <ul>
                         <li>Kupaci kostimi (2-3 para)</li>
                         <li>Ljetnja odjeća (majice, šortovi, haljine)</li>
-                        <li>Jedna toplija jakna za večeri</li>
-                        <li>Udobna obuća za hodanje</li>
+                        <li>Jedna toplija jakna za večeri <em>(može biti vjetrovka)</em></li>
+                        <li>Udobna obuća za hodanje <em>(za šetnju po kamenju)</em></li>
                         <li>Sandale/šlape za plažu</li>
                         <li>Elegantna odjeća za večeru</li>
+                        <li>Donji veš (dovoljno za 15 dana)</li>
+                        <li>Čarape (tanje za ljeto)</li>
+                        <li>Pidžama/odjeća za spavanje</li>
+                        <li>Peškir za plažu</li>
                     </ul>
                 </div>
                 
@@ -1304,6 +1354,37 @@
                         <li>Kamera/GoPro</li>
                         <li>Lijekovi (osnovni)</li>
                         <li>Snorkel oprema</li>
+                        <li>Vodootpornu torbu za plažu</li>
+                        <li>Kozmetika (šampon, gel, krema...)</li>
+                        <li>Četkica za zube + pasta</li>
+                        <li>Repelent za komarce</li>
+                        <li>Krema nakon sunčanja/aloe vera</li>
+                        <li>Punjač za telefon + kabl</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>📄 Dokumenta i važno:</h4>
+                    <ul>
+                        <li>Pasoš/lična karta (važeći minimum 6 mjeseci)</li>
+                        <li>Avionske karte (printane + digitalne)</li>
+                        <li>Trajekt karte (printane + digitalne)</li>
+                        <li>Rezervacije smeštaja (printane potvrde)</li>
+                        <li>Putno osiguranje (polisa + broj za kontakt)</li>
+                        <li>Kopije dokumenata (u slučaju gubitka)</li>
+                        <li>Gotov novac u eurima (€300-500)</li>
+                        <li>Kartice (Visa/Mastercard - obavesti banku o putovanju)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>🏖️ Specifično za Skopelos:</h4>
+                    <ul>
+                        <li>Vodene cipele/štitnici <em>(kamenje na plažama)</em></li>
+                        <li>Lična boca za vodu <em>(radi ekologije + uštede)</em></li>
+                        <li>Maske za snorkeling <em>(ako ne kupujete tamo)</em></li>
+                        <li>Krema za posle ujeda insekata</li>
+                        <li>Powerbank za ceo dan <em>(fotografisanje + navigacija)</em></li>
                     </ul>
                 </div>
             </div>
@@ -1340,51 +1421,6 @@
                 icon.textContent = '▲';
             }
         }
-        // Lightbox functionality - simple approach
-        function openLightbox(src, alt) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            if (lightbox && lightboxImg) {
-                lightboxImg.src = src;
-                lightboxImg.alt = alt;
-                lightbox.classList.add('show');
-                lightbox.style.display = 'flex';
-                // Verzija za GitHub Pages deployment možda treba različit pristup
-            }
-        }
-        
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox) {
-                lightbox.classList.remove('show');
-                lightbox.style.display = 'none';
-            }
-        }
-        
-        // Initialize after page loads
-        window.addEventListener('load', function() {
-            // Close lightbox when clicking outside the image
-            document.addEventListener('click', function(e) {
-                const lightbox = document.getElementById('lightbox');
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
-            
-            // Close lightbox with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                }
-            });
-        });
     </script>
-    
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <img id="lightbox-img" class="lightbox-content" alt="">
-    </div>
 </body>
 </html>
