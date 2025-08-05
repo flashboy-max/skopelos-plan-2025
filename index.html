@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Putni plan za Aleksandra i Ajnu - Skopelos, Grčka 2025. Detaljan itinerer, prevoz, plaže, restorani i budžet.">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5111/5111522.png" type="image/png">
     <title>Plan putovanja - Skopelos, Grčka 2025</title>
     <style>
         * {
@@ -288,6 +290,64 @@
             }
         }
         
+        /* Main Accordion styles */
+        .main-accordion {
+            margin: 30px 0;
+        }
+        
+        .main-accordion-item {
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .main-accordion-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        
+        .main-accordion-header:hover {
+            background: linear-gradient(135deg, #4395e3 0%, #00d9e5 100%);
+        }
+        
+        .main-accordion-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: white;
+            border: none;
+            padding: 0;
+        }
+        
+        .main-accordion-icon {
+            font-size: 1.8em;
+            transition: transform 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .main-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: #ffffff;
+        }
+        
+        .main-accordion-content.active {
+            max-height: 8000px;
+        }
+        
+        .main-accordion-body {
+            padding: 30px;
+        }
+        
         /* Accordion styles */
         .accordion {
             margin: 20px 0;
@@ -468,7 +528,7 @@
                          class="header-image"
                          onclick="window.open(this.src, '_blank')"
                          title="Kliknite da otvorite sliku u novom prozoru">
-                    <p class="image-caption">Ajna i Aleksandar</p>
+                    <p class="image-caption">Aleksandar i Ajna</p>
                 </div>
                 <div>
                     <img src="Panormos%20Beach.jpg"
@@ -478,6 +538,13 @@
                          title="Kliknite da otvorite sliku u novom prozoru">
                     <p class="image-caption">Panormos Beach, Skopelos</p>
                 </div>
+            </div>
+            
+            <div style="background-color: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 15px; margin-top: 25px; border-radius: 12px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;">
+                <a href="#raspored" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">📅 Raspored</a>
+                <a href="#plaze" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">🏖️ Plaže</a>
+                <a href="#restorani" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">🍽️ Restorani</a>
+                <a href="#kontakti" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">📞 Kontakti</a>
             </div>
         </header>
         
@@ -506,8 +573,15 @@
                 </div>
             </div>
 
-            <h2>💰 Finansijski pregled</h2>
-            <table class="budget-table">
+            <div class="main-accordion">
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('finansije')">
+                        <h2>💰 Finansijski pregled</h2>
+                        <span class="main-accordion-icon" id="finansije-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="finansije-content">
+                        <div class="main-accordion-body">
+                            <table class="budget-table">
                 <thead>
                     <tr>
                         <th>Kategorija</th>
@@ -565,11 +639,11 @@
                     </tr>
                     <tr>
                         <td>Smeštaj Solun (2 noći)</td>
-                        <td>~€120.00 (procjena)</td>
+                        <td>€120.00 (procjena)</td>
                         <td>Potrebna rezervacija</td>
                     </tr>
                     <tr>
-                        <td>Hrana i piće (14 dana)</td>
+                        <td>Hrana i piće (procjena za 2 osobe, za 14 dana, oko 25–35€ dnevno po osobi)</td>
                         <td>€800-1000</td>
                         <td>Procjena</td>
                     </tr>
@@ -595,18 +669,32 @@
                     </tr>
                     <tr>
                         <td>eSIM kartica</td>
-                        <td>~€24 (po 12e)</td>
+                        <td>€24 (po 12e)</td>
                         <td>Internet</td>
+                    </tr>
+                    <tr>
+                        <td>Neplanirani trošak / Rezerva</td>
+                        <td>€100</td>
+                        <td>Nepredviđeni izdaci, dodatni transferi, ljekovi</td>
                     </tr>
                     <tr class="budget-total">
                         <td><strong>UKUPAN BUDŽET</strong></td>
-                        <td><strong>€2450-2860</strong></td>
+                        <td><strong>€2550-2960</strong></td>
                         <td>🎯</td>
                     </tr>
                 </tbody>
             </table>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>🏨 Smeštaj</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('smestaj')">
+                        <h2>🏨 Smeštaj</h2>
+                        <span class="main-accordion-icon" id="smestaj-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="smestaj-content">
+                        <div class="main-accordion-body">
             <div class="info-grid">
                 <div class="info-card status-pending">
                     <h4>🏨 Solun - Dolazak</h4>
@@ -638,8 +726,17 @@
                     <p><strong>Status:</strong> ❌ POTREBNO REZERVISATI</p>
                 </div>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>🚌 Lokalni prevoz na Skopelosu</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('prevoz')">
+                        <h2>🚌 Lokalni prevoz na Skopelosu</h2>
+                        <span class="main-accordion-icon" id="prevoz-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="prevoz-content">
+                        <div class="main-accordion-body">
             <p style="margin-bottom: 20px; color: #6c757d; font-style: italic;">
                 Detaljne informacije o svim opcijama prevoza na ostrvu (23. august - 4. septembar 2025)
             </p>
@@ -883,8 +980,139 @@
                 <p><strong>Ukupno:</strong> <span class="price-highlight">156-230€</span> za potpunu slobodu kretanja tokom 12 dana na ostrvu</p>
                 <p><strong>Savjet:</strong> Rezervišite vozilo unaprijed za peak sezonu i pripremite keš za autobuske karte.</p>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>📅 Detaljni raspored po danima</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('plaze')">
+                        <h2 id="plaze">🏖️ Vodič kroz plaže Skopelosa</h2>
+                        <span class="main-accordion-icon" id="plaze-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="plaze-content">
+                        <div class="main-accordion-body">
+                            <p style="margin-bottom: 20px; color: #6c757d; font-style: italic;">
+                                Detaljan pregled najvažnijih plaža sa opisima, tipom podloge i udaljenosti od vašeg smještaja u Agnontasu ("The Pine Trees").
+                            </p>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                                
+                                <div class="info-card" style="border-left: 5px solid #28a745;">
+                                    <h5 style="margin-bottom: 5px;">Agnontas Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak, 2 min hoda)</strong></p>
+                                    <p>Vaša "kućna" plaža. Mirna, zaštićena uvala sa tavernama uz more. Idealna za brzo ili večernje kupanje.</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2189.9167286424426!2d23.709525440088967!3d39.08347136794277!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3f4c6e71f%3A0x9c0f499ba964cf4b!2sParalia%20Agnontas!5e0!3m2!1sen!2sba!4v1754378151895!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                                
+                                <div class="info-card" style="border-left: 5px solid #28a745;">
+                                    <h5 style="margin-bottom: 5px;">Amarantos Cape</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Stjenovite uvale, 5 min vožnje)</strong></p>
+                                    <p>Ikonični rt sa borovima. Nije klasična plaža, već niz uvala za fotografisanje, sunčanje na stijenama i skakanje u vodu.</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4380.2265540184435!2d23.710904920833457!3d39.07713950458711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1a934965bbf%3A0xb72d0761e2850d46!2sParalia%20Amarantos!5e0!3m2!1sen!2sba!4v1754378577340!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #28a745;">
+                                    <h5 style="margin-bottom: 5px;">Stafilos Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak i šljunak)</strong></p>
+                                    <p>Najbliža plaža vašem prvom smještaju. Organizovana, sa restoranom. Idealna za prvi dan.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 5 min hoda (od Ktima tis Matinas) | 7 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4379.711736679241!2d23.744462224321598!3d39.085431825785314!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c01189f1bb1b%3A0x9aa30489a98f5715!2sStafilos%20beach!5e0!3m2!1sen!2sba!4v1754378614509!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                    <h5 style="margin-bottom: 5px;">Panormos Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
+                                    <p>Jedna od najpopularnijih plaža, poznata po dubokoj, kristalnoj vodi i prelijepom zalasku sunca. Mnoštvo taverni.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Ktima tis Matinas) | 10 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.485527334599!2d23.662124397652335!3d39.11220744592365!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c3251759c065%3A0xd3529996a77b0278!2sPanormos%20Beach!5e0!3m2!1sen!2sba!4v1754378029244!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                    <h5 style="margin-bottom: 5px;">Milia Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni šljunak/pijesak)</strong></p>
+                                    <p>Po mnogima najljepša plaža na ostrvu. Duga, prostrana, sa barovima i ležaljkama. Voda je nevjerovatno čista.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 17 min vožnje (od Ktima tis Matinas) | 12 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.169531510132!2d23.652823226490774!3d39.1182559107283!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c20edcb5cf5d%3A0xce534ecc63982f64!2sMilia!5e0!3m2!1sen!2sba!4v1754377966096!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                    <h5 style="margin-bottom: 5px;">Kastani Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni šljunak/pijesak)</strong></p>
+                                    <p>Svjetski poznata kao "Mamma Mia!" plaža. Potpuno organizovana sa velikim beach barom i glasnijom muzikom.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 19 min vožnje (od Ktima tis Matinas) | 14 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10411.759847233878!2d23.6543484097206!3d39.11933797148492!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e2bc12dbd3%3A0x8d1c536f221c282f!2sParalia%20Kastani!5e0!3m2!1sen!2sba!4v1754378124946!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                    <h5 style="margin-bottom: 5px;">Ftelia Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
+                                    <p>Mala, mirna plaža u blizini Kastani i Milia. Odličan izbor za miran dan daleko od gužve.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 20 min vožnje (od Ktima tis Matinas) | 15 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4377.28317919138!2d23.652766463359576!3d39.12452944287402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e4019d3e21%3A0x197a79f3e80e9883!2sFtelia%20Beach!5e0!3m2!1sen!2sba!4v1754378983821!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                    <h5 style="margin-bottom: 5px;">Hovolo Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni pijesak i stijene)</strong></p>
+                                    <p>Egzotična plaža sa bijelim stijenama i tirkiznom vodom. Potrebno je malo prošetati kroz plićak do najljepših dijelova.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 25 min vožnje (od Ktima tis Matinas) | 20 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4377.048488343273!2d23.647395475966487!3d39.128306018745704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e7f00de1f5%3A0x48a0c11cc6eb5ee1!2sHovolo%20Beach!5e0!3m2!1sen!2sba!4v1754378956172!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                    <h5 style="margin-bottom: 5px;">Glisteri Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
+                                    <p>Smještena u dubokoj, izolovanoj uvali sa prepoznatljivim beach barom. Popularna među mladima.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 25 min vožnje (od Ktima tis Matinas) | 20 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5204.189956195879!2d23.71868485848398!3d39.142203557516474!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6eaff15dd88e7%3A0x4ab34d83fdcf41f9!2sParalia%20Glisteri!5e0!3m2!1sen!2sba!4v1754378722648!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                    <h5 style="margin-bottom: 5px;">Perivoliou Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak i šljunak)</strong></p>
+                                    <p>Divlja i dramatična plaža na sjevernoj obali, okružena stijenama. Savršena za ljubitelje netaknute prirode.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 40 min vožnje (od Ktima tis Matinas) | 35 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7354.213871850376!2d23.619783824249446!3d39.19594811024216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8da03c6f033%3A0x5467fe4b3d8cdc1f!2sPerivoliou%20Beach!5e0!3m2!1sen!2sba!4v1754378835190!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                                
+                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                    <h5 style="margin-bottom: 5px;">Agios Ioannis Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak/šljunak)</strong></p>
+                                    <p>Mala, slikovita plaža ispod čuvene crkve na stijeni. Vrijedi posjetiti kao dio izleta na sjever ostrva.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 50 min vožnje (od Ktima tis Matinas) | 45 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7356.653236346933!2d23.6496578319551!3d39.17263675461301!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96c278fbd55%3A0x631c7e266264dd21!2sAgios%20Ioannis%20Beach!5e0!3m2!1sen!2sba!4v1754378760554!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                    <h5 style="margin-bottom: 5px;">Spilia Beach</h5>
+                                    <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak/šljunak)</strong></p>
+                                    <p>Mala šljunčana uvala vrlo blizu Agios Ioannis plaže. Često se posjećuju zajedno u istom danu.</p>
+                                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 48 min vožnje (od Ktima tis Matinas) | 45 min vožnje (od Pine Trees)</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7356.303411161936!2d23.64394309459285!3d39.17598051198632!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96cbb1b55b7%3A0xc360fde3e34685e5!2sSpilia%20Beach!5e0!3m2!1sen!2sba!4v1754378788383!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+
+                            </div>
+                            
+                            <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                                <h4 style="color: #1976d2; margin-bottom: 10px;">💡 Savjeti za planiranje plaža</h4>
+                                <ul style="margin: 0; color: #1976d2;">
+                                    <li><strong>Bliske plaže (zelene):</strong> Idealne za brze izlete i večernje kupanje</li>
+                                    <li><strong>Popularne plaže (plave):</strong> Planirajte pola dana, imaju dobre taverne</li>
+                                    <li><strong>Plaže za izlet (žute):</strong> Rezervišite cijeli dan, najbolje sa iznajmljenim vozilom</li>
+                                    <li><strong>Vodene cipele:</strong> Preporučene za sve plaže zbog kamenja</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('raspored')">
+                        <h2 id="raspored">📅 Detaljni raspored po danima</h2>
+                        <span class="main-accordion-icon" id="raspored-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="raspored-content">
+                        <div class="main-accordion-body">
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="day-header">📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</div>
@@ -905,7 +1133,7 @@
                         <strong>🏨 Smeštaj:</strong> Το Κτήμα της Ματίνας (To Ktima tis Matinas) (check-in: 23. avgust, check-out: 25. avgust)
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Stafylos 370 03, Greece</p>
                         <div style="margin: 10px 0;">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10416.585311409557!2d23.733678468253785!3d39.086673779823926!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c017949bc685%3A0xb78e00e556901301!2zzqTOvyDOms-Ezq7OvM6xIM-EzrfPgiDOnM6xz4TOr869zrHPgg!5e0!3m2!1sen!2sba!4v1754380293654!5m2!1sen!2sba" width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10416.585311409557!2d23.733678468253785!3d39.086673779823926!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c017949bc685%3A0xb78e00e556901301!2zzqTOvyDOms-Ezq7OvM6xIM-EzrfPgiDOnM6xz4TOr869zrHPgg!5e0!3m2!1sen!2sba!4v1754380293654!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <ul>
@@ -948,9 +1176,16 @@
                         </ul>
                     </div>
 
-                    <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #ff9800;">
                         <strong>🚶‍♂️ Alternativa (samostalno):</strong><br>
-                        🚌 Autobus do Glossa → 🚶‍♂️ pješice do Agios Ioannis (15 min uz stepenice) → 🏖️ taxi/bus do Kastani Beach → 🔄 povratak oko 15:00-16:00
+                        <ol style="padding-left: 20px; margin-top: 5px;">
+                            <li><strong>09:00:</strong> Uhvatiti autobus iz Stafilosa za Skopelos Town (~10 min).</li>
+                            <li><strong>09:30:</strong> U Skopelos Townu presjesti na autobus za Glossa/Loutraki. Sići na stanici za Agios Ioannis (~45 min, 4€).</li>
+                            <li><strong>10:30:</strong> Pješačenje i penjanje do crkve (~20 min). Uživati u pogledu.</li>
+                            <li><strong>12:00:</strong> Vratiti se na glavnu cestu i uzeti taksi (ili sačekati bus) do plaže Kastani (~20 min, ~25€ taksi).</li>
+                            <li><strong>12:30-15:00:</strong> Kupanje, ručak i opuštanje na Kastani plaži.</li>
+                            <li><strong>15:30:</strong> Uhvatiti autobus sa Kastani plaže nazad za Stafilos.</li>
+                        </ol>
                     </div>
 
                     <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🌅 Večernji program</h5>
@@ -970,7 +1205,7 @@
                         <strong>🏨 Novi smeštaj:</strong> Pine Trees, Agnontas (25. avgust - 4. septembar)
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Agnontas, Skòpelos, Agnontas 370 03, Greece</p>
                         <div style="margin: 10px 0;">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10417.20992283608!2d23.72115615463591!3d39.08244402852887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3625e8c3f%3A0x87ee7f50c5ede7b5!2sPine%20Trees!5e0!3m2!1sen!2sba!4v1754380182756!5m2!1sen!2sba" width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10417.20992283608!2d23.72115615463591!3d39.08244402852887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3625e8c3f%3A0x87ee7f50c5ede7b5!2sPine%20Trees!5e0!3m2!1sen!2sba!4v1754380182756!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <ul>
@@ -986,118 +1221,36 @@
                 
                 <div class="timeline-item">
                     <div class="day-header">🏖️ Dan 5-13 - Utorak, 26. august - Srijeda, 3. septembar 2025. - Istraživanje Skopelosa</div>
-                    <h4>🏖️ Plaže za posjećivanje:</h4>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; margin: 20px 0;">
-                        
-                        <div style="text-align: center;">
-                            <h5><strong>Paralia Agnontas</strong></h5>
-                            <p><em>Παραλία Αγνώντας - blizu vašeg smeštaja</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2189.9167286424426!2d23.709525440088967!3d39.08347136794277!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3f4c6e71f%3A0x9c0f499ba964cf4b!2sParalia%20Agnontas!5e0!3m2!1sen!2sba!4v1754378151895!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Paralia Amarantos</strong></h5>
-                            <p><em>Skopelos 370 03, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4380.2265540184435!2d23.710904920833457!3d39.07713950458711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1a934965bbf%3A0xb72d0761e2850d46!2sParalia%20Amarantos!5e0!3m2!1sen!2sba!4v1754378577340!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Milia Beach</strong></h5>
-                            <p><em>Κανάρη 21, Skopelos 370 03, Greece - kristalno čista voda</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.169531510132!2d23.652823226490774!3d39.1182559107283!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c20edcb5cf5d%3A0xce534ecc63982f64!2sMilia!5e0!3m2!1sen!2sba!4v1754377966096!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Panormos Beach</strong></h5>
-                            <p><em>Panormos 370 03, Greece - organizovana plaža</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.485527334599!2d23.662124397652335!3d39.11220744592365!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c3251759c065%3A0xd3529996a77b0278!2sPanormos%20Beach!5e0!3m2!1sen!2sba!4v1754378029244!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Paralia Kastani</strong></h5>
-                            <p><em>Skopelos 370 03, Greece - filmska lokacija "Mamma Mia!"</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10411.759847233878!2d23.6543484097206!3d39.11933797148492!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e2bc12dbd3%3A0x8d1c536f221c282f!2sParalia%20Kastani!5e0!3m2!1sen!2sba!4v1754378124946!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Stafilos Beach</strong></h5>
-                            <p><em>Skopelos 370 03, Greece - blizu prvog smeštaja</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4379.711736679241!2d23.744462224321598!3d39.085431825785314!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c01189f1bb1b%3A0x9aa30489a98f5715!2sStafilos%20beach!5e0!3m2!1sen!2sba!4v1754378614509!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Paralia Glisteri</strong></h5>
-                            <p><em>Skopelos 370 03, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5204.189956195879!2d23.71868485848398!3d39.142203557516474!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6eaff15dd88e7%3A0x4ab34d83fdcf41f9!2sParalia%20Glisteri!5e0!3m2!1sen!2sba!4v1754378722648!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Agios Ioannis Beach</strong></h5>
-                            <p><em>Skopelos 370 03, Greece - kraj "Mamma Mia!" crkve</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7356.653236346933!2d23.6496578319551!3d39.17263675461301!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96c278fbd55%3A0x631c7e266264dd21!2sAgios%20Ioannis%20Beach!5e0!3m2!1sen!2sba!4v1754378760554!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Spilia Beach</strong></h5>
-                            <p><em>Skopelos 370 03, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7356.303411161936!2d23.64394309459285!3d39.17598051198632!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96cbb1b55b7%3A0xc360fde3e34685e5!2sSpilia%20Beach!5e0!3m2!1sen!2sba!4v1754378788383!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Perivoliou Beach</strong></h5>
-                            <p><em>Skopelos, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7354.213871850376!2d23.619783824249446!3d39.19594811024216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8da03c6f033%3A0x5467fe4b3d8cdc1f!2sPerivoliou%20Beach!5e0!3m2!1sen!2sba!4v1754378835190!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Hovolo Beach</strong></h5>
-                            <p><em>Skopelos 370 03, Greece - mirna plaža s belim stenama</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4377.048488343273!2d23.647395475966487!3d39.128306018745704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e7f00de1f5%3A0x48a0c11cc6eb5ee1!2sHovolo%20Beach!5e0!3m2!1sen!2sba!4v1754378956172!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Ftelia Beach</strong></h5>
-                            <p><em>Skopelos 370 03, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4377.28317919138!2d23.652766463359576!3d39.12452944287402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e4019d3e21%3A0x197a79f3e80e9883!2sFtelia%20Beach!5e0!3m2!1sen!2sba!4v1754378983821!5m2!1sen!2sba" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
+                        <p><strong>🏨 Smeštaj:</strong> Pine Trees, Agnontas</p>
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">Ovo je period za slobodno istraživanje ostrva sa bazom u Agnontasu. Detaljan pregled plaža, restorana i aktivnosti nalazi se u posebnim sekcijama ispod.</p>
                     </div>
                     
-                    <h4>🏛️ Kulturne znamenitosti:</h4>
+                    <h4>⭐ Prijedlozi za dane:</h4>
                     <ul>
-                        <li>Skopelos Town <em>(glavno mjesto na ostrvu)</em></li>
-                        <li>Agios Ioannis Kastri <em>(crkva iz filma "Mamma Mia!")</em></li>
-                        <li>Folklore Museum of Skopelos <em>(tradicija i istorija)</em></li>
-                        <li>Vakratsa Mansion / Vinarije <em>(u unutrašnjosti ostrva)</em></li>
+                        <li>Kombinacija opuštanja na obližnjim plažama (Agnontas, Panormos) i dnevnih izleta.</li>
+                        <li>Posjetite Skopelos Town (Chora) više puta, danju i noću, da doživite atmosferu.</li>
+                        <li>Iznajmite vozilo na 2-3 dana za obilazak udaljenijih plaža (Hovolo, Perivoliou) i manastira.</li>
+                        <li>Ne propustite "Mamma Mia! Night" srijedom u Tikiti Maji baru.</li>
                     </ul>
+                </div>
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <h4>🏛️ Kulturne znamenitosti za istražiti:</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 15px;">
 
-                        <div style="text-align: center;">
-                            <h5><strong>Skopelos Town</strong></h5>
-                            <p><em>Skopelos, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12381.796063615613!2d23.72242446951228!3d39.11901264457367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea918bf994a5%3A0xe39d33c04ec733e1!2sSkopelos%2C%20Greece!5e0!3m2!1sen!2sba!4v1754381203224!5m2!1sen!2sba" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="info-card" style="border-left: 5px solid #673ab7;">
+                            <h5 style="margin-bottom: 5px;">Skopelos Town (Chora)</h5>
+                            <p>Glavni grad i srce ostrva. Istražite lavirint uskih ulica, bijele kuće sa plavim prozorima i popnite se do tvrđave (Kastro).</p>
+                            <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 10 min vožnje (od Ktima tis Matinas) | 15 min vožnje (od Pine Trees)</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12381.796063615613!2d23.72242446951228!3d39.11901264457367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea918bf994a5%3A0xe39d33c04ec733e1!2sSkopelos%2C%20Greece!5e0!3m2!1sen!2sba!4v1754381203224!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
 
-                        <div style="text-align: center;">
-                            <h5><strong>Chapel of St. John (Ioannis)</strong></h5>
-                            <p><em>Skopelos 370 03, Greece - Ikonična crkva iz filma "Mamma Mia!"</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24744.66991269944!2d23.649762!3d39.172817!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96c278fbd55%3A0x631c7e266264dd21!2sAgios%20Ioannis%20Beach!5e0!3m2!1sen!2sba!4v1754381325365!5m2!1sen!2sba" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="info-card" style="border-left: 5px solid #673ab7;">
+                            <h5 style="margin-bottom: 5px;">Agios Ioannis Kastri</h5>
+                            <p>"Mamma Mia" crkva na vrhu stijene. Zahtijeva penjanje uz skoro 200 stepenica, ali pogled je nezaboravan.</p>
+                            <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 50 min vožnje (od Ktima tis Matinas) | 45 min vožnje (od Pine Trees)</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24744.66991269944!2d23.649762!3d39.172817!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96c278fbd55%3A0x631c7e266264dd21!2sAgios%20Ioannis%20Beach!5e0!3m2!1sen!2sba!4v1754381325365!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Folklore Museum</strong></h5>
-                            <p><em>Chora, Skopelos 370 03, Greece</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d386.9179471591806!2d23.727990225320944!3d39.12141244232259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea8d82032bbf%3A0x65f8a7f0aaf18c00!2sFolklore%20Museum!5e0!3m2!1sen!2sba!4v1754381370821!5m2!1sen!2sba" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h5><strong>Vakratsas Mansion</strong></h5>
-                            <p><em>Skopelos 370 03, Greece - Tradicionalna kuća i muzej u Chori</em></p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3095.2969080859443!2d23.7277564!3d39.1224746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea928475366b%3A0xa5ec04ec9c4aba12!2sVakratsas%20Mansion!5e0!3m2!1sen!2sba!4v1754381441650!5m2!1sen!2sba" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
                     </div>
                     
                     <h4>🎯 Aktivnosti:</h4>
@@ -1147,78 +1300,85 @@
                     </ul>
                 </div>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>🍽️ Preporuke za restorane</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('restorani')">
+                        <h2 id="restorani">🍽️ Preporuke za restorane</h2>
+                        <span class="main-accordion-icon" id="restorani-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="restorani-content">
+                        <div class="main-accordion-body">
             <p style="margin-bottom: 20px; color: #6c757d; font-style: italic;">
-                Odabrani restorani po područjima sa osnovnim informacijama o specijalitetima i atmosferi
+                Provereni restorani na Skopelosu, organizovani po blizini vašim smeštajima, sa tačnom udaljenošću i mapama.
             </p>
-            
+
             <div class="restaurant-list">
-                <div class="restaurant-card">
-                    <h5><span class="icon">🏖️</span> Agnontas područje</h5>
-                    <div style="margin: 15px 0;">
-                        <p><strong>🐟 Delfini Taverna</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Svježe ribe i morski plodovi direktno iz lokalnih ribarskih čamaca. Tradicionalna priprema sa pogledom na more.
-                        </p>
-                        
-                        <p><strong>🍽️ Pavlos Taverna</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Autentična grčka kuhinja sa porodičnim receptima. Poznati po mousaci i grilled octopus-u.
-                        </p>
-                        
-                        <p><strong>🌅 Agnanti Restaurant</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Spektakularan pogled na more i zalazak sunca. Idealno za romantične večere uz mediteransku kuhinju.
-                        </p>
-                        
-                        <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 15px;">
-                            <p style="font-size: 0.85em; margin: 0;"><strong>📍 Lokacija:</strong> Svi restorani u pešačkoj zoni od Pine Trees smeštaja (2-5 min hoda)</p>
-                        </div>
-                    </div>
+                <div class="restaurant-card" style="background: #e8f5e9;">
+                    <h5 style="color: #2e7d32;"><span class="icon">🌲</span> U blizini "The Pine Trees" (Agnontas)</h5>
+                    <p style="font-size: 0.9em; color: #6c757d;">Restorani dostupni peške, idealni za večere bez vožnje tokom boravka od 25. avgusta do 4. septembra.</p>
+
+                    <p style="margin-top: 15px;"><strong>Korali Seafood Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Jedan od najcenjenijih restorana na ostrvu, sa stolovima direktno na plaži. Savršen za svežu ribu i romantičnu atmosferu.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 2 min hoda (od Pine Trees) | 8 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.029282575138!2d23.708941176352024!3d39.083030735729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b392a9eaa1%3A0x94d3937ff79e3cc!2sKorali%20Seafood%20Restaurant%20.%20Agnontas%20Skopelos!5e0!3m2!1sen!2sus!4v1754387327557!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                    
+                    <p style="margin-top: 15px;"><strong>Mouria Fish Tavern</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Taverna u hladovini velikog drveta, poznata po tradicionalnim jelima i opuštenoj atmosferi.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 1 min hoda (od Pine Trees) | 8 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.0289194465804!2d23.708941176227295!3d39.083039007186365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b38ddad881%3A0xf4491fdf72bc5b38!2sMouria%20Fish%20Tavern%20Agnontas!5e0!3m2!1sen!2sus!4v1754387378821!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+
+                    <p style="margin-top: 15px;"><strong>Apanemo Restaurant & Beach Bar</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Nalazi se u prelepoj uvali Limnonari. Odličan izbor za ručak i celodnevni boravak na plaži.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 5 min vožnje (od Pine Trees) | 12 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12386.926681708821!2d23.679120540618886!3d39.0898093463254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b8d2ddf1c7%3A0x91bc2e60c926e0fd!2sApanemo%20Restaurant%20%26%20Beach%20Bar!5e0!3m2!1sen!2sus!4v1754387481070!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                
-                <div class="restaurant-card">
-                    <h5><span class="icon">🌊</span> Stafilos područje</h5>
-                    <div style="margin: 15px 0;">
-                        <p><strong>🍖 Alexander Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Lokalne specijalnosti sa fokusom na tradicionalne recepte Skopelosa. Domaći sir i lokalne masline.
-                        </p>
-                        
-                        <p><strong>👨‍👩‍👧‍👦 Taverna Klimataria</strong> <span style="color: #28a745; font-weight: bold;">€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Obiteljski restoran sa toplom atmosferom. Velike porcije, pristupačne cijene i domaći ukus.
-                        </p>
-                        
-                        <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 15px;">
-                            <p style="font-size: 0.85em; margin: 0;"><strong>📍 Lokacija:</strong> Blizu To Ktima tis Matinas smeštaja (23-25. avgust)</p>
-                        </div>
-                    </div>
+
+                <div class="restaurant-card" style="background: #e3f2fd;">
+                    <h5 style="color: #1565c0;"><span class="icon">🏡</span> U blizini "To Ktima tis Matinas" (Stafilos)</h5>
+                    <p style="font-size: 0.9em; color: #6c757d;">Restorani idealni za prva dva dana vašeg boravka (23-25. avgust).</p>
+                    
+                    <p style="margin-top: 15px;"><strong>Stafilos Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Restoran na samoj plaži gde imate rođendansku rezervaciju. Savršen za večeru uz zalazak sunca.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 5 min hoda (od Ktima tis Matinas) | 7 min vožnje (od Pine Trees)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.872608238415!2d23.7451393071181!3d39.08564808388133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c0117de3020d%3A0x6566fa528f819ae8!2sStafilos%20Restaurant!5e0!3m2!1sen!2sus!4v1754387527705!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+
+                    <p style="margin-top: 15px;"><strong>Rosemary</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Nudi kreativnu grčku kuhinju sa prelepim pogledom. Odličan izbor za malo drugačiju, finiju večeru.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 4 min vožnje (od Ktima tis Matinas) | 10 min vožnje (od Pine Trees)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24767.880315175127!2d23.72351975495607!3d39.10681076412462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea9c063366c1%3A0x75fac1c07ff3bbac!2sRosemary!5e0!3m2!1sen!2sus!4v1754387619922!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                
+
                 <div class="restaurant-card">
-                    <h5><span class="icon">🏛️</span> Skopelos Town (Chora)</h5>
-                    <div style="margin: 15px 0;">
-                        <p><strong>🥘 Anatoli Taverna</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Proglašena za najbolju mousaku na ostrvu. Elegantan ambijent sa tradicionalnim grčkim ukrasima.
-                        </p>
-                        
-                        <p><strong>💕 Melos Taverna</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Romantična večera uz svijeće i pogled na luku. Idealno za posebne prilike i proslave.
-                        </p>
-                        
-                        <p><strong>🍷 Perivoli Restaurant</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0 15px 0;">
-                            Moderna interpretacija grčke kuhinje. Inovativni pristupi tradicionalnim jelima sa dobrom vinom kartom.
-                        </p>
-                        
-                        <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 15px;">
-                            <p style="font-size: 0.85em; margin: 0;"><strong>📍 Lokacija:</strong> Centar Skopelos grada - dostupno autobusom ili taxi-jem</p>
-                        </div>
-                    </div>
+                    <h5 style="color: #f57f17;"><span class="icon">🏛️</span> Skopelos Town (Chora)</h5>
+                    <p style="font-size: 0.9em; color: #6c757d;">Dostupni autobusom ili taksijem iz oba smeštaja. Idealni za večernje izlaske.</p>
+
+                    <p style="margin-top: 15px;"><strong>Pizzeria Gousto</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Jedna od najboljih pica na ostrvu, odlična opcija za promenu od grčke kuhinje.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Pine Trees) | 10 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7362.087193898444!2d23.722201919972996!3d39.120666200861436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea9221cf72a7%3A0x24b0003be2140841!2sPizzeria%20Gousto!5e0!3m2!1sen!2sus!4v1754387793267!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+
+                    <p style="margin-top: 15px;"><strong>El Atrio</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Ušuškan u sporednim ulicama Chore, poznat po odličnim doručcima, branču i laganim jelima.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Pine Trees) | 10 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7362.087193898444!2d23.722201919972996!3d39.120666200861436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6eb2b84e30291%3A0xffb6d455d471e3f4!2sEl%20Atrio!5e0!3m2!1sen!2sus!4v1754387836698!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="restaurant-card" style="border-color: #6a1b9a;">
+                    <h5 style="color: #6a1b9a;"><span class="icon">🌅</span> Za poseban doživljaj (Izlet)</h5>
+                    <p style="font-size: 0.9em; color: #6c757d;">Ovi restorani zahtevaju dužu vožnju, ali nude nezaboravan pogled i atmosferu.</p>
+
+                    <p style="margin-top: 15px;"><strong>Agnanti</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">Smatra se jednim od najboljih restorana u Grčkoj. Tradicionalna jela na moderan način sa spektakularnim pogledom u selu Glossa.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 40 min vožnje (od Pine Trees) | 45 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8748.968745380314!2d23.60509781642941!3d39.169547097842404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8fc897a08f7%3A0x1fc4259a73e3dc62!2sAgnanti!5e0!3m2!1sen!2sus!4v1754387988874!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+
+                    <p style="margin-top: 15px;"><strong>Delfini Taverna (Panormos)</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p style="font-size: 0.9em; color: #6c757d;">*Napomena: Ovo je Delfini u Panormosu, ne Agnontasu.* Odlična taverna na prelepoj plaži Panormos, idealna za ručak tokom dana na plaži.</p>
+                    <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Pine Trees) | 20 min vožnje (od Ktima tis Matinas)</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35035.15013085003!2d23.690451579921177!3d39.09055273351912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c202c207d0ab%3A0x58e3949e7e20df4!2sDOLPHIN%20OF%20SKOPELOS%2C%20RESTAURANT%20%7C%20CHATZIVASILEIOU%20FOTIOS!5e0!3m2!1sen!2sus!4v1754387189766!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
             
@@ -1231,8 +1391,17 @@
                     <li><strong>Cijena kategorije:</strong> € = do 15€ po osobi | €€ = 15-25€ | €€€ = 25€+</li>
                 </ul>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>⚠️ Nerešene stavke - HITNO</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('nereseno')">
+                        <h2>⚠️ Nerešene stavke - HITNO</h2>
+                        <span class="main-accordion-icon" id="nereseno-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="nereseno-content">
+                        <div class="main-accordion-body">
             <div class="info-grid">
                 <div class="info-card status-urgent priority-high">
                     <h4>🔴 Prioritet 1 (do 18 augusta)</h4>
@@ -1251,8 +1420,17 @@
                     </ul>
                 </div>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>📋 Podsetnici pred put</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('podsetnici')">
+                        <h2>📋 Podsetnici pred put</h2>
+                        <span class="main-accordion-icon" id="podsetnici-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="podsetnici-content">
+                        <div class="main-accordion-body">
             <div class="info-grid">
                 <div class="info-card">
                     <h4>📅 Par dana pre polaska:</h4>
@@ -1284,8 +1462,17 @@
                     </ul>
                 </div>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>📞 Korisni kontakti</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('kontakti')">
+                        <h2 id="kontakti">📞 Korisni kontakti</h2>
+                        <span class="main-accordion-icon" id="kontakti-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="kontakti-content">
+                        <div class="main-accordion-body">
             <div class="contact-grid">
                 <div class="contact-item">
                     <strong>🚨 Hitna pomoć Grčka:</strong> 166
@@ -1324,8 +1511,17 @@
                     <strong>🌲 The Pine Trees:</strong> Kontakt iz rezervacije
                 </div>
             </div>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>🧳 Lista pakovanja</h2>
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('pakovanje')">
+                        <h2>🧳 Lista pakovanja</h2>
+                        <span class="main-accordion-icon" id="pakovanje-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="pakovanje-content">
+                        <div class="main-accordion-body">
             <div class="info-grid">
                 <div class="info-card">
                     <h4>👕 Odjeća:</h4>
@@ -1388,10 +1584,18 @@
                     </ul>
                 </div>
             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="print-only">
                 <p style="text-align: center; margin-top: 30px; font-style: italic; color: #666;">
-                    Plan ažuriran: 4. august 2
+                    Plan ažuriran: 4. august 2025.
+                </p>
+            </div>
+        </div>
+    </div>
 <script>
         function toggleAccordion(id) {
             const content = document.getElementById(id + '-content');
@@ -1421,6 +1625,23 @@
                 icon.textContent = '▲';
             }
         }
+        
+        function toggleMainAccordion(id) {
+            const content = document.getElementById(id + '-content');
+            const icon = document.getElementById(id + '-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+                icon.textContent = '▼';
+            } else {
+                // Open current accordion
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+                icon.textContent = '▲';
+            }
+        }
     </script>
+    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>
 </body>
 </html>
