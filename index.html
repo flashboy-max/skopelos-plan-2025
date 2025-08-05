@@ -264,6 +264,34 @@
             display: none;
         }
         
+        /* =================================================================== */
+        /* === FINALNI BLOK KODA ZA MOBILNU OPTIMIZACIJU === */
+        /* =================================================================== */
+
+        /* 1. Wrapper koji omogućava horizontalno skrolovanje za tabele */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        /* 2. Pravila za samu tabelu unutar wrappera */
+        .table-responsive table {
+            width: 100%;
+            min-width: 600px;
+            margin: 0;
+        }
+
+        /* 3. (Bonus) Podešavanje za najmanje ekrane */
+        @media (max-width: 480px) {
+            .table-responsive table th,
+            .table-responsive table td {
+                font-size: 14px;
+                padding: 10px 8px;
+            }
+        }
+
         @media print {
             body {
                 background: white;
@@ -596,7 +624,7 @@
                         <td>✅ Plaćeno</td>
                     </tr>
                     <tr>
-                        <td>Trajekt - Solun - Skolpelos - Solun</td>
+                        <td>Trajekt - Solun - Skopelos - Solun</td>
                         <td>€203.60</td>
                         <td>✅ Plaćeno</td>
                     </tr>
@@ -610,8 +638,9 @@
                         <td><strong>€561.07</strong></td>
                         <td>✅</td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+                            </div>
 
             <table class="budget-table">
                 <thead>
