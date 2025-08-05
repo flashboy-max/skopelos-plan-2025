@@ -13,15 +13,34 @@
             box-sizing: border-box;
         }
         
+        /* === Osnovna sigurnosna margina za sve uređaje === */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            overflow-x: hidden; /* sprečava horizontalni scroll */
+        }
+        
+        /* === Glavni kontejneri neka ne prelaze širinu === */
+        .container,
+        .wrapper,
+        section,
+        div {
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
         }
         
         .container {
@@ -51,6 +70,12 @@
         
         .content {
             padding: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
         }
         
         h2 {
@@ -292,6 +317,48 @@
             }
         }
 
+        /* 4. Stil za brzu navigaciju */
+        .quick-nav {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .quick-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.2s ease;
+        }
+        .quick-nav a:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .quick-nav {
+                padding: 12px;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            
+            .quick-nav a {
+                font-size: 1em;
+            }
+        }
+
+        /* 5. Bonus CSS za kartice */
+        .card {
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
         @media print {
             body {
                 background: white;
@@ -325,9 +392,19 @@
         
         .main-accordion-item {
             margin-bottom: 15px;
+            margin-left: 0;
+            margin-right: 0;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .main-accordion-item {
+                margin-left: -10px;
+                margin-right: -10px;
+                border-radius: 0;
+            }
         }
         
         .main-accordion-header {
@@ -541,6 +618,167 @@
                 max-height: 200px;
             }
         }
+        
+        /* === MOBILNA OPTIMIZACIJA I RESPONSIVE TABELE === */
+        
+        /* Tabela responsive wrapper */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 15px 0;
+            border-radius: 8px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .table-responsive table {
+            width: 100%;
+            min-width: 600px;
+            font-size: 14px;
+        }
+        
+        /* Glavni content padding */
+        .content,
+        .main-accordion-body {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        /* Mobilni prikaz */
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 10px;
+            }
+            
+            .content {
+                padding: 15px 10px;
+            }
+            
+            .main-accordion-body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em !important;
+            }
+            
+            h2 {
+                font-size: 1.4em !important;
+                margin: 20px 0 15px 0;
+            }
+            
+            h3, h4 {
+                font-size: 1.2em !important;
+            }
+
+            .info-card {
+                padding: 15px;
+                margin: 10px 0;
+            }
+
+            .main-accordion-header {
+                padding: 20px 15px;
+            }
+            
+            .main-accordion-header h2 {
+                font-size: 1.3em;
+                margin: 0;
+                border: none;
+                padding: 0;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .header .subtitle {
+                font-size: 1em;
+            }
+            
+            .header-images {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .restaurant-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-responsive {
+                margin: 10px -10px;
+                padding: 0 10px;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-item {
+                padding: 15px;
+            }
+            
+            .timeline-item::before {
+                left: -27px;
+            }
+        }
+        
+        /* Bardzo mali ekrani */
+        @media (max-width: 480px) {
+            body {
+                padding: 2px;
+            }
+            
+            .container {
+                border-radius: 5px;
+            }
+            
+            .content {
+                padding: 10px 8px;
+            }
+            
+            .main-accordion-body {
+                padding: 15px 8px;
+            }
+            
+            .main-accordion-header {
+                padding: 15px 10px;
+            }
+            
+            .main-accordion-header h2 {
+                font-size: 1.1em;
+            }
+            
+            .table-responsive {
+                margin: 10px -8px;
+                padding: 0 8px;
+            }
+            
+            .table-responsive table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -568,11 +806,12 @@
                 </div>
             </div>
             
-            <div style="background-color: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 15px; margin-top: 25px; border-radius: 12px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;">
-                <a href="#raspored" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">📅 Raspored</a>
-                <a href="#plaze" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">🏖️ Plaže</a>
-                <a href="#restorani" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">🍽️ Restorani</a>
-                <a href="#kontakti" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.1em;">📞 Kontakti</a>
+            <div class="quick-nav">
+                <a href="#finansije">💰 Budžet</a>
+                <a href="#raspored">📅 Raspored</a>
+                <a href="#plaze">🏖️ Plaže</a>
+                <a href="#restorani">🍽️ Restorani</a>
+                <a href="#kontakti">📞 Kontakti</a>
             </div>
         </header>
         
@@ -604,11 +843,12 @@
             <div class="main-accordion">
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('finansije')">
-                        <h2>💰 Finansijski pregled</h2>
+                        <h2 id="finansije">💰 Finansijski pregled</h2>
                         <span class="main-accordion-icon" id="finansije-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="finansije-content">
                         <div class="main-accordion-body">
+                            <div class="table-responsive">
                             <table class="budget-table">
                 <thead>
                     <tr>
@@ -641,7 +881,9 @@
                     </tbody>
                 </table>
                             </div>
+                            </div>
 
+            <div class="table-responsive">
             <table class="budget-table">
                 <thead>
                     <tr>
@@ -713,26 +955,27 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('smestaj')">
-                        <h2>🏨 Smeštaj</h2>
+                        <h2 id="smestaj">🏨 Smeštaj</h2>
                         <span class="main-accordion-icon" id="smestaj-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="smestaj-content">
                         <div class="main-accordion-body">
             <div class="info-grid">
-                <div class="info-card status-pending">
+                <div class="card info-card status-pending">
                     <h4>🏨 Solun - Dolazak</h4>
                     <p><strong>Datum:</strong> 22-23. august (1 noć)</p>
                     <p><strong>Lokacija:</strong> Blizu luke</p>
                     <p><strong>Status:</strong> ❌ POTREBNO REZERVISATI</p>
                 </div>
                 
-                <div class="info-card status-confirmed">
+                <div class="card info-card status-confirmed">
                     <h4>🏡 To Ktima tis Matinas</h4>
                     <p><strong>Datum:</strong> 23-25. august (2 noći)</p>
                     <p><strong>Lokacija:</strong> Stafilos, Skopelos</p>
@@ -740,7 +983,7 @@
                     <p><strong>Ocjena:</strong> 9.5/10 ⭐</p>
                 </div>
                 
-                <div class="info-card status-confirmed">
+                <div class="card info-card status-confirmed">
                     <h4>🌲 The Pine Trees</h4>
                     <p><strong>Datum:</strong> 25. august - 4. septembar (10 noći)</p>
                     <p><strong>Lokacija:</strong> Agnontas, Skopelos</p>
@@ -748,7 +991,7 @@
                     <p><strong>Ocjena:</strong> 9.8/10 ⭐</p>
                 </div>
                 
-                <div class="info-card status-pending">
+                <div class="card info-card status-pending">
                     <h4>🏨 Solun - Odlazak</h4>
                     <p><strong>Datum:</strong> 4-5. septembar (1 noć)</p>
                     <p><strong>Lokacija:</strong> Blizu aerodroma</p>
@@ -761,7 +1004,7 @@
 
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('prevoz')">
-                        <h2>🚌 Lokalni prevoz na Skopelosu</h2>
+                        <h2 id="prevoz">🚌 Lokalni prevoz na Skopelosu</h2>
                         <span class="main-accordion-icon" id="prevoz-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="prevoz-content">
@@ -794,6 +1037,7 @@
                             </div>
 
                             <h5>💰 Cijene karata</h5>
+                            <div class="table-responsive">
                             <table class="transport-table">
                                 <thead>
                                     <tr>
@@ -830,6 +1074,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
 
                             <h5>✅ Prednosti</h5>
                             <ul>
@@ -863,6 +1108,7 @@
                             <p>Lokalna agencija sa dobrim uvjetima: porez uključen, neograničen broj kilometara, besplatna dostava do hotela, 24h asistencija.</p>
 
                             <h5>💰 Cijene (Visoka sezona 2025)</h5>
+                            <div class="table-responsive">
                             <table class="transport-table">
                                 <thead>
                                     <tr>
@@ -890,6 +1136,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
 
                             <h5>📋 Uslovi najma</h5>
                             <ul>
@@ -932,6 +1179,7 @@
                             <strong>Broj vozila:</strong> ~20 taksija na ostrvu</p>
 
                             <h5>💰 Fiksne cijene sa stanice u gradu</h5>
+                            <div class="table-responsive">
                             <table class="transport-table">
                                 <thead>
                                     <tr>
@@ -988,6 +1236,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
 
                             <h5>⚠️ Napomene</h5>
                             <ul>
@@ -1026,21 +1275,21 @@
 
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
                                 
-                                <div class="info-card" style="border-left: 5px solid #28a745;">
+                                <div class="card" style="background: white; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Agnontas Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak, 2 min hoda)</strong></p>
                                     <p>Vaša "kućna" plaža. Mirna, zaštićena uvala sa tavernama uz more. Idealna za brzo ili večernje kupanje.</p>
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2189.9167286424426!2d23.709525440088967!3d39.08347136794277!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3f4c6e71f%3A0x9c0f499ba964cf4b!2sParalia%20Agnontas!5e0!3m2!1sen!2sba!4v1754378151895!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                                 
-                                <div class="info-card" style="border-left: 5px solid #28a745;">
+                                <div class="card" style="background: white; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Amarantos Cape</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Stjenovite uvale, 5 min vožnje)</strong></p>
                                     <p>Ikonični rt sa borovima. Nije klasična plaža, već niz uvala za fotografisanje, sunčanje na stijenama i skakanje u vodu.</p>
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4380.2265540184435!2d23.710904920833457!3d39.07713950458711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1a934965bbf%3A0xb72d0761e2850d46!2sParalia%20Amarantos!5e0!3m2!1sen!2sba!4v1754378577340!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #28a745;">
+                                <div class="card" style="background: white; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Stafilos Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak i šljunak)</strong></p>
                                     <p>Najbliža plaža vašem prvom smještaju. Organizovana, sa restoranom. Idealna za prvi dan.</p>
@@ -1048,7 +1297,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4379.711736679241!2d23.744462224321598!3d39.085431825785314!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c01189f1bb1b%3A0x9aa30489a98f5715!2sStafilos%20beach!5e0!3m2!1sen!2sba!4v1754378614509!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Panormos Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
                                     <p>Jedna od najpopularnijih plaža, poznata po dubokoj, kristalnoj vodi i prelijepom zalasku sunca. Mnoštvo taverni.</p>
@@ -1056,7 +1305,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.485527334599!2d23.662124397652335!3d39.11220744592365!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c3251759c065%3A0xd3529996a77b0278!2sPanormos%20Beach!5e0!3m2!1sen!2sba!4v1754378029244!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Milia Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni šljunak/pijesak)</strong></p>
                                     <p>Po mnogima najljepša plaža na ostrvu. Duga, prostrana, sa barovima i ležaljkama. Voda je nevjerovatno čista.</p>
@@ -1064,7 +1313,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.169531510132!2d23.652823226490774!3d39.1182559107283!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c20edcb5cf5d%3A0xce534ecc63982f64!2sMilia!5e0!3m2!1sen!2sba!4v1754377966096!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Kastani Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni šljunak/pijesak)</strong></p>
                                     <p>Svjetski poznata kao "Mamma Mia!" plaža. Potpuno organizovana sa velikim beach barom i glasnijom muzikom.</p>
@@ -1072,7 +1321,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10411.759847233878!2d23.6543484097206!3d39.11933797148492!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e2bc12dbd3%3A0x8d1c536f221c282f!2sParalia%20Kastani!5e0!3m2!1sen!2sba!4v1754378124946!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #2196f3;">
+                                <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Ftelia Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
                                     <p>Mala, mirna plaža u blizini Kastani i Milia. Odličan izbor za miran dan daleko od gužve.</p>
@@ -1080,7 +1329,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4377.28317919138!2d23.652766463359576!3d39.12452944287402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e4019d3e21%3A0x197a79f3e80e9883!2sFtelia%20Beach!5e0!3m2!1sen!2sba!4v1754378983821!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Hovolo Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni pijesak i stijene)</strong></p>
                                     <p>Egzotična plaža sa bijelim stijenama i tirkiznom vodom. Potrebno je malo prošetati kroz plićak do najljepših dijelova.</p>
@@ -1088,7 +1337,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4377.048488343273!2d23.647395475966487!3d39.128306018745704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e9e7f00de1f5%3A0x48a0c11cc6eb5ee1!2sHovolo%20Beach!5e0!3m2!1sen!2sba!4v1754378956172!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Glisteri Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
                                     <p>Smještena u dubokoj, izolovanoj uvali sa prepoznatljivim beach barom. Popularna među mladima.</p>
@@ -1096,7 +1345,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5204.189956195879!2d23.71868485848398!3d39.142203557516474!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6eaff15dd88e7%3A0x4ab34d83fdcf41f9!2sParalia%20Glisteri!5e0!3m2!1sen!2sba!4v1754378722648!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Perivoliou Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak i šljunak)</strong></p>
                                     <p>Divlja i dramatična plaža na sjevernoj obali, okružena stijenama. Savršena za ljubitelje netaknute prirode.</p>
@@ -1104,7 +1353,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7354.213871850376!2d23.619783824249446!3d39.19594811024216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8da03c6f033%3A0x5467fe4b3d8cdc1f!2sPerivoliou%20Beach!5e0!3m2!1sen!2sba!4v1754378835190!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                                 
-                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Agios Ioannis Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak/šljunak)</strong></p>
                                     <p>Mala, slikovita plaža ispod čuvene crkve na stijeni. Vrijedi posjetiti kao dio izleta na sjever ostrva.</p>
@@ -1112,7 +1361,7 @@
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7356.653236346933!2d23.6496578319551!3d39.17263675461301!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e96c278fbd55%3A0x631c7e266264dd21!2sAgios%20Ioannis%20Beach!5e0!3m2!1sen!2sba!4v1754378760554!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
-                                <div class="info-card" style="border-left: 5px solid #ffc107;">
+                                <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
                                     <h5 style="margin-bottom: 5px;">Spilia Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak/šljunak)</strong></p>
                                     <p>Mala šljunčana uvala vrlo blizu Agios Ioannis plaže. Često se posjećuju zajedno u istom danu.</p>
@@ -1262,7 +1511,6 @@
                         <li>Iznajmite vozilo na 2-3 dana za obilazak udaljenijih plaža (Hovolo, Perivoliou) i manastira.</li>
                         <li>Ne propustite "Mamma Mia! Night" srijedom u Tikiti Maji baru.</li>
                     </ul>
-                </div>
                     
                     <h4>🏛️ Kulturne znamenitosti za istražiti:</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 15px;">
@@ -1426,7 +1674,7 @@
 
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('nereseno')">
-                        <h2>⚠️ Nerešene stavke - HITNO</h2>
+                        <h2 id="nereseno">⚠️ Nerešene stavke - HITNO</h2>
                         <span class="main-accordion-icon" id="nereseno-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="nereseno-content">
@@ -1455,7 +1703,7 @@
 
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('podsetnici')">
-                        <h2>📋 Podsetnici pred put</h2>
+                        <h2 id="podsetnici">📋 Podsetnici pred put</h2>
                         <span class="main-accordion-icon" id="podsetnici-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="podsetnici-content">
@@ -1546,7 +1794,7 @@
 
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('pakovanje')">
-                        <h2>🧳 Lista pakovanja</h2>
+                        <h2 id="pakovanje">🧳 Lista pakovanja</h2>
                         <span class="main-accordion-icon" id="pakovanje-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="pakovanje-content">
