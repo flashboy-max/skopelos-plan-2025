@@ -77,9 +77,35 @@
                                 <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu luke (Thessaloniki Port)</div>
                                 <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
                             </div>
+                            <!-- Transport info -->
+                            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.85em; color: #666;">
+                                <div style="margin-bottom: 4px;"><strong>🚢 Prevoz od luke:</strong> Taxi ≈ €15-20 | Pešice 10-15 min</div>
+                                <div><strong>📍 Preporučene zone:</strong> <span style="color: #1976d2;">Ladadika četvrt, Aristotelous trg</span></div>
+                            </div>
                         </div>
+                        
+                        <!-- Progress bar za urgentnost -->
+                        <div style="margin: 10px 0;">
+                            <div style="background: #ffecb3; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="background: #ff5722; height: 100%; width: 75%; border-radius: 3px; animation: pulse 1.5s infinite;"></div>
+                            </div>
+                            <div style="font-size: 0.8em; color: #e65100; margin-top: 4px; text-align: center;">
+                                Urgentnost: Visoka (75%)
+                            </div>
+                        </div>
+                        
                         <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
-                            <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo 16 dana!
+                            <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo <span id="daysLeft1">16</span> dana!
+                        </div>
+                        
+                        <!-- Quick links -->
+                        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://www.booking.com/searchresults.html?city=-814876&checkin=2025-08-22&checkout=2025-08-23" target="_blank" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                                Booking.com
+                            </a>
+                            <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-08-22&checkout=2025-08-23" target="_blank" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                                Airbnb
+                            </a>
                         </div>
                     </div>
                     
@@ -98,9 +124,35 @@
                                 <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu aerodroma (SKG Airport)</div>
                                 <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
                             </div>
+                            <!-- Transport info -->
+                            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.85em; color: #666;">
+                                <div style="margin-bottom: 4px;"><strong>🚐 Prevoz od aerodroma:</strong> Taxi ≈ €25-30 | Bus X1 → centar</div>
+                                <div><strong>📍 Preporučene zone:</strong> <span style="color: #1976d2;">Airport area, Pylaia</span></div>
+                            </div>
                         </div>
+                        
+                        <!-- Progress bar za urgentnost -->
+                        <div style="margin: 10px 0;">
+                            <div style="background: #ffecb3; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="background: #ff5722; height: 100%; width: 75%; border-radius: 3px; animation: pulse 1.5s infinite;"></div>
+                            </div>
+                            <div style="font-size: 0.8em; color: #e65100; margin-top: 4px; text-align: center;">
+                                Urgentnost: Visoka (75%)
+                            </div>
+                        </div>
+                        
                         <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
-                            <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo 16 dana!
+                            <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo <span id="daysLeft2">16</span> dana!
+                        </div>
+                        
+                        <!-- Quick links -->
+                        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://www.booking.com/searchresults.html?city=-814876&checkin=2025-09-04&checkout=2025-09-05" target="_blank" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                                Booking.com
+                            </a>
+                            <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-09-04&checkout=2025-09-05" target="_blank" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                                Airbnb
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -114,3 +166,21 @@
                     100% { opacity: 1; }
                 }
             </style>
+            
+            <!-- JavaScript za automatsko računanje dana -->
+            <script>
+                function updateDaysLeft() {
+                    const targetDate = new Date('2025-08-22');
+                    const today = new Date();
+                    const daysLeft = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
+                    const daysToShow = daysLeft > 0 ? daysLeft : 0;
+                    
+                    const elements = document.querySelectorAll('[id^="daysLeft"]');
+                    elements.forEach(el => {
+                        el.textContent = daysToShow;
+                    });
+                }
+
+                // Pozovi funkciju kada se stranica učita
+                document.addEventListener('DOMContentLoaded', updateDaysLeft);
+            </script>
