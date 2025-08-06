@@ -558,16 +558,16 @@
         }
         
         /* Lightbox styles */
-                        <td>Avionske karte - Sarajevo - Solun - Sarajevo</td>
-                        <td>€177.47</td>
-                        <td>✅ Plaćeno</td>
-                    </tr>
-                    <tr>
--                        <td>Trajekt - Solun - Skolpelos - Solun</td>
-+                        <td>Trajekt - Solun - Skopelos - Solun</td>
-                        <td>€203.60</td>
-                        <td>✅ Plaćeno</td>
-                    </tr>        }
+        .thumbnail {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            border: 2px solid #2196f3;
+        }
         
         .thumbnail:hover {
             transform: scale(1.08);
@@ -778,6 +778,61 @@
             th, td {
                 padding: 8px;
             }
+        }
+        
+        /* === TAXI SEKCIJA STILOVI === */
+        .taxi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .taxi-table th, .taxi-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .taxi-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .taxi-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        #showMoreTaxisBtn {
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        #showMoreTaxisBtn:hover {
+            background-color: #1976d2;
+        }
+
+        #extraTaxis {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #2196f3;
+        }
+
+        #extraTaxis li {
+            margin: 8px 0;
+            color: #333;
         }
     </style>
 </head>
@@ -1012,11 +1067,81 @@
             <p style="margin-bottom: 20px; color: #6c757d; font-style: italic;">
                 Detaljne informacije o svim opcijama prevoza na ostrvu (23. august - 4. septembar 2025)
             </p>
-            
+
+            <!-- NOVA SEKCija: AGNONTAS – DVIJE DIREKCIJE + CIJENE + LINKOVI + LIGHTBOX -->
+            <div id="agnontas-section" class="info-card" style="border-left: 5px solid #1976d2;">
+                <h4>🚌 Agnontas – polasci i cijene (Ljeto 2025)</h4>
+                <p style="font-size: 0.9em; color:#555;">
+                    Fokus na polaske kada je početna stanica Agnontas, u oba smjera:
+                    <strong>prema Skopelos/Port</strong> i <strong>prema Loutraki/Glossa</strong>. Raspored je informativan; provjerite službene izvore prije polaska.
+                </p>
+
+                <!-- Direction pills -->
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;">
+                    <button id="btn-to-skopelos" class="dir-pill" style="background:#1976d2;color:#fff;border:none;padding:8px 12px;border-radius:20px;cursor:pointer;">Agnontas → Skopelos (Port)</button>
+                    <button id="btn-to-loutraki" class="dir-pill" style="background:#e0e0e0;color:#333;border:none;padding:8px 12px;border-radius:20px;cursor:pointer;">Agnontas → Loutraki/Glossa</button>
+                </div>
+
+                <!-- Times table -->
+                <div class="table-responsive">
+                    <table class="transport-table" id="agnontas-times-table">
+                        <thead>
+                            <tr>
+                                <th>Smjer</th>
+                                <th>Polasci (Agnontas)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="agnontas-times-body">
+                            <!-- Popunjava JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cijene ključnih relacija -->
+                <h5>💰 Cijene (indikativno)</h5>
+                <div class="table-responsive">
+                    <table class="transport-table">
+                        <thead>
+                            <tr>
+                                <th>Relacija</th>
+                                <th>Cijena</th>
+                                <th>Napomena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Agnontas ↔ Skopelos (Port)</td><td><span class="price-highlight">≈ €2.2 – €2.6</span></td><td>Plati kod vozača, keš</td></tr>
+                            <tr><td>Agnontas ↔ Stafylos</td><td><span class="price-highlight">≈ €1.8 – €2.1</span></td><td>Kratka vožnja</td></tr>
+                            <tr><td>Agnontas ↔ Panormos</td><td><span class="price-highlight">≈ €3.0 – €3.5</span></td><td>Popularna plaža</td></tr>
+                            <tr><td>Agnontas ↔ Glossa/Loutraki</td><td><span class="price-highlight">≈ €6.5 – €7.5</span></td><td>Duga relacija</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Quick links -->
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin:10px 0;">
+                    <a class="btn-link" href="Bus%20iz%20Skolpelosa%20kre%C4%87e%20i%20dalje%20posje%C4%87uje%20ostale%20stanice.jpg" target="_blank" style="background:#2196f3;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Full timetable: Skopelos → …</a>
+                    <a class="btn-link" href="Bus%20iz%20Loutraki%20kre%C4%87e%20i%20dalje%20posje%C4%87uje%20ostale%20stanice.jpg" target="_blank" style="background:#1565c0;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Full timetable: Loutraki → …</a>
+                    <a class="btn-link" href="https://skopelostransports.gr/en/" target="_blank" style="background:#4caf50;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official: skopelostransports.gr</a>
+                    <a class="btn-link" href="https://skopelostransports.gr/en/routes/" target="_blank" style="background:#43a047;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official routes</a>
+                    <a class="btn-link" href="https://skopelostransports.gr/en/?tour-search&tax-tour-destination=agnontas&duration=1" target="_blank" style="background:#2e7d32;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official: Agnontas filter</a>
+                </div>
+
+                <!-- Route thumbnail + modal -->
+                <div style="margin-top:10px;">
+                    <img src="Slika%20rute%20busa.jpg" alt="Ruta autobusa" class="thumbnail" onclick="openLightbox('Slika%20rute%20busa.jpg')" title="Klikni za uvećanje">
+                    <span style="margin-left:10px; font-size:0.9em;"><a href="Slika%20rute%20busa.jpg" target="_blank">Otvori rutu u novom tabu</a></span>
+                </div>
+
+                <p style="margin-top:10px; font-size:0.85em; color:#666;">
+                    ℹ️ Raspored može varirati zbog saobraćaja i ukrcaja/iskrcaja. Provjerite ažuriranja na službenim linkovima.
+                </p>
+            </div>
+            <!-- KRAJ nove AGNONTAS sekcije -->
+
             <div class="accordion">
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion('bus')">
-                        <h4>🚌 Opcija 1: Lokalni autobus (KTEL)</h4>
+                        <h4>🚌 Opcija 1: Autobus (Skopelos Town i/iz Loutrakija/Glossa)</h4>
                         <span class="accordion-icon" id="bus-icon">▼</span>
                     </div>
                     <div class="accordion-content" id="bus-content">
@@ -1036,45 +1161,6 @@
                                 </div>
                             </div>
 
-                            <h5>💰 Cijene karata</h5>
-                            <div class="table-responsive">
-                            <table class="transport-table">
-                                <thead>
-                                    <tr>
-                                        <th>Destinacija</th>
-                                        <th>Cijena (jedan pravac)</th>
-                                        <th>Vrijeme putovanja</th>
-                                        <th>Dnevno (2 osobe)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Stafylos/Velanio/Agnontas</td>
-                                        <td><span class="price-highlight">2€</span></td>
-                                        <td>5-11 min</td>
-                                        <td>8€</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Panormos</td>
-                                        <td><span class="price-highlight">3€</span></td>
-                                        <td>25-30 min</td>
-                                        <td>12€</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Milia/Kastani/Ftelia</td>
-                                        <td><span class="price-highlight">4€</span></td>
-                                        <td>35-45 min</td>
-                                        <td>16€</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Glossa/Loutraki</td>
-                                        <td><span class="price-highlight">5€</span></td>
-                                        <td>55-65 min</td>
-                                        <td>20€</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </div>
 
                             <h5>✅ Prednosti</h5>
                             <ul>
@@ -1104,160 +1190,154 @@
                     </div>
                     <div class="accordion-content" id="rental-content">
                         <div class="accordion-body">
-                            <h5>🏢 Preporučena agencija: <a href="https://www.magiccars.gr/" target="_blank">Magic Cars</a></h5>
-                            <p>Lokalna agencija sa dobrim uvjetima: porez uključen, neograničen broj kilometara, besplatna dostava do hotela, 24h asistencija.</p>
+                            <h5>🏢 Preporučena agencija: <a href="https://www.magiccars.gr/" target="_blank">Magic Cars Skopelos</a></h5>
+                            <p style="font-size: 0.9em; color: #6c757d;">Lokalna agencija sa izvanrednim online recenzijama. Hvale se nova vozila, profesionalna komunikacija i jasni uslovi bez skrivenih troškova.</p>
 
-                            <h5>💰 Cijene (Visoka sezona 2025)</h5>
+                            <h5>💰 Cijene za 3 dana (provjerene za 26–29. august 2025)</h5>
                             <div class="table-responsive">
-                            <table class="transport-table">
-                                <thead>
-                                    <tr>
-                                        <th>Vrsta vozila</th>
-                                        <th>Cijena/dan</th>
-                                        <th>2 dana</th>
-                                        <th>3 dana</th>
-                                        <th>4 dana</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Quad (150-300cc)</td>
-                                        <td><span class="price-highlight">25-40€</span></td>
-                                        <td>50-80€</td>
-                                        <td>75-120€</td>
-                                        <td>100-160€</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Automobil (mali)</td>
-                                        <td><span class="price-highlight">30-50€</span></td>
-                                        <td>60-100€</td>
-                                        <td>90-150€</td>
-                                        <td>120-200€</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <table class="transport-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Vrsta vozila</th>
+                                            <th>Cijena (3 dana)</th>
+                                            <th>Uključeno</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>ATV/Quad (170cc)</strong><br><small>Kymco MXU 170 ili slično</small></td>
+                                            <td><span class="price-highlight">≈ €135</span></td>
+                                            <td rowspan="2" style="font-size: 0.85em;">CDW osiguranje, porezi (24% PDV), neograničeni km, 2 kacige, 24/7 pomoć.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Mali auto (Grupa B)</strong><br><small>npr. Fiat Panda</small></td>
+                                            <td><span class="price-highlight">≈ €195</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" style="font-size: 0.85em;"><strong>Opcionalno:</strong> Puno osiguranje (FDW) +10€/dan (auto) ili +6€/dan (quad)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <h5>📋 Uslovi najma</h5>
                             <ul>
-                                <li><strong>Dozvole:</strong> Vozačka dozvola B kategorije za quad 150cc+</li>
-                                <li><strong>Minimalno:</strong> 1 dan najma, popusti za 2-4 dana</li>
-                                <li><strong>Dodatno:</strong> Gorivo, osiguranje, depozit</li>
-                                <li><strong>Preporuka:</strong> Rezervacija unaprijed za 23. august - 4. septembar</li>
+                                <li><strong>Dozvola:</strong> B kategorija (za ATV i auto)</li>
+                                <li><strong>Minimalna starost:</strong> 23 godine</li>
+                                <li><strong>Gorivo:</strong> Vraća se sa istim nivoom</li>
+                                <li><strong>Dostava:</strong> Besplatno do hotela (uključeno)</li>
+                                <li><strong>Osiguranje:</strong> CDW uključeno (excess do 650€); FDW dostupno uz doplatu</li>
                             </ul>
 
                             <h5>✅ Prednosti</h5>
                             <ul>
-                                <li>Potpuna fleksibilnost kretanja</li>
+                                <li>Potpuna sloboda kretanja</li>
                                 <li>Pristup zabačenim plažama i manastirima</li>
-                                <li>Ušteda vremena (Panormos 15min vs 30min autobusom)</li>
-                                <li>Komfor i skladišni prostor</li>
+                                <li>Ušteda vremena</li>
+                                <li>24/7 tehnička pomoć</li>
                             </ul>
 
                             <h5>⚠️ Napomene</h5>
                             <ul>
-                                <li>Krivudavi putevi zahtevaju pažnju</li>
-                                <li>Dodatni troškovi: gorivo + osiguranje</li>
-                                <li>Proverite nivo goriva pri preuzimanju</li>
+                                <li><strong>Preporuka:</strong> Uzmite puno osiguranje (FDW) zbog uskih i krivudavih puteva</li>
+                                <li>Rezervišite ranije – velika potražnja u augustu</li>
+                                <li>Fotografišite vozilo pri preuzimanju</li>
                             </ul>
 
-                            <p><strong>📊 Preporučeno za:</strong> 2-4 dana kombinovano sa autobusom</p>
+                            <p style="margin-top: 15px;"><strong>📊 Idealno trajanje:</strong> 3–4 dana u kombinaciji s autobuskim prevozom</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion('taxi')">
-                        <h4>🚕 Opcija 3: Taxi</h4>
+                        <h4>� Opcija 3: Taxi prevoz na Skopelosu</h4>
                         <span class="accordion-icon" id="taxi-icon">▼</span>
                     </div>
                     <div class="accordion-content" id="taxi-content">
                         <div class="accordion-body">
-                            <h5>📞 Kontakt informacije</h5>
-                            <p><strong>Taksi centralа:</strong> +30 24240 309005<br>
-                            <strong>Stanica:</strong> U luci između osnovne škole i pristaništa<br>
-                            <strong>Broj vozila:</strong> ~20 taksija na ostrvu</p>
-
-                            <h5>💰 Fiksne cijene sa stanice u gradu</h5>
+                            <h5>� Oficijelni cjenovnik - Skopelos Taxi Station (august 2025)</h5>
                             <div class="table-responsive">
-                            <table class="transport-table">
+                            <table class="transport-table taxi-table">
                                 <thead>
                                     <tr>
-                                        <th>Destinacija</th>
-                                        <th>Cijena</th>
-                                        <th>Vrijeme vožnje</th>
+                                        <th>📍 Destinacija (grčki naziv)</th>
+                                        <th>EN naziv</th>
+                                        <th>💶 Cijena</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Obližnji hoteli (u gradu)</td>
-                                        <td><span class="price-highlight">5€</span></td>
-                                        <td>5 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stafylos</td>
-                                        <td><span class="price-highlight">10€</span></td>
-                                        <td>8 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Agnontas</td>
-                                        <td><span class="price-highlight">15€</span></td>
-                                        <td>12 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Limnonari</td>
-                                        <td><span class="price-highlight">17€</span></td>
-                                        <td>15 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Panormos</td>
-                                        <td><span class="price-highlight">20-25€</span></td>
-                                        <td>20 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Milia/Kastani/Ftelia</td>
-                                        <td><span class="price-highlight">25€</span></td>
-                                        <td>25 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Neo Klima/Hovolo</td>
-                                        <td><span class="price-highlight">30€</span></td>
-                                        <td>30 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Glossa</td>
-                                        <td><span class="price-highlight">40€</span></td>
-                                        <td>40 min</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Loutraki</td>
-                                        <td><span class="price-highlight">50€</span></td>
-                                        <td>45 min</td>
-                                    </tr>
+                                    <tr><td>Ξενοδοχεία</td><td>Hotels (RIGAS, HOLIDAYS...)</td><td><span class="price-highlight">5€</span></td></tr>
+                                    <tr><td>Γλυστέρι</td><td>Glisteri</td><td><span class="price-highlight">15€</span></td></tr>
+                                    <tr><td>Στάφυλος</td><td>Stafilos (beach)</td><td><span class="price-highlight">10€</span></td></tr>
+                                    <tr><td>Αγκνώντας</td><td>Agnontas</td><td><span class="price-highlight">15€</span></td></tr>
+                                    <tr><td>Λιμνονάρι</td><td>Limnonari</td><td><span class="price-highlight">17€</span></td></tr>
+                                    <tr><td>Πάνορμος</td><td>Panormos</td><td><span class="price-highlight">20€</span></td></tr>
+                                    <tr><td>Μηλιά</td><td>Milia</td><td><span class="price-highlight">25€</span></td></tr>
+                                    <tr><td>Καστάνι</td><td>Kastani</td><td><span class="price-highlight">25€</span></td></tr>
+                                    <tr><td>Φτελιά</td><td>Ftelia</td><td><span class="price-highlight">25€</span></td></tr>
+                                    <tr><td>Ν. Κλήμα</td><td>N. Klima</td><td><span class="price-highlight">30€</span></td></tr>
+                                    <tr><td>Γλώσσα</td><td>Glossa</td><td><span class="price-highlight">40€</span></td></tr>
+                                    <tr><td>Λουτράκι</td><td>Loutraki</td><td><span class="price-highlight">50€</span></td></tr>
                                 </tbody>
                             </table>
                             </div>
 
-                            <h5>⚠️ Napomene</h5>
-                            <ul>
-                                <li>Dogovorite cijenu unaprijed</li>
-                                <li>Noćne vožnje su skuplje</li>
-                                <li>Isplati se dijeliti sa više ljudi</li>
-                                <li>24h dostupnost na aerodromu</li>
+                            <h5>📞 Glavni taksi kontakti</h5>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <h6><strong>🚖 Zahos Stamoulis</strong></h6>
+                                    <p>Specijalizovan za privatne ture</p>
+                                    <p><strong>Tel:</strong> +30 694 438 4646</p>
+                                    <p><a href="https://www.tripadvisor.com/Attraction_Review-g1187810-d13505767" target="_blank">TripAdvisor profil</a></p>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <h6><strong>📱 Taxi dispečer Skopelos</strong></h6>
+                                    <p>Centralni broj za pozive</p>
+                                    <p><strong>Tel:</strong> +30 694 484 4424</p>
+                                    <p><strong>Stanica:</strong> U luci, između osnovne škole i pristaništa</p>
+                                </div>
+                            </div>
+
+                            <h5>🚖 Ostali taksisti 
+                                <button id="showMoreTaxisBtn" onclick="toggleTaxiList()" style="background-color: #2196f3; color: white; border: none; padding: 6px 12px; font-size: 14px; cursor: pointer; border-radius: 6px; margin-left: 10px;">Prikaži sve</button>
+                            </h5>
+                            <ul id="extraTaxis" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                <li>📞 <strong>Panagiotis:</strong> +30 694 206 6016</li>
+                                <li>📞 <strong>Dimitris:</strong> +30 694 580 5585</li>
+                                <li>📞 <strong>Maria Taxi:</strong> +30 697 799 9483</li>
+                                <li>📞 <strong>Giorgos:</strong> +30 694 422 8799</li>
+                                <li>📞 <strong>Stelios:</strong> +30 694 439 3529</li>
+                                <li>📞 <strong>Kostas:</strong> +30 694 423 5194</li>
+                                <li>📞 <strong>Lefteris:</strong> +30 694 865 0032</li>
+                                <li>📞 <strong>Taxi Service 24h:</strong> +30 694 836 2415</li>
                             </ul>
 
-                            <p><strong>📊 Preporučeno za:</strong> Transfere sa prtljagom i povremene vožnje</p>
+                            <h5>ℹ️ Korisne informacije</h5>
+                            <ul>
+                                <li><strong>Službeni spisak:</strong> <a href="https://skopelos.com/listings/skopelos-taxi/" target="_blank">skopelos.com/listings/skopelos-taxi/</a></li>
+                                <li><strong>Broj vozila:</strong> ~20 taksija na celom ostrvu</li>
+                                <li><strong>Lokacija stanice:</strong> U luci između osnovne škole i pristaništa</li>
+                                <li><strong>24h dostupnost:</strong> Da, na aerodromu i preko telefona</li>
+                            </ul>
+
+                            <h5>⚠️ Napomene za korišćenje</h5>
+                            <ul>
+                                <li>Dogovorite cijenu unaprijed - koristite oficijelni cjenovnik</li>
+                                <li>Noćne vožnje (22:00-06:00) su skuplje za 20-30%</li>
+                                <li>Isplati se dijeliti troška sa više ljudi</li>
+                                <li>Za veće grupe rezervišite unaprijed</li>
+                                <li>Imajte keš - kartica nije uvek dostupna</li>
+                            </ul>
+
+                            <p><strong>📊 Preporučeno za:</strong> Transfere sa prtljagom, povremene vožnje, noćne izlaske i kada nema autobuske linije</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="info-card" style="margin: 20px 0; background: #e8f5e8; border-color: #c3e6cb;">
-                <h4>🎯 Naša preporuka za optimalni budžet</h4>
-                <p><strong>Kombinacija:</strong> Autobus za većinu dana (56-70€ za 7 dana) + Quad/Auto najam 2-4 dana (100-160€)</p>
-                <p><strong>Ukupno:</strong> <span class="price-highlight">156-230€</span> za potpunu slobodu kretanja tokom 12 dana na ostrvu</p>
-                <p><strong>Savjet:</strong> Rezervišite vozilo unaprijed za peak sezonu i pripremite keš za autobuske karte.</p>
-            </div>
+            
                         </div>
                     </div>
                 </div>
@@ -1776,7 +1856,7 @@
                     <strong>🏥 Zdravstveni centar Skopelos:</strong> +30 24240 22222
                 </div>
                 <div class="contact-item">
-                    <strong>🚕 Taxi Skopelos:</strong> +30 24240 309005 / +30 697 269 3375
+                    <strong>🚕 Taxi Skopelos:</strong> +30 694 484 4424 /+30 24240 309005 / +30 697 269 3375
                 </div>
                 <div class="contact-item">
                     <strong>ℹ️ Turistički info Skopelos:</strong> +30 6946 277250 / +30 24240 22900
@@ -1873,6 +1953,13 @@
             </div>
         </div>
     </div>
+
+<!-- Lightbox modal for route image -->
+<div id="img-lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+    <img id="lightbox-img" src="" alt="Preview" style="max-width:90vw; max-height:90vh; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+    <button onclick="closeLightbox()" style="position:absolute; top:20px; right:20px; background:#000; color:#fff; border:1px solid #555; padding:8px 12px; border-radius:6px; cursor:pointer;">Zatvori ✕</button>
+</div>
+
 <script>
         function toggleAccordion(id) {
             const content = document.getElementById(id + '-content');
@@ -1918,6 +2005,78 @@
                 icon.textContent = '▲';
             }
         }
+        
+        // Funkcija za prikaz/sakrivanje dodatnih taksista
+        function toggleTaxiList() {
+            const list = document.getElementById("extraTaxis");
+            const btn = document.getElementById("showMoreTaxisBtn");
+            
+            if (list.style.display === "none" || list.style.display === "") {
+                list.style.display = "block";
+                btn.innerText = "Sakrij";
+            } else {
+                list.style.display = "none";
+                btn.innerText = "Prikaži sve";
+            }
+        }
+
+        // Lightbox helpers
+        function openLightbox(src){
+            const lb = document.getElementById('img-lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.style.display = 'flex';
+        }
+        function closeLightbox(){
+            const lb = document.getElementById('img-lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = '';
+            lb.style.display = 'none';
+        }
+
+        // AGNONTAS timetable data (manually extracted from provided images; Mon–Sun)
+        const agnontasData = {
+            to_skopelos: [
+                "07:45","09:08","10:08","11:08","12:08","13:08","15:08","16:08","17:08","18:15","19:15","20:15","21:15","22:15"
+            ],
+            to_loutraki: [
+                "09:10","11:10","12:10","13:10","14:10","15:10","16:45","17:45","18:45","19:30","20:10","21:10"
+            ]
+        };
+
+        // Render function
+        function renderAgnontas(direction){
+            const body = document.getElementById('agnontas-times-body');
+            body.innerHTML = '';
+            const times = direction === 'skopelos' ? agnontasData.to_skopelos : agnontasData.to_loutraki;
+            const dirLabel = direction === 'skopelos' ? 'Agnontas → Skopelos (Port)' : 'Agnontas → Loutraki/Glossa';
+            const tdTimes = `<td>${times.join(', ') || '—'}</td>`;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${dirLabel}</td>${tdTimes}`;
+            body.appendChild(tr);
+
+            // update pills style
+            const btnSk = document.getElementById('btn-to-skopelos');
+            const btnLo = document.getElementById('btn-to-loutraki');
+            if(direction==='skopelos'){
+                btnSk.style.background = '#1976d2'; btnSk.style.color = '#fff';
+                btnLo.style.background = '#e0e0e0'; btnLo.style.color = '#333';
+            } else {
+                btnLo.style.background = '#1976d2'; btnLo.style.color = '#fff';
+                btnSk.style.background = '#e0e0e0'; btnSk.style.color = '#333';
+            }
+        }
+
+        // Wire up buttons after DOM load
+        window.addEventListener('DOMContentLoaded', ()=>{
+            const btnSk = document.getElementById('btn-to-skopelos');
+            const btnLo = document.getElementById('btn-to-loutraki');
+            if(btnSk && btnLo){
+                btnSk.addEventListener('click', ()=>renderAgnontas('skopelos'));
+                btnLo.addEventListener('click', ()=>renderAgnontas('loutraki'));
+                renderAgnontas('skopelos');
+            }
+        });
     </script>
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>
 </body>
