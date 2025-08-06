@@ -997,7 +997,7 @@
             <div class="main-accordion">
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('finansije')">
-                        <h2 id="finansije">💰 Finansijski pregled</h2>
+                        <h2 id="finansije">� �💰 Finansijski pregled (zaštićeno)</h2>
                         <span class="main-accordion-icon" id="finansije-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="finansije-content">
@@ -2206,7 +2206,21 @@
             }
         }
         
+        // Password zaštita za finansijsku sekciju
+        let financialPasswordEntered = false;
+        
         function toggleMainAccordion(id) {
+            // Specijalna provjera za finansije
+            if (id === 'finansije' && !financialPasswordEntered) {
+                const password = prompt('🔐 Unesite šifru za pristup finansijskim podacima:');
+                if (password !== '2345') {
+                    alert('❌ Pogrešna šifra! Pristup odbijen.');
+                    return;
+                }
+                financialPasswordEntered = true;
+                alert('✅ Pristup odobren! Finansijska sekcija se otvara...');
+            }
+            
             const content = document.getElementById(id + '-content');
             const icon = document.getElementById(id + '-icon');
             
