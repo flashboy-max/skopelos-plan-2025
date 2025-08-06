@@ -898,11 +898,6 @@
             color: #e65100; 
             font-size: 0.9em; 
         }
-        @keyframes pulse { 
-            0% { opacity: 1; } 
-            50% { opacity: 0.7; } 
-            100% { opacity: 1; } 
-        }
     </style>
 </head>
 <body>
@@ -1092,8 +1087,7 @@
                     <div class="main-accordion-content" id="smestaj-content">
                         <div class="main-accordion-body">
             <h3>🏨 Smeštaj</h3>
-            
-            <!-- To Ktima tis Matinas -->
+                        <!-- To Ktima tis Matinas -->
             <div class="accommodation-card reserved">
                 <div class="status-badge reserved">✅ REZERVISANO</div>
                 <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
@@ -1126,24 +1120,64 @@
                 <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
                    target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
             </div>
+
             
-            
-            <div class="accommodation-card urgent">
-                <div class="accommodation-header">
-                    <h4>⚠️ Potrebne rezervacije u Solunu</h4>
-                    <span class="status-badge urgent">HITNO</span>
-                </div>
-                <div class="accommodation-info-grid">
-                    <div class="accommodation-info">
-                        <strong>📅 Dolazak:</strong> 22-23. august (1 noć)<br>
-                        <span class="info-detail">Blizu luke za ukrcavanje na trajekt</span>
+            <div style="margin-top: 30px; padding: 15px; background: #fff3e0; border-radius: 8px; border-left: 4px solid #ff9800;">
+                <h4 style="margin-top: 0; color: #e65100;">🚨 Hitno - Potrebne rezervacije u Solunu</h4>
+                <div style="display: grid; gap: 15px; margin-top: 15px;">
+                    
+                    <!-- Solun Dolazak -->
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffeaa7 100%); border: 2px solid #ff9800; border-radius: 12px; padding: 20px; position: relative;">
+                        <div style="position: absolute; top: 10px; right: 15px; background: #ff5722; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; animation: pulse 2s infinite;">
+                            ❌ POTREBNO REZERVISATI
+                        </div>
+                        <h5 style="margin: 0 0 10px 0; color: #e65100; font-size: 1.1em;">
+                            🏨 Solun - Dolazak
+                        </h5>
+                        <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 8px; margin: 10px 0;">
+                            <div style="font-size: 0.95em; line-height: 1.5;">
+                                <div style="margin-bottom: 8px;"><strong>📅 Datum:</strong> <span style="color: #d84315; font-weight: bold;">22-23. august 2025</span></div>
+                                <div style="margin-bottom: 8px;"><strong>🛏️ Noći:</strong> <span style="color: #d84315; font-weight: bold;">1 noć</span></div>
+                                <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu luke (Thessaloniki Port)</div>
+                                <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
+                            </div>
+                        </div>
+                        <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
+                            <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo 16 dana!
+                        </div>
                     </div>
-                    <div class="accommodation-info">
-                        <strong>📅 Odlazak:</strong> 4-5. septembar (1 noć)<br>
-                        <span class="info-detail">Blizu aerodroma za povratni let</span>
+                    
+                    <!-- Solun Odlazak -->
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffeaa7 100%); border: 2px solid #ff9800; border-radius: 12px; padding: 20px; position: relative;">
+                        <div style="position: absolute; top: 10px; right: 15px; background: #ff5722; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; animation: pulse 2s infinite;">
+                            ❌ POTREBNO REZERVISATI
+                        </div>
+                        <h5 style="margin: 0 0 10px 0; color: #e65100; font-size: 1.1em;">
+                            🏨 Solun - Odlazak
+                        </h5>
+                        <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 8px; margin: 10px 0;">
+                            <div style="font-size: 0.95em; line-height: 1.5;">
+                                <div style="margin-bottom: 8px;"><strong>📅 Datum:</strong> <span style="color: #d84315; font-weight: bold;">4-5. septembar 2025</span></div>
+                                <div style="margin-bottom: 8px;"><strong>🛏️ Noći:</strong> <span style="color: #d84315; font-weight: bold;">1 noć</span></div>
+                                <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu aerodroma (SKG Airport)</div>
+                                <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
+                            </div>
+                        </div>
+                        <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
+                            <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo 16 dana!
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- CSS za animaciju -->
+            <style>
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.7; }
+                    100% { opacity: 1; }
+                }
+            </style>
                         </div>
                     </div>
                 </div>
@@ -1260,20 +1294,76 @@
 
 
                             <h5>✅ Prednosti</h5>
-                            <ul>
-                                <li>Vrlo niska cijena (2-5€ po osobi)</li>
-                                <li>Moderni klimatizovani autobusi</li>
-                                <li>Pokriće većine popularnih plaža</li>
-                                <li>Česti polasci (svakih 60-90 min)</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <h5>⚠️ Ograničenja</h5>
-                            <ul>
-                                <li>Za neke plaže potrebna šetnja 300-500m</li>
-                                <li>Vozni red se može skratiti u septembru</li>
-                                <li>Karte se plaćaju gotovinom kod vozača</li>
-                                <li>Zadnji autobus u 23:30 (do Loutrakija 00:45)</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <p><strong>📊 Procjena troška za 7 dana:</strong> <span class="price-highlight">56-84€</span> (zavisi od destinacija)</p>
                         </div>
@@ -1318,28 +1408,112 @@
                             </div>
 
                             <h5>📋 Uslovi najma</h5>
-                            <ul>
-                                <li><strong>Dozvola:</strong> B kategorija (za ATV i auto)</li>
-                                <li><strong>Minimalna starost:</strong> 23 godine</li>
-                                <li><strong>Gorivo:</strong> Vraća se sa istim nivoom</li>
-                                <li><strong>Dostava:</strong> Besplatno do hotela (uključeno)</li>
-                                <li><strong>Osiguranje:</strong> CDW uključeno (excess do 650€); FDW dostupno uz doplatu</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <h5>✅ Prednosti</h5>
-                            <ul>
-                                <li>Potpuna sloboda kretanja</li>
-                                <li>Pristup zabačenim plažama i manastirima</li>
-                                <li>Ušteda vremena</li>
-                                <li>24/7 tehnička pomoć</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <h5>⚠️ Napomene</h5>
-                            <ul>
-                                <li><strong>Preporuka:</strong> Uzmite puno osiguranje (FDW) zbog uskih i krivudavih puteva</li>
-                                <li>Rezervišite ranije – velika potražnja u augustu</li>
-                                <li>Fotografišite vozilo pri preuzimanju</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <p style="margin-top: 15px;"><strong>📊 Idealno trajanje:</strong> 3–4 dana u kombinaciji s autobuskim prevozom</p>
                         </div>
@@ -1412,21 +1586,76 @@
                             </ul>
 
                             <h5>ℹ️ Korisne informacije</h5>
-                            <ul>
-                                <li><strong>Službeni spisak:</strong> <a href="https://skopelos.com/listings/skopelos-taxi/" target="_blank">skopelos.com/listings/skopelos-taxi/</a></li>
-                                <li><strong>Broj vozila:</strong> ~20 taksija na celom ostrvu</li>
-                                <li><strong>Lokacija stanice:</strong> U luci između osnovne škole i pristaništa</li>
-                                <li><strong>24h dostupnost:</strong> Da, na aerodromu i preko telefona</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <h5>⚠️ Napomene za korišćenje</h5>
-                            <ul>
-                                <li>Dogovorite cijenu unaprijed - koristite oficijelni cjenovnik</li>
-                                <li>Noćne vožnje (22:00-06:00) su skuplje za 20-30%</li>
-                                <li>Isplati se dijeliti troška sa više ljudi</li>
-                                <li>Za veće grupe rezervišite unaprijed</li>
-                                <li>Imajte keš - kartica nije uvek dostupna</li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <p><strong>📊 Preporučeno za:</strong> Transfere sa prtljagom, povremene vožnje, noćne izlaske i kada nema autobuske linije</p>
                         </div>
@@ -1449,15 +1678,40 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="day-header">📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</div>
-                    <ul>
-                        <li>08:00 - Polazak za aerodrom Sarajevo</li>
-                        <li>10:10 - Let FR5005 (Sarajevo → Solun)</li>
-                        <li>12:30 - Dolazak u Solun (lokalno vrijeme)</li>
-                        <li>Prevoz do smeštaja u Solunu</li>
-                        <li>Check-in i odmor</li>
-                        <li>Šetnja po centru Soluna</li>
-                        <li>Večera u restoranu</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="timeline-item">
@@ -1469,27 +1723,80 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10416.585311409557!2d23.733678468253785!3d39.086673779823926!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c017949bc685%3A0xb78e00e556901301!2zzqTOvyDOms-Ezq7OvM6xIM-EzrfPgiDOnM6xz4TOr869zrHPgg!5e0!3m2!1sen!2sba!4v1754380293654!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
-                    <ul>
-                        <li>06:00 - Doručak i check-out</li>
-                        <li>07:00 - Putovanje do luke</li>
-                        <li>08:00 - Ukrcavanje na trajekt</li>
-                        <li>08:30 - Polazak trajekta (SPEEDRUNNER JET)</li>
-                        <li>12:20 - Dolazak na Skopelos</li>
-                        <li>13:00 - Check-in u To Ktima tis Matinas (Stafilos)</li>
-                        <li>Istraživanje Stafilosa i obližnjih plaža</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="timeline-item">
                     <div class="day-header">🎂 Dan 3 - Nedjelja, 24. august 2025. - Rođendan i "Mamma Mia!" dan</div>
                     
                     <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">☀️ Jutarnji program</h5>
-                    <ul>
-                        <li><strong>08:00</strong> - Buđenje i lagani doručak na terasi</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">💡 Preporuka: kupiti nešto za doručak večer ranije ili pitati domaćine</li>
-                        <li><strong>08:30</strong> - Polazak ka Skopelos gradu (Chora)</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">🚌 Autobus iz Stafilosa - cijena ~2€ po osobi (10-15 min vožnje)</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                     <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🎬 "Mamma Mia!" tura</h5>
                     <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0;">
@@ -1522,14 +1829,40 @@
                     </div>
 
                     <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🌅 Večernji program</h5>
-                    <ul>
-                        <li><strong>16:00-17:00</strong> - Povratak u smeštaj i odmor</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">🚿 Brzi tuš, presvlačenje, kratka pauza</li>
-                        <li><strong>19:00</strong> - 🎂 <strong>Rođendanska večera</strong> u <a href="https://maps.app.goo.gl/UdF5tXS4tExfSQr67" target="_blank">Stafilos Restaurant</a></li>
-                        <li style="font-size: 0.9em; color: #6c757d;">📍 Odmah uz more, 5 min hoda od smeštaja</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">🌅 Idealno vrijeme za zalazak sunca - sto sa pogledom na more</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">✅ Rezervacija već potvrđena</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="timeline-item">
@@ -1541,15 +1874,40 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10417.20992283608!2d23.72115615463591!3d39.08244402852887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3625e8c3f%3A0x87ee7f50c5ede7b5!2sPine%20Trees!5e0!3m2!1sen!2sba!4v1754380182756!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
-                    <ul>
-                        <li>09:00 - Doručak i check-out iz To Ktima tis Matinas</li>
-                        <li>Putovanje do Agnontasa</li>
-                        <li>Check-in u The Pine Trees</li>
-                        <li>Ručak i upoznavanje sa novom lokacijom</li>
-                        <li>Plaža Agnontas</li>
-                        <li>Šetnja po selu</li>
-                        <li>Večera</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="timeline-item">
@@ -1560,35 +1918,116 @@
                     </div>
                     
                     <h4>⭐ Prijedlozi za dane:</h4>
-                    <ul>
-                        <li>Kombinacija opuštanja na obližnjim plažama (Agnontas, Panormos) i dnevnih izleta.</li>
-                        <li>Posjetite Skopelos Town (Chora) više puta, danju i noću, da doživite atmosferu.</li>
-                        <li>Iznajmite vozilo na 2-3 dana za obilazak udaljenijih plaža (Hovolo, Perivoliou) i manastira.</li>
-                        <li>Ne propustite "Mamma Mia! Night" srijedom u Tikiti Maji baru.</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="timeline-item">
                     <div class="day-header">⛴️ Dan 14 - Četvrtak, 4. septembar 2025. - Povratak u Solun</div>
-                    <ul>
-                        <li>09:00 - Doručak i check-out</li>
-                        <li>Odlazak u luku</li>
-                        <li>14:30 - Ukrcavanje na trajekt</li>
-                        <li>15:00 - Polazak trajekta</li>
-                        <li>18:55 - Dolazak u Solun</li>
-                        <li>Check-in u smeštaj blizu aerodroma</li>
-                        <li>Večera u Solunu</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="timeline-item">
                     <div class="day-header">✈️ Dan 15 - Petak, 5. septembar 2025. - Povratak kući</div>
-                    <ul>
-                        <li>06:00 - Doručak i check-out</li>
-                        <li>07:00 - Putovanje na aerodrom</li>
-                        <li>09:25 - Let FR5004 (Solun → Sarajevo)</li>
-                        <li>09:45 - Dolazak u Sarajevo</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
             </div>
                         </div>
@@ -1838,13 +2277,40 @@
                             </div>
                             
                             <h4>🎯 Aktivnosti:</h4>
-                            <ul>
-                                <li><a href="https://www.magiccars.gr/" target="_blank">Iznajmljivanje skutera/automobila - Magic Cars</a></li>
-                                <li>Trekking staze <em>(Delphi Trail iznad Panormosa)</em></li>
-                                <li>Snorkeling <em>(odlični tereni kod Stafylosa i Limnonarija)</em></li>
-                                <li><a href="https://www.getyourguide.com/skopelos-town-l109747/skopelos-mamma-mia-experience-t765032/?ranking_uuid=0f4f38f8-af5f-44f0-9d6c-1446841491dc&date_from=2025-08-24&date_to=2025-08-31" target="_blank">Vožnja čamcem oko ostrva</a> <em>(izlet iz Skopelos Marine)</em></li>
-                                <li><a href="https://alonissos.gr/en/things-to-do/nature-tourism.html" target="_blank">Izlet na Alonissos National Marine Park</a> <em>(posebno morski park)</em></li>
-                            </ul>
+                                        <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
 
                             <h4>🍹 Noćni život:</h4>
                             <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2196f3;">
@@ -1951,64 +2417,154 @@
             <div class="info-grid">
                 <div class="info-card">
                     <h4>👕 Odjeća:</h4>
-                    <ul>
-                        <li>Kupaci kostimi (2-3 para)</li>
-                        <li>Ljetnja odjeća (majice, šortovi, haljine)</li>
-                        <li>Jedna toplija jakna za večeri <em>(može biti vjetrovka)</em></li>
-                        <li>Udobna obuća za hodanje </li>
-                        <li>Sandale/papuče za plažu</li>
-                        <li>Elegantna odjeća za večeru</li>
-                        <li>Donji veš (dovoljno za 14 dana)</li>
-                        <li>Čarape (tanje za ljeto)</li>
-                        <li>Odjeća za spavanje</li>
-                        <li>Peškir za plažu (veliki)</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="info-card">
                     <h4>🎒 Ostalo:</h4>
-                    <ul>
-                        <li>Krema za sunčanje (SPF 50+)</li>
-                        <li>Naočare za sunce</li>
-                        <li>Šešir / kačket</li>
-                        <li>Adapter za struju (punjač za telefon + kabl 2x)</li>
-                        <li>Gadgeti (tablet, slušalice - sa trening opreme)</li>
-                        <li>Powerbank (bežični)</li>
-                        <li>Kamera/GoPro (potražiti)</li>
-                        <li>Lijekovi (osnovni, prva pomoć)</li>
-                        <li>Vodene cipele / štitnici</li>                              
-                        <li>Snorkel oprema (naočale, maska, čepići)</li>
-                        <li>Vodootporna torba (mobilni frižider)</li>
-                        <li>Dušek za plažu</li>
-                        <li>Kozmetika (šampon, gel, krema...)</li>
-                        <li>Četkica za zube + pasta</li>
-                        <li>Repelent za komarce</li>
-                        <li>Krema za posle ujeda insekata</li>
-                        <li>Krema nakon sunčanja/aloe vera</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="info-card">
                     <h4>📄 Dokumenta:</h4>
-                    <ul>
-                        <li>Pasoš/lična karta (važeći minimum 6 mjeseci)</li>
-                        <li>Avionske karte (printane + digitalne)</li>
-                        <li>Trajekt karte (printane + digitalne)</li>
-                        <li>Rezervacije smeštaja (printane potvrde)</li>
-                        <li>Putno osiguranje (polisa + broj za kontakt)</li>
-                        <li>Kopije dokumenata (u slučaju gubitka)</li>
-                        <li>Gotov novac u eurima (€300-500)</li>
-                        <li>Kartice (Visa/Mastercard)</li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
                 
                 <div class="info-card">
                     <h4>🏖️ Specifično za Skopelos:</h4>
-                    <ul>
-                        <li>Vodene cipele/štitnici <em>(kamenje na plažama)</em></li>
-                        <li>Maske za snorkeling <em>(ako ne kupujete tamo)</em></li>
-                        <li>Powerbank za ceo dan <em>(fotografisanje + navigacija)</em></li>
-                    </ul>
+                                <!-- To Ktima tis Matinas -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+
                 </div>
             </div>
                         </div>
@@ -2201,3 +2757,4 @@
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>
 </body>
 </html>
+
