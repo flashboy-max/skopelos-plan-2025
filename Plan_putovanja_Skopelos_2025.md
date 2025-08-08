@@ -8,6 +8,14 @@
 **Valuta:** Euro (€)
 **Vremenska zona:** EEST (GMT+3), **jedan sat ispred Sarajeva**
 
+## Urađeno (8. august 2025.)
+
+- ✅ Rezervisan smeštaj za 4–5. septembar (Solun – povratak): Palioktima - sleep and go — €53 (naplata 25.08. od Ajne), adresa i kontakt dodani.
+- ✅ Urban Touch Studios (22–23. august) potvrđen u planu; budžet ažuriran: €65 na licu mjesta.
+- ✅ Ažuriran Dan 14: smeštaj Palioktima + kratki savjet za transfer do SKG (Taxi vs. 01X/01N).
+- ✅ “Nerešene stavke” očišćene od završenih rezervacija; ostaju samo prevozi (aerodrom ↔ smeštaj, luka ↔ smeštaj, lokalni prevoz).
+- ✅ Korisni kontakti dopunjeni u stranici: OASTH 01X/01N i SKG mini mapa. 
+
 ## Pregled letova
 
 ### Odlazak
@@ -52,12 +60,13 @@
 
 ## Smeštaj
 
-### Solun - Dolazak — Urban Touch Studios (samo rezervacija)
+### Solun - Dolazak — Urban Touch Studios (rezervisano)
 - **Datum:** 22-23. august 2025. (1 noć)
 - **Lokacija:** Urban Touch Studios (blizu luke)
+- **Cijena:** €65 (plaća se na licu mjesta)
 - **Mapa:** https://www.google.com/maps/place/Urban+Touch+Studios/@40.6423528,22.9348982,21z
 - **Kontakt:** +306943573141
-- **Status:** ⏳ Rezervacija u toku (potvrdu i uslove provjeriti)
+- **Status:** ✅ Rezervisano
 
 ### Skopelos - Smeštaj 1: To Ktima tis Matinas
 - **Datum:** 23-25. august 2025. (2 noći)
@@ -325,8 +334,10 @@ Sve kritične rezervacije smeštaja su završene. Otvorene stvari:
 - **Seajets.gr** - informacije o trajektima
 - **Visit-skopelos.com** - turistične informacije
 - **SKG Airport** - informacije o aerodromu Solun
+ - **OASTH 01X (dan)** - https://telematics.oasth.gr/en/#lineDetails_146_01X%20:%20AIRPORT%20-%20INTERCITY%20BUS%20TERMINAL%20(VIA%20CITY%20CENTRE)_76-69
+ - **OASTH 01N (noć)** - https://telematics.oasth.gr/en/#lineDetails_146_01N%20:%20AIRPORT-INTERCITY%20BUS%20TERMINAL-NIGHT%20LINE_74-69
 
 ---
 
-*Plan ažuriran: 4. august 2025.*  
-*Status: RADNA VERZIJA - potrebne rezervacije za Solun*
+*Plan ažuriran: 8. august 2025.*  
+*Status: RADNA VERZIJA - sve ključne rezervacije smeštaja završene; ostaju prevozi*
