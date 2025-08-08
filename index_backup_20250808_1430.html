@@ -840,6 +840,99 @@
             outline: 3px solid rgba(25, 118, 210, 0.6);
             outline-offset: 2px;
         }
+        
+        /* Accommodation Card Styles */
+        .accommodation-card { 
+            background: #f8f9fa; 
+            border: 2px solid #ddd; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin: 15px 0; 
+            position: relative; 
+        }
+        .accommodation-card.reserved { 
+            background: linear-gradient(135deg, #e8f5e8, #f8fff8); 
+            border-color: #28a745; 
+        }
+        .accommodation-card.urgent { 
+            background: linear-gradient(135deg, #fff3e0, #ffeaa7); 
+            border-color: #ff9800; 
+        }
+        .status-badge { 
+            position: absolute; 
+            top: 10px; 
+            right: 15px; 
+            color: white; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 0.8em; 
+            font-weight: bold; 
+        }
+        .status-badge.reserved { background: #28a745; }
+        .status-badge.urgent { background: #ff5722; animation: pulse 2s infinite; }
+        .accommodation-info-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            background: rgba(255,255,255,0.8); 
+            padding: 12px; 
+            border-radius: 8px; 
+            margin: 10px 0; 
+            font-size: 0.9em; 
+        }
+        .accommodation-map-link { 
+            display: inline-block; 
+            color: #1976d2; 
+            text-decoration: none; 
+            background: white; 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            border: 1px solid #1976d2; 
+            margin-top: 10px; 
+        }
+        .accommodation-recommendation { 
+            background: #ffecb3; 
+            padding: 10px; 
+            border-radius: 6px; 
+            margin-top: 10px; 
+            color: #e65100; 
+            font-size: 0.9em; 
+        }
+        @keyframes pulse { 
+            0% { opacity: 1; } 
+            50% { opacity: 0.7; } 
+            100% { opacity: 1; } 
+        }
+        
+        /* Mobilna optimizacija za accommodation badge-ove */
+        @media (max-width: 768px) {
+            .accommodation-card .status-badge {
+                position: static !important;
+                display: block;
+                margin: 0 0 10px 0;
+                text-align: center;
+                width: 100%;
+                top: auto !important;
+                right: auto !important;
+            }
+            
+            .accommodation-card {
+                padding: 15px !important;
+            }
+            
+            .accommodation-card h4 {
+                margin-top: 0 !important;
+            }
+            
+            /* Dodatan prostor za sve elemente sa absolute pozicioniranjem */
+            div[style*="position: absolute"] {
+                position: static !important;
+                display: block !important;
+                margin: 0 0 10px 0 !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -904,7 +997,7 @@
             <div class="main-accordion">
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('finansije')">
-                        <h2 id="finansije">💰 Finansijski pregled</h2>
+                        <h2 id="finansije">� �💰 Finansijski pregled (zaštićeno)</h2>
                         <span class="main-accordion-icon" id="finansije-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="finansije-content">
@@ -1029,33 +1122,133 @@
                     <div class="main-accordion-content" id="smestaj-content">
                         <div class="main-accordion-body">
             <h3>🏨 Smeštaj</h3>
-            <ul>
-              <li style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; list-style: none;">
-                � <strong>To Ktima tis Matinas</strong><br>
-                <span style="font-size: 0.9em; color: #666; margin-top: 5px; display: block;">Datum: 23-25. august (2 noći) | Cijena: €117 | Ocjena: 9.5/10 ⭐</span>
-                Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.<br>
-                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu"
-                   target="_blank" rel="noopener noreferrer" style="color: #1976d2; text-decoration: none; margin-top: 8px; display: inline-block;">
-                  📍 Lokacija na Google mapama
-                </a>
-              </li>
-              <li style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; list-style: none;">
-                🌲 <strong>The Pine Trees</strong><br>
-                <span style="font-size: 0.9em; color: #666; margin-top: 5px; display: block;">Datum: 25. august - 4. septembar (10 noći) | Cijena: €570 ukupno | Ocjena: 9.8/10 ⭐</span>
-                Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.<br>
-                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu"
-                   target="_blank" rel="noopener noreferrer" style="color: #1976d2; text-decoration: none; margin-top: 8px; display: inline-block;">
-                  📍 Lokacija na Google mapama
-                </a>
-              </li>
-            </ul>
             
-            <div style="margin-top: 30px; padding: 15px; background: #fff3e0; border-radius: 8px; border-left: 4px solid #ff9800;">
-                <h4 style="margin-top: 0; color: #e65100;">⚠️ Potrebne rezervacije u Solunu</h4>
-                <ul style="margin-bottom: 0;">
-                    <li><strong>Dolazak:</strong> 22-23. august (1 noć) - Blizu luke</li>
-                    <li><strong>Odlazak:</strong> 4-5. septembar (1 noć) - Blizu aerodroma</li>
-                </ul>
+            <!-- Solun Dolazak - PRVI po datumu 22-23.08 -->
+            <div class="accommodation-card urgent">
+                <div style="position: absolute; top: 10px; right: 15px; background: #ff5722; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; animation: pulse 2s infinite;">
+                    ❌ POTREBNO REZERVISATI
+                </div>
+                <h4 style="margin: 0 0 10px 0; color: #e65100; font-size: 1.1em;">
+                    🏨 Solun - Dolazak
+                </h4>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 8px; margin: 10px 0;">
+                    <div style="font-size: 0.95em; line-height: 1.5;">
+                        <div style="margin-bottom: 8px;"><strong>📅 Datum:</strong> <span style="color: #d84315; font-weight: bold;">22-23. august 2025</span></div>
+                        <div style="margin-bottom: 8px;"><strong>🛏️ Noći:</strong> <span style="color: #d84315; font-weight: bold;">1 noć</span></div>
+                        <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu luke (Thessaloniki Port)</div>
+                        <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
+                    </div>
+                    <!-- Transport info -->
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.85em; color: #666;">
+                        <div style="margin-bottom: 4px;"><strong>🚢 Prevoz od luke:</strong> Taxi ≈ €15-20 | Pešice 10-15 min</div>
+                        <div><strong>📍 Preporučene zone:</strong> <span style="color: #1976d2;">Ladadika četvrt, Aristotelous trg</span></div>
+                    </div>
+                </div>
+                
+                <!-- Progress bar za urgentnost -->
+                <div style="margin: 10px 0;">
+                    <div style="background: #ffecb3; height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="background: #ff5722; height: 100%; width: 75%; border-radius: 3px; animation: pulse 1.5s infinite;"></div>
+                    </div>
+                    <div style="font-size: 0.8em; color: #e65100; margin-top: 4px; text-align: center;">
+                        Urgentnost: Visoka (75%)
+                    </div>
+                </div>
+                
+                <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
+                    <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo <span id="daysLeft1">16</span> dana!
+                </div>
+                
+                <!-- Quick links -->
+                <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <a href="https://www.booking.com/searchresults.sr.html?ss=Solun&ssne=Solun&ssne_untouched=Solun&efdco=1&label=gen173nr-10CAQoggI4kwRIM1gEaBKIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4AvXDzcQGwAIB0gIkOTFjYjJmYzMtM2IwNi00ODYyLWJiZDUtNTFiNWY0OGExMGUz2AIB4AIB&aid=304142&lang=sr&sb=1&src_elem=sb&src=searchresults&dest_id=-829252&dest_type=city&checkin=2025-08-22&checkout=2025-08-23&group_adults=2&no_rooms=1&group_children=0" target="_blank" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                        Booking.com
+                    </a>
+                    <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-08-22&checkout=2025-08-23" target="_blank" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                        Airbnb
+                    </a>
+                </div>
+            </div>
+            
+            <!-- To Ktima tis Matinas - DRUGI po datumu 23-25.08 -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏡 To Ktima tis Matinas</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 23-25. august</div>
+                    <div><strong>🛏️ Noći:</strong> 2 noći</div>
+                    <div><strong>💰 Cijena:</strong> €117</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
+                </p>
+                <a href="https://www.google.com/maps/place/%CE%A4%CE%BF+%CE%9A%CF%84%CE%AE%CE%BC%CE%B1+%CF%84%CE%B7%CF%82+%CE%9C%CE%B1%CF%84%CE%AF%CE%BD%CE%B1%CF%82/@39.0902526,23.7449469,15.25z/data=!4m6!3m5!1s0x14a6c017949bc685:0xb78e00e556901301!8m2!3d39.0913834!4d23.7410906!16s%2Fg%2F11f0414cl3?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- The Pine Trees - TREĆI po datumu 25.08-04.09 -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🌲 The Pine Trees</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
+                    <div><strong>🛏️ Noći:</strong> 10 noći</div>
+                    <div><strong>💰 Cijena:</strong> €570 ukupno</div>
+                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
+                </p>
+                <a href="https://www.google.com/maps/place/Pine+Trees/@39.0833784,23.7125964,18z/data=!4m11!3m10!1s0x14a6c1b3625e8c3f:0x87ee7f50c5ede7b5!5m4!1s2025-08-23!2i2!4m1!1i2!8m2!3d39.0830362!4d23.713538!16s%2Fg%2F11crztzp2c?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
+            </div>
+            
+            <!-- Solun Odlazak - ČETVRTI po datumu 04-05.09 -->
+            <div class="accommodation-card urgent">
+                <div style="position: absolute; top: 10px; right: 15px; background: #ff5722; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; animation: pulse 2s infinite;">
+                    ❌ POTREBNO REZERVISATI
+                </div>
+                <h4 style="margin: 0 0 10px 0; color: #e65100; font-size: 1.1em;">
+                    🏨 Solun - Odlazak
+                </h4>
+                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 8px; margin: 10px 0;">
+                    <div style="font-size: 0.95em; line-height: 1.5;">
+                        <div style="margin-bottom: 8px;"><strong>📅 Datum:</strong> <span style="color: #d84315; font-weight: bold;">4-5. septembar 2025</span></div>
+                        <div style="margin-bottom: 8px;"><strong>🛏️ Noći:</strong> <span style="color: #d84315; font-weight: bold;">1 noć</span></div>
+                        <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu aerodroma (SKG Airport)</div>
+                        <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
+                    </div>
+                    <!-- Transport info -->
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.85em; color: #666;">
+                        <div style="margin-bottom: 4px;"><strong>🚐 Prevoz od aerodroma:</strong> Taxi ≈ €25-30 | Bus X1 → centar</div>
+                        <div><strong>📍 Preporučene zone:</strong> <span style="color: #1976d2;">Airport area, Pylaia</span></div>
+                    </div>
+                </div>
+                
+                <!-- Progress bar za urgentnost -->
+                <div style="margin: 10px 0;">
+                    <div style="background: #ffecb3; height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="background: #ff5722; height: 100%; width: 75%; border-radius: 3px; animation: pulse 1.5s infinite;"></div>
+                    </div>
+                    <div style="font-size: 0.8em; color: #e65100; margin-top: 4px; text-align: center;">
+                        Urgentnost: Visoka (75%)
+                    </div>
+                </div>
+                
+                <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
+                    <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo <span id="daysLeft2">16</span> dana!
+                </div>
+                
+                <!-- Quick links -->
+                <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <a href="https://www.booking.com/searchresults.sr.html?ss=Solun&ssne=Solun&ssne_untouched=Solun&label=gen173nr-10CAQoggI4kwRIM1gEaBKIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4AvXDzcQGwAIB0gIkOTFjYjJmYzMtM2IwNi00ODYyLWJiZDUtNTFiNWY0OGExMGUz2AIB4AIB&aid=304142&lang=sr&sb=1&src_elem=sb&src=searchresults&dest_id=-829252&dest_type=city&checkin=2025-09-04&checkout=2025-09-05&group_adults=2&no_rooms=1&group_children=0" target="_blank" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                        Booking.com
+                    </a>
+                    <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-09-04&checkout=2025-09-05" target="_blank" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                        Airbnb
+                    </a>
+                </div>
             </div>
                         </div>
                     </div>
@@ -2013,7 +2206,21 @@
             }
         }
         
+        // Password zaštita za finansijsku sekciju
+        let financialPasswordEntered = false;
+        
         function toggleMainAccordion(id) {
+            // Specijalna provjera za finansije
+            if (id === 'finansije' && !financialPasswordEntered) {
+                const password = prompt('🔐 Unesite šifru za pristup finansijskim podacima:');
+                if (password !== '2345') {
+                    alert('❌ Pogrešna šifra! Pristup odbijen.');
+                    return;
+                }
+                financialPasswordEntered = true;
+                alert('✅ Pristup odobren! Finansijska sekcija se otvara...');
+            }
+            
             const content = document.getElementById(id + '-content');
             const icon = document.getElementById(id + '-icon');
             
@@ -2110,6 +2317,22 @@
                 renderAgnontas('skopelos');
             }
         });
+        
+        // Funkcija za automatsko računanje dana do putovanja
+        function updateDaysLeft() {
+            const targetDate = new Date('2025-08-22');
+            const today = new Date();
+            const daysLeft = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
+            const daysToShow = daysLeft > 0 ? daysLeft : 0;
+            
+            const elements = document.querySelectorAll('[id^="daysLeft"]');
+            elements.forEach(el => {
+                el.textContent = daysToShow;
+            });
+        }
+
+        // Pozovi funkciju kada se stranica učita
+        document.addEventListener('DOMContentLoaded', updateDaysLeft);
     </script>
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>
 </body>

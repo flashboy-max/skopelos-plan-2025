@@ -52,10 +52,12 @@
 
 ## Smeštaj
 
-### Solun - Dolazak (potrebna rezervacija)
+### Solun - Dolazak — Urban Touch Studios (samo rezervacija)
 - **Datum:** 22-23. august 2025. (1 noć)
-- **Lokacija:** Blizu luke
-- **Status:** ❌ POTREBNO REZERVISATI
+- **Lokacija:** Urban Touch Studios (blizu luke)
+- **Mapa:** https://www.google.com/maps/place/Urban+Touch+Studios/@40.6423528,22.9348982,21z
+- **Kontakt:** +306943573141
+- **Status:** ⏳ Rezervacija u toku (potvrdu i uslove provjeriti)
 
 ### Skopelos - Smeštaj 1: To Ktima tis Matinas
 - **Datum:** 23-25. august 2025. (2 noći)
@@ -86,8 +88,8 @@
 - 08:00 - Polazak za aerodrom Sarajevo
 - 10:10 - Let FR5005 (Sarajevo → Solun)
 - 12:30 - Dolazak u Solun (lokalno vrijeme)
-- 13:00-15:00 - Prevoz do smeštaja u Solunu
-- 15:00-18:00 - Check-in i odmor
+- 13:00-15:00 - Prevoz do smeštaja u Solunu (Urban Touch Studios)
+- 15:00-18:00 - Check-in u Urban Touch Studios i odmor
 - 18:00-20:00 - Šetnja po centru Soluna
 - 20:00 - Večera u restoranu
 
@@ -203,10 +205,10 @@
 - **Aktivnosti i izleti:** €200-300
 - **Suveniri:** €100-150
 - **Putno osiguranje:** €40 (€20 po osobi za 14 dana)
-- **eSIM kartica (internet):** ~€12
-- **UKUPNO DODATNO:** €1302-1702
+- **eSIM kartice (Alexander, Ajna):** €15.30 (PLAĆENO) — instalirati 48h prije polaska (https://www.esim4travel.com/myesim).
+ - **UKUPNO DODATNO:** €1305.30-1705.30
 
-**UKUPAN BUDŽET:** ~€2510-2910
+**UKUPAN BUDŽET:** ~€2513.30-2913.30
 
 ## Praktične informacije
 
@@ -300,6 +302,7 @@
 
 ### Par dana pre polaska:
 - [ ] **Uplatiti putno osiguranje:** Procena €20 po osobi za 14 dana. Ukupno ~€40
+- [ ] **Instalirati eSIM kartice:** Prijaviti se na https://www.esim4travel.com/myesim i instalirati profile (Alexander, Ajna)
 - [ ] **Izabrati i kupiti eSIM karticu za Grčku:**
       - **Opcija A (Najpouzdaniji izbor):**
           - **Provajder:** Airalo

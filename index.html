@@ -289,33 +289,11 @@
             display: none;
         }
         
-        /* =================================================================== */
-        /* === FINALNI BLOK KODA ZA MOBILNU OPTIMIZACIJU === */
-        /* =================================================================== */
-
-        /* 1. Wrapper koji omogućava horizontalno skrolovanje za tabele */
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-
-        /* 2. Pravila za samu tabelu unutar wrappera */
-        .table-responsive table {
-            width: 100%;
-            min-width: 600px;
-            margin: 0;
-        }
-
-        /* 3. (Bonus) Podešavanje za najmanje ekrane */
-        @media (max-width: 480px) {
-            .table-responsive table th,
-            .table-responsive table td {
-                font-size: 14px;
-                padding: 10px 8px;
-            }
-        }
+          /* =================================================================== */
+          /* Napomena: .table-responsive kanonske stilove potraži niže (oko sekcije
+              "MOBILNA OPTIMIZACIJA I RESPONSIVE TABELE"). Ovaj raniji duplikat je
+              uklonjen kako bi se izbjegla konfuzija i konflikt pravila. */
+          /* =================================================================== */
 
         /* 4. Stil za brzu navigaciju */
         .quick-nav {
@@ -943,19 +921,19 @@
             
             <div class="header-images">
                 <div>
-                    <img src="Ajna%20i%20JA.JPG"
-                         alt="Ajna i Aleksandar"
-                         class="header-image"
-                         onclick="window.open(this.src, '_blank')"
-                         title="Kliknite da otvorite sliku u novom prozoru">
+                <img src="Ajna%20i%20JA.JPG"
+                    alt="Ajna i Aleksandar"
+                    class="header-image"
+                    onclick="openLightbox(this.src)"
+                    title="Kliknite da otvorite sliku u većem prikazu">
                     <p class="image-caption">Aleksandar i Ajna</p>
                 </div>
                 <div>
-                    <img src="Panormos%20Beach.jpg"
-                         alt="Panormos Beach, Skopelos"
-                         class="header-image"
-                         onclick="window.open(this.src, '_blank')"
-                         title="Kliknite da otvorite sliku u novom prozoru">
+                <img src="Panormos%20Beach.jpg"
+                    alt="Panormos Beach, Skopelos"
+                    class="header-image"
+                    onclick="openLightbox(this.src)"
+                    title="Kliknite da otvorite sliku u većem prikazu">
                     <p class="image-caption">Panormos Beach, Skopelos</p>
                 </div>
             </div>
@@ -997,7 +975,7 @@
             <div class="main-accordion">
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('finansije')">
-                        <h2 id="finansije">� �💰 Finansijski pregled (zaštićeno)</h2>
+                        <h2 id="finansije">💰 Finansijski pregled (zaštićeno)</h2>
                         <span class="main-accordion-icon" id="finansije-icon">▼</span>
                     </div>
                     <div class="main-accordion-content" id="finansije-content">
@@ -1032,9 +1010,14 @@
                         <td>€36.50</td>
                         <td>✅ Plaćeno (UNIQA: Aleksandar €28.50 + Ajna €8.00)</td>
                     </tr>
+                    <tr>
+                        <td>eSIM kartice (Alexander, Ajna)</td>
+                        <td>€15.30</td>
+                        <td>✅ Plaćeno</td>
+                    </tr>
                     <tr class="budget-total">
                         <td><strong>UKUPNO PLAĆENO</strong></td>
-                        <td><strong>€597.57</strong></td>
+                        <td><strong>€612.87</strong></td>
                         <td>✅</td>
                     </tr>
                     </tbody>
@@ -1053,12 +1036,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>To Ktima tis Matinas</td>
+                        <td>Urban Touch Studios - Solun</td>
+                        <td>€65.00</td>
+                        <td>Na licu mesta</td>
+                    </tr>                    
+                    <tr>
+                        <td>To Ktima tis Matinas - Skopelos</td>
                         <td>€117.00</td>
                         <td>Na licu mesta</td>
                     </tr>
                     <tr>
-                        <td>The Pine Trees (ostatak)</td>
+                        <td>The Pine Trees (ostatak) - Skopelos</td>
                         <td>€390.00</td>
                         <td>Na licu mesta</td>
                     </tr>
@@ -1068,9 +1056,9 @@
                         <td>Na licu mesta</td>
                     </tr>
                     <tr>
-                        <td>Smeštaj Solun (2 noći)</td>
-                        <td>€120.00 (procjena)</td>
-                        <td>Potrebna rezervacija</td>
+                        <td>Smeštaj Solun (1 noć, u povratku, 4–5 septembar)</td>
+                        <td>€60.00 (procjena)</td>
+                        <td>Potrebno rezervisati</td>
                     </tr>
                     <tr>
                         <td>Hrana i piće (procjena za 2 osobe, za 14 dana, oko 25–35€ dnevno po osobi)</td>
@@ -1093,18 +1081,13 @@
                         <td>Procjena</td>
                     </tr>
                     <tr>
-                        <td>eSIM kartica</td>
-                        <td>€24 (po 12e)</td>
-                        <td>Internet</td>
-                    </tr>
-                    <tr>
                         <td>Neplanirani trošak / Rezerva</td>
                         <td>€100</td>
                         <td>Nepredviđeni izdaci, dodatni transferi, ljekovi</td>
                     </tr>
                     <tr class="budget-total">
                         <td><strong>UKUPAN BUDŽET</strong></td>
-                        <td><strong>€2550-2960</strong></td>
+                        <td><strong>€2541.30-2951.30</strong></td>
                         <td>🎯</td>
                     </tr>
                 </tbody>
@@ -1123,51 +1106,21 @@
                         <div class="main-accordion-body">
             <h3>🏨 Smeštaj</h3>
             
-            <!-- Solun Dolazak - PRVI po datumu 22-23.08 -->
-            <div class="accommodation-card urgent">
-                <div style="position: absolute; top: 10px; right: 15px; background: #ff5722; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; animation: pulse 2s infinite;">
-                    ❌ POTREBNO REZERVISATI
+            <!-- Solun Dolazak - PRVI po datumu 22-23.08 (Urban Touch Studios) -->
+            <div class="accommodation-card reserved">
+                <div class="status-badge reserved">✅ REZERVISANO</div>
+                <h4 style="color: #1b5e20; margin: 0 0 10px 0;">🏨 Urban Touch Studios</h4>
+                <div class="accommodation-info-grid">
+                    <div><strong>📅 Datum:</strong> 22-23. august</div>
+                    <div><strong>🛏️ Noći:</strong> 1 noć</div>
+                    <div><strong>💰 Cijena:</strong> €65 (na licu mjesta)</div>
+                    <div><strong>☎️ Kontakt:</strong> +306943573141</div>
                 </div>
-                <h4 style="margin: 0 0 10px 0; color: #e65100; font-size: 1.1em;">
-                    🏨 Solun - Dolazak
-                </h4>
-                <div style="background: rgba(255,255,255,0.8); padding: 12px; border-radius: 8px; margin: 10px 0;">
-                    <div style="font-size: 0.95em; line-height: 1.5;">
-                        <div style="margin-bottom: 8px;"><strong>📅 Datum:</strong> <span style="color: #d84315; font-weight: bold;">22-23. august 2025</span></div>
-                        <div style="margin-bottom: 8px;"><strong>🛏️ Noći:</strong> <span style="color: #d84315; font-weight: bold;">1 noć</span></div>
-                        <div style="margin-bottom: 8px;"><strong>📍 Lokacija:</strong> Blizu luke (Thessaloniki Port)</div>
-                        <div><strong>💰 Budžet:</strong> ≈ €60 (procjena)</div>
-                    </div>
-                    <!-- Transport info -->
-                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.85em; color: #666;">
-                        <div style="margin-bottom: 4px;"><strong>🚢 Prevoz od luke:</strong> Taxi ≈ €15-20 | Pešice 10-15 min</div>
-                        <div><strong>📍 Preporučene zone:</strong> <span style="color: #1976d2;">Ladadika četvrt, Aristotelous trg</span></div>
-                    </div>
-                </div>
-                
-                <!-- Progress bar za urgentnost -->
-                <div style="margin: 10px 0;">
-                    <div style="background: #ffecb3; height: 6px; border-radius: 3px; overflow: hidden;">
-                        <div style="background: #ff5722; height: 100%; width: 75%; border-radius: 3px; animation: pulse 1.5s infinite;"></div>
-                    </div>
-                    <div style="font-size: 0.8em; color: #e65100; margin-top: 4px; text-align: center;">
-                        Urgentnost: Visoka (75%)
-                    </div>
-                </div>
-                
-                <div style="background: #ffecb3; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #e65100;">
-                    <strong>💡 Preporuka:</strong> Rezerviši što prije - ostalo je samo <span id="daysLeft1">16</span> dana!
-                </div>
-                
-                <!-- Quick links -->
-                <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-                    <a href="https://www.booking.com/searchresults.sr.html?ss=Solun&ssne=Solun&ssne_untouched=Solun&efdco=1&label=gen173nr-10CAQoggI4kwRIM1gEaBKIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4AvXDzcQGwAIB0gIkOTFjYjJmYzMtM2IwNi00ODYyLWJiZDUtNTFiNWY0OGExMGUz2AIB4AIB&aid=304142&lang=sr&sb=1&src_elem=sb&src=searchresults&dest_id=-829252&dest_type=city&checkin=2025-08-22&checkout=2025-08-23&group_adults=2&no_rooms=1&group_children=0" target="_blank" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
-                        Booking.com
-                    </a>
-                    <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-08-22&checkout=2025-08-23" target="_blank" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
-                        Airbnb
-                    </a>
-                </div>
+                <p style="color: #2e7d32; margin: 12px 0;">
+                    Smještaj u Solunu. Samo rezervacija; plaćanje na licu mjesta prilikom dolaska.
+                </p>
+                <a href="https://www.google.com/maps/place/Urban+Touch+Studios/@40.6423279,22.9348767,21z/data=!4m6!3m5!1s0x14a839ff8a79e8a1:0xee0a281bf4d40ffe!8m2!3d40.6423279!4d22.9348297!16s%2Fg%2F11mdfz5s54?entry=ttu" 
+                   target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
             </div>
             
             <!-- To Ktima tis Matinas - DRUGI po datumu 23-25.08 -->
@@ -1178,7 +1131,7 @@
                     <div><strong>📅 Datum:</strong> 23-25. august</div>
                     <div><strong>🛏️ Noći:</strong> 2 noći</div>
                     <div><strong>💰 Cijena:</strong> €117</div>
-                    <div><strong>⭐ Ocjena:</strong> 9.5/10</div>
+                    <div><strong>☎️ Kontakt:</strong> +30 2424 023595</div>
                 </div>
                 <p style="color: #2e7d32; margin: 12px 0;">
                     Smešteno u blizini plaže Stafylos (5 min pješke). Mirno, privatno imanje s vrtom, parkingom i odličnim recenzijama.
@@ -1195,7 +1148,7 @@
                     <div><strong>📅 Datum:</strong> 25. august - 4. septembar</div>
                     <div><strong>🛏️ Noći:</strong> 10 noći</div>
                     <div><strong>💰 Cijena:</strong> €570 ukupno</div>
-                    <div><strong>⭐ Ocjena:</strong> 9.8/10</div>
+                    <div><strong>☎️ Kontakt:</strong> +30 2424 022408 / +30 6995 317909</div>
                 </div>
                 <p style="color: #2e7d32; margin: 12px 0;">
                     Smještaj u borovoj šumi sa pogledom na more, 10 minuta hoda od centra Skopelosa. Povoljna cijena i domaća atmosfera.
@@ -1242,10 +1195,10 @@
                 
                 <!-- Quick links -->
                 <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-                    <a href="https://www.booking.com/searchresults.sr.html?ss=Solun&ssne=Solun&ssne_untouched=Solun&label=gen173nr-10CAQoggI4kwRIM1gEaBKIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4AvXDzcQGwAIB0gIkOTFjYjJmYzMtM2IwNi00ODYyLWJiZDUtNTFiNWY0OGExMGUz2AIB4AIB&aid=304142&lang=sr&sb=1&src_elem=sb&src=searchresults&dest_id=-829252&dest_type=city&checkin=2025-09-04&checkout=2025-09-05&group_adults=2&no_rooms=1&group_children=0" target="_blank" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                    <a href="https://www.booking.com/searchresults.sr.html?ss=Solun&ssne=Solun&ssne_untouched=Solun&label=gen173nr-10CAQoggI4kwRIM1gEaBKIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4AvXDzcQGwAIB0gIkOTFjYjJmYzMtM2IwNi00ODYyLWJiZDUtNTFiNWY0OGExMGUz2AIB4AIB&aid=304142&lang=sr&sb=1&src_elem=sb&src=searchresults&dest_id=-829252&dest_type=city&checkin=2025-09-04&checkout=2025-09-05&group_adults=2&no_rooms=1&group_children=0" target="_blank" rel="noopener noreferrer" style="background: #1976d2; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
                         Booking.com
                     </a>
-                    <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-09-04&checkout=2025-09-05" target="_blank" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
+                    <a href="https://www.airbnb.com/s/Thessaloniki/homes?checkin=2025-09-04&checkout=2025-09-05" target="_blank" rel="noopener noreferrer" style="background: #ff5a5f; color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8em;">
                         Airbnb
                     </a>
                 </div>
@@ -1321,11 +1274,11 @@
 
                 <!-- Quick links -->
                 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:10px 0;">
-                    <a class="btn-link" href="Bus%20iz%20Skolpelosa%20kre%C4%87e%20i%20dalje%20posje%C4%87uje%20ostale%20stanice.jpg" target="_blank" style="background:#2196f3;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Full timetable: Skopelos → …</a>
-                    <a class="btn-link" href="Bus%20iz%20Loutraki%20kre%C4%87e%20i%20dalje%20posje%C4%87uje%20ostale%20stanice.jpg" target="_blank" style="background:#1565c0;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Full timetable: Loutraki → …</a>
-                    <a class="btn-link" href="https://skopelostransports.gr/en/" target="_blank" style="background:#4caf50;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official: skopelostransports.gr</a>
-                    <a class="btn-link" href="https://skopelostransports.gr/en/routes/" target="_blank" style="background:#43a047;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official routes</a>
-                    <a class="btn-link" href="https://skopelostransports.gr/en/?tour-search&tax-tour-destination=agnontas&duration=1" target="_blank" style="background:#2e7d32;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official: Agnontas filter</a>
+                    <a class="btn-link" href="Bus%20iz%20Skolpelosa%20kre%C4%87e%20i%20dalje%20posje%C4%87uje%20ostale%20stanice.jpg" target="_blank" rel="noopener noreferrer" style="background:#2196f3;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Full timetable: Skopelos → …</a>
+                    <a class="btn-link" href="Bus%20iz%20Loutraki%20kre%C4%87e%20i%20dalje%20posje%C4%87uje%20ostale%20stanice.jpg" target="_blank" rel="noopener noreferrer" style="background:#1565c0;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Full timetable: Loutraki → …</a>
+                    <a class="btn-link" href="https://skopelostransports.gr/en/" target="_blank" rel="noopener noreferrer" style="background:#4caf50;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official: skopelostransports.gr</a>
+                    <a class="btn-link" href="https://skopelostransports.gr/en/routes/" target="_blank" rel="noopener noreferrer" style="background:#43a047;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official routes</a>
+                    <a class="btn-link" href="https://skopelostransports.gr/en/?tour-search&tax-tour-destination=agnontas&duration=1" target="_blank" rel="noopener noreferrer" style="background:#2e7d32;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Official: Agnontas filter</a>
                 </div>
                
             </div>
@@ -1348,7 +1301,7 @@
                                     <strong>Polasci iz Skopelos Town:</strong><br>
                                     07:00, 08:30, 10:00, 10:30, 11:30, 12:00, 12:30, 13:00, 14:30, 15:00, 15:30, 16:00, 17:00, 17:30, 18:00, 18:45, 19:00, 20:30, 22:00, 23:30, 00:45
                                     <div style="margin-top: 10px; padding: 10px; background: #e8f5e8; border-radius: 5px; border-left: 4px solid #28a745;">
-                                        <strong>🗺️ <a href="https://www.google.com/maps/dir/Skopelos,+Greece/Stafylos,+370+03,+Greece/Agnontas,+370+03,+Greece/Limnonari+Beach,+Skopelos+370+03,+Greece/Alikias+Country+House,+%CE%A3%CE%BA%CF%8C%CF%80%CE%B5%CE%BB%CE%BF%CF%82+%CE%9C%CE%B1%CE%B3%CE%BD%CE%B7%CF%83%CE%AF%CE%B1%CF%82+%CE%A3%CE%9A%CE%9F%CE%A0%CE%95%CE%9B%CE%9F%CE%A3,+370+03,+Greece/Panormos,+370+03,+Greece/ADRINA+BEACH+HOTEL,+Skopelos+Street,+Panormos+370+03,+Greece/M%C4%93li%C3%A1+Beach,+%CE%9A%CE%B1%CE%BD%CE%AC%CF%81%CE%B7+21,+Skopelos+370+03,+Greece/Kastani+Beach+Bar,+kastani+beach,+Skopelos+370+03,+Greece/Ftelia+Beach,+Skopelos+370+03,+Greece/Loutraki,+Greece/@39.1119048,23.6569742,12.5z/data=!4m68!4m67!1m5!1m1!1s0x14a6ea918bf994a5:0xe39d33c04ec733e1!2m2!1d23.7281233!2d39.1223106!1m5!1m1!1s0x14a6c01709a1068b:0x8e843541081ff934!2m2!1d23.7435501!2d39.0886631!1m5!1m1!1s0x14a6c1b381bacd6d:0xdaa172ec613661e6!2m2!1d23.7122186!2d39.0839234!1m5!1m1!1s0x14a6c1b92a79d15f:0x45dcbd5571b9cb5b!2m2!1d23.6993488!2d39.0887757!1m5!1m1!1s0x14a6c1037255d7d1:0xc9239e353c434981!2m2!1d23.6913968!2d39.0978948!1m5!1m1!1s0x14a6c202fe233929:0xe77369ccd8717206!2m2!1d23.6644961!2d39.1102379!1m5!1m1!1s0x14a6c20f9f4ca9b5:0x62be89779a7db031!2m2!1d23.6555976!2d39.1131668!1m5!1m1!1s0x14a6c20edcb5cf5d:0xce534ecc63982f64!2m2!1d23.6538035!2d39.1170377!1m5!1m1!1s0x14a6e9e2b9401d59:0xe9562325945bc3be!2m2!1d23.6557965!2d39.121475!1m5!1m1!1s0x14a6e9e4019d3e21:0x197a79f3e80e9883!2m2!1d23.6503673!2d39.1268188!1m5!1m1!1s0x14a6e8560b161349:0x7f127b44b659e757!2m2!1d23.612629!2d39.1684677!3e0?entry=ttu&g_ep=EgoyMDI1MDgwMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Google Maps ruta - KLIKNI</a></strong><br>
+                                        <strong>🗺️ <a href="https://www.google.com/maps/dir/Skopelos,+Greece/Stafylos,+370+03,+Greece/Agnontas,+370+03,+Greece/Limnonari+Beach,+Skopelos+370+03,+Greece/Alikias+Country+House,+%CE%A3%CE%BA%CF%8C%CF%80%CE%B5%CE%BB%CE%9F%CE%A3,+370+03,+Greece/Panormos,+370+03,+Greece/ADRINA+BEACH+HOTEL,+Skopelos+Street,+Panormos+370+03,+Greece/M%C4%93li%C3%A1+Beach,+%CE%9A%CE%B1%CE%BD%CE%AC%CF%81%CE%B7+21,+Skopelos+370+03,+Greece/Kastani+Beach+Bar,+kastani+beach,+Skopelos+370+03,+Greece/Ftelia+Beach,+Skopelos+370+03,+Greece/Loutraki,+Greece/@39.1119048,23.6569742,12.5z/data=!4m68!4m67!1m5!1m1!1s0x14a6ea918bf994a5:0xe39d33c04ec733e1!2m2!1d23.7281233!2d39.1223106!1m5!1m1!1s0x14a6c01709a1068b:0x8e843541081ff934!2m2!1d23.7435501!2d39.0886631!1m5!1m1!1s0x14a6c1b381bacd6d:0xdaa172ec613661e6!2m2!1d23.7122186!2d39.0839234!1m5!1m1!1s0x14a6c1b92a79d15f:0x45dcbd5571b9cb5b!2m2!1d23.6993488!2d39.0887757!1m5!1m1!1s0x14a6c1037255d7d1:0xc9239e353c434981!2m2!1d23.6913968!2d39.0978948!1m5!1m1!1s0x14a6c202fe233929:0xe77369ccd8717206!2m2!1d23.6644961!2d39.1102379!1m5!1m1!1s0x14a6c20f9f4ca9b5:0x62be89779a7db031!2m2!1d23.6555976!2d39.1131668!1m5!1m1!1s0x14a6c20edcb5cf5d:0xce534ecc63982f64!2m2!1d23.6538035!2d39.1170377!1m5!1m1!1s0x14a6e9e2b9401d59:0xe9562325945bc3be!2m2!1d23.6557965!2d39.121475!1m5!1m1!1s0x14a6e9e4019d3e21:0x197a79f3e80e9883!2m2!1d23.6503673!2d39.1268188!1m5!1m1!1s0x14a6e8560b161349:0x7f127b44b659e757!2m2!1d23.612629!2d39.1684677!3e0?entry=ttu&g_ep=EgoyMDI1MDgwMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Google Maps ruta - KLIKNI</a></strong><br>
                                         <span style="font-size: 0.9em; color: #666;">Skopelos Town → Loutraki (Glossa port)</span><br>
                                         <span style="font-size: 0.85em; color: #666;">U ovoj ruti polazite iz Skopelos Town, a zatim slijede stanice Stafylos, Agnontas, Limnonari, Alikias, Panormos, Adrina, Milia, Kastani, Ftelia, Neo Klima (Elios), Palio Klima, Agios Ioannis, Glossa i završavate u Loutrakiju.</span>
                                     </div>
@@ -1357,7 +1310,7 @@
                                     <strong>Povratak iz Loutrakija/Glossa:</strong><br>
                                     08:15, 10:00, 11:00, 11:30 (×2), 13:00, 13:30 (×2), 14:15, 15:45, 16:00, 16:30, 17:30, 18:00, 19:00 (×2), 20:40, 22:00, 23:15, 00:45
                                     <div style="margin-top: 10px; padding: 10px; background: #fff3e0; border-radius: 5px; border-left: 4px solid #ff9800;">
-                                        <strong>🗺️ <a href="https://www.google.com/maps/dir/?api=1&origin=Loutraki+Skopelos&destination=Skopelos+Town&travelmode=driving&waypoints=Glossa+Skopelos|Agios+Ioannis+Kastri+Skopelos|Palio+Klima+Skopelos|Elios+Skopelos|Ftelia+Skopelos|Kastani+Beach+Skopelos|Milia+Beach+Skopelos|Adrina+Skopelos|Panormos+Skopelos|Alikias+Skopelos|Limnonari+Beach+Skopelos|Agnontas+Skopelos|Stafylos+Skopelos" target="_blank">Google Maps ruta - KLIKNI</a></strong><br>
+                                        <strong>🗺️ <a href="https://www.google.com/maps/dir/?api=1&origin=Loutraki+Skopelos&destination=Skopelos+Town&travelmode=driving&waypoints=Glossa+Skopelos|Agios+Ioannis+Kastri+Skopelos|Palio+Klima+Skopelos|Elios+Skopelos|Ftelia+Skopelos|Kastani+Beach+Skopelos|Milia+Beach+Skopelos|Adrina+Skopelos|Panormos+Skopelos|Alikias+Skopelos|Limnonari+Beach+Skopelos|Agnontas+Skopelos|Stafylos+Skopelos" target="_blank" rel="noopener noreferrer">Google Maps ruta - KLIKNI</a></strong><br>
                                         <span style="font-size: 0.9em; color: #666;">Loutraki → Skopelos Town</span><br>
                                         <span style="font-size: 0.85em; color: #666;">U obrnutom smjeru polazite iz Loutrakija/Glosse, a potom se redom zaustavljate u Glossi, Agios Ioannis, Palio Klima, Elios, Ftelia, Kastani, Milia, Adrina, Panormos, Alikias, Limnonari, Agnontas, Stafylos i na kraju stižete u Skopelos Town.</span>
                                     </div>
@@ -1393,7 +1346,7 @@
                     </div>
                     <div class="accordion-content" id="rental-content">
                         <div class="accordion-body">
-                            <h5>🏢 Preporučena agencija: <a href="https://www.magiccars.gr/" target="_blank">Magic Cars Skopelos</a></h5>
+                            <h5>🏢 Preporučena agencija: <a href="https://www.magiccars.gr/" target="_blank" rel="noopener noreferrer">Magic Cars Skopelos</a></h5>
                             <p style="font-size: 0.9em; color: #6c757d;">Lokalna agencija sa izvanrednim online recenzijama. Hvale se nova vozila, profesionalna komunikacija i jasni uslovi bez skrivenih troškova.</p>
 
                             <h5>💰 Cijene za 3 dana (provjerene za 26–29. august 2025)</h5>
@@ -1454,12 +1407,12 @@
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion('taxi')">
-                        <h4>� 🚖 Opcija 3: Taxi prevoz na Skopelosu</h4>
+                        <h4>🚖 Opcija 3: Taxi prevoz na Skopelosu</h4>
                         <span class="accordion-icon" id="taxi-icon">▼</span>
                     </div>
                     <div class="accordion-content" id="taxi-content">
                         <div class="accordion-body">
-                            <h5>� 📄 Oficijelni cjenovnik - Skopelos Taxi Station (august 2025)</h5>
+                            <h5>📄 Oficijelni cjenovnik - Skopelos Taxi Station (august 2025)</h5>
                             <div class="table-responsive">
                             <table class="transport-table taxi-table">
                                 <thead>
@@ -1492,7 +1445,7 @@
                                     <h6><strong>🚖 Zahos Stamoulis</strong></h6>
                                     <p>Specijalizovan za privatne ture</p>
                                     <p><strong>Tel:</strong> +30 694 438 4646</p>
-                                    <p><a href="https://www.tripadvisor.com/Attraction_Review-g1187810-d13505767" target="_blank">TripAdvisor profil</a></p>
+                                    <p><a href="https://www.tripadvisor.com/Attraction_Review-g1187810-d13505767" target="_blank" rel="noopener noreferrer">TripAdvisor profil</a></p>
                                 </div>
                                 
                                 <div class="contact-item">
@@ -1519,7 +1472,7 @@
 
                             <h5>ℹ️ Korisne informacije</h5>
                             <ul>
-                                <li><strong>Službeni spisak:</strong> <a href="https://skopelos.com/listings/skopelos-taxi/" target="_blank">skopelos.com/listings/skopelos-taxi/</a></li>
+                                <li><strong>Službeni spisak:</strong> <a href="https://skopelos.com/listings/skopelos-taxi/" target="_blank" rel="noopener noreferrer">skopelos.com/listings/skopelos-taxi/</a></li>
                                 <li><strong>Broj vozila:</strong> ~20 taksija na celom ostrvu</li>
                                 <li><strong>Lokacija stanice:</strong> U luci između osnovne škole i pristaništa</li>
                                 <li><strong>24h dostupnost:</strong> Da, na aerodromu i preko telefona</li>
@@ -1555,6 +1508,13 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="day-header">📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</div>
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2196f3;">
+                        <strong>🏨 Smeštaj:</strong> Urban Touch Studios (check-in: 22. avgust, check-out: 23. avgust)
+                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Thessaloniki, Greece</p>
+                        <div style="margin: 10px 0;">
+                            <iframe src="https://www.google.com/maps?q=40.6423279,22.9348297&z=18&output=embed" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
                     <ul>
                         <li>08:00 - Polazak za aerodrom Sarajevo</li>
                         <li>10:10 - Let FR5005 (Sarajevo → Solun)</li>
@@ -1610,8 +1570,8 @@
                         </ul>
                         <p><strong>📱 Rezervacije:</strong></p>
                         <ul style="font-size: 0.9em;">
-                            <li><a href="https://www.tripadvisor.com/AttractionProductReview-g189501-d16823263-Mamma_Mia_Highlights_Skopelos_island-Skopelos_Sporades.html" target="_blank">TripAdvisor - Mamma Mia Tour</a></li>
-                            <li><a href="https://www.skopelosweb.gr/en/greek/rent/skopelostours" target="_blank">Skopelos Tours</a></li>
+                            <li><a href="https://www.tripadvisor.com/AttractionProductReview-g189501-d16823263-Mamma_Mia_Highlights_Skopelos_island-Skopelos_Sporades.html" target="_blank" rel="noopener noreferrer">TripAdvisor - Mamma Mia Tour</a></li>
+                            <li><a href="https://www.skopelosweb.gr/en/greek/rent/skopelostours" target="_blank" rel="noopener noreferrer">Skopelos Tours</a></li>
                         </ul>
                     </div>
 
@@ -1631,7 +1591,7 @@
                     <ul>
                         <li><strong>16:00-17:00</strong> - Povratak u smeštaj i odmor</li>
                         <li style="font-size: 0.9em; color: #6c757d;">🚿 Brzi tuš, presvlačenje, kratka pauza</li>
-                        <li><strong>19:00</strong> - 🎂 <strong>Rođendanska večera</strong> u <a href="https://maps.app.goo.gl/UdF5tXS4tExfSQr67" target="_blank">Stafilos Restaurant</a></li>
+                        <li><strong>19:00</strong> - 🎂 <strong>Rođendanska večera</strong> u <a href="https://maps.app.goo.gl/UdF5tXS4tExfSQr67" target="_blank" rel="noopener noreferrer">Stafilos Restaurant</a></li>
                         <li style="font-size: 0.9em; color: #6c757d;">📍 Odmah uz more, 5 min hoda od smeštaja</li>
                         <li style="font-size: 0.9em; color: #6c757d;">🌅 Idealno vrijeme za zalazak sunca - sto sa pogledom na more</li>
                         <li style="font-size: 0.9em; color: #6c757d;">✅ Rezervacija već potvrđena</li>
@@ -1789,7 +1749,7 @@
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak i šljunak)</strong></p>
                                     <p>Divlja i dramatična plaža na sjevernoj obali, okružena stijenama. Savršena za ljubitelje netaknute prirode.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 40 min vožnje (od Ktima tis Matinas) | 35 min vožnje (od Pine Trees)</p>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7354.213871850376!2d23.619783824249446!3d39.19594811024216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8da03c6f033%3A0x5467fe4b3d8cdc1f!2sPerivoliou%20Beach!5e0!3m2!1sen!2sba!4v1754378835190!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7354.213871850376!2d23.619783824249446!3d39.19594811024216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8da03c6f033%3A0x5467fe4b3d8cdc1f!2sPerivoliou%20Beach!5e0!3m2!1sen!2sba!4v1754378835190!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                                 
                                 <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
@@ -1945,25 +1905,25 @@
                             
                             <h4>🎯 Aktivnosti:</h4>
                             <ul>
-                                <li><a href="https://www.magiccars.gr/" target="_blank">Iznajmljivanje skutera/automobila - Magic Cars</a></li>
+                                <li><a href="https://www.magiccars.gr/" target="_blank" rel="noopener noreferrer">Iznajmljivanje skutera/automobila - Magic Cars</a></li>
                                 <li>Trekking staze <em>(Delphi Trail iznad Panormosa)</em></li>
                                 <li>Snorkeling <em>(odlični tereni kod Stafylosa i Limnonarija)</em></li>
-                                <li><a href="https://www.getyourguide.com/skopelos-town-l109747/skopelos-mamma-mia-experience-t765032/?ranking_uuid=0f4f38f8-af5f-44f0-9d6c-1446841491dc&date_from=2025-08-24&date_to=2025-08-31" target="_blank">Vožnja čamcem oko ostrva</a> <em>(izlet iz Skopelos Marine)</em></li>
-                                <li><a href="https://alonissos.gr/en/things-to-do/nature-tourism.html" target="_blank">Izlet na Alonissos National Marine Park</a> <em>(posebno morski park)</em></li>
+                                <li><a href="https://www.getyourguide.com/skopelos-town-l109747/skopelos-mamma-mia-experience-t765032/?ranking_uuid=0f4f38f8-af5f-44f0-9d6c-1446841491dc&date_from=2025-08-24&date_to=2025-08-31" target="_blank" rel="noopener noreferrer">Vožnja čamcem oko ostrva</a> <em>(izlet iz Skopelos Marine)</em></li>
+                                <li><a href="https://alonissos.gr/en/things-to-do/nature-tourism.html" target="_blank" rel="noopener noreferrer">Izlet na Alonissos National Marine Park</a> <em>(posebno morski park)</em></li>
                             </ul>
 
                             <h4>🍹 Noćni život:</h4>
                             <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2196f3;">
-                                <p><strong>🎬 <a href="https://maps.app.goo.gl/6hhsA5Ld3xtD1icd9" target="_blank">TIKITI MAJI - Cocktail Bar</a></strong></p>
+                                <p><strong>🎬 <a href="https://maps.app.goo.gl/6hhsA5Ld3xtD1icd9" target="_blank" rel="noopener noreferrer">TIKITI MAJI - Cocktail Bar</a></strong></p>
                                 <p><strong>"Every Wednesday is Mamma Mia! Night"</strong> 🎉</p>
                                 <p style="font-size: 0.9em; color: #555;">
                                     Posebna atmosfera srijedom - idealno za ljubitelje filma i koktele!
                                 </p>
-                                <img src="every%20Wednesday%20is%20Mamma%20Mia%20Night.jpg"
-                                     alt="Every Wednesday is Mamma Mia Night"
-                                     class="thumbnail"
-                                     onclick="window.open(this.src, '_blank')"
-                                     title="Kliknite da otvorite sliku u novom prozoru">
+                          <img src="every%20Wednesday%20is%20Mamma%20Mia%20Night.jpg"
+                              alt="Every Wednesday is Mamma Mia Night"
+                              class="thumbnail"
+                              onclick="openLightbox(this.src)"
+                              title="Kliknite da uvećate sliku (lightbox)">
                             </div>
                         </div>
                     </div>
@@ -1980,7 +1940,6 @@
                 <div class="info-card status-urgent priority-high">
                     <h4>🔴 Prioritet 1 (do 18 augusta)</h4>
                     <ul class="checklist">
-                        <li>Rezervacija smeštaja u Solunu 22-23. august (blizu luke)</li>
                         <li>Rezervacija smeštaja u Solunu 4-5. septembar (blizu aerodroma)</li>
                     </ul>
                 </div>
@@ -2040,7 +1999,10 @@
                     <strong>🏨 To Ktima tis Matinas:</strong> +30 2424 023595
                 </div>
                 <div class="contact-item">
-                    <strong>🌲 The Pine Trees:</strong> +30 699 531 7909
+                    <strong>🌲 The Pine Trees:</strong>  +30 2424 022408 / +30 6995 317909 
+                </div>
+                <div class="contact-item">
+                    <strong>🏨 Urban Touch Studios:</strong> +30 694 357 3141
                 </div>
             </div>
                         </div>
@@ -2132,10 +2094,7 @@
                 <div class="info-card">
                     <h4>📅 Par dana pre polaska:</h4>
                     <ul class="checklist">
-                       <li><strong>Izabrati i kupiti eSIM karticu za Grčku:</strong>
-                            <br>• Opcija A: Airalo - 10GB/30 dana (~$12)
-                            <br>• Opcija B: UPeSIM - 20GB/30 dana (~$12)
-                            <br>• Oba koriste Cosmote mrežu (najbolja pokrivenost na Skopelosu)</li>
+                        <li>Provjeriti vremensku prognozu za Skopelos</li>
                         <li>Potvrditi dimenzije i težinu prtljaga (Ryanair pravila)</li>
                         <li>Pripremiti gadžete (powerbank, filmovi, punjači)</li>
                         <li>Pripremiti odjeću i opremu za plažu</li>
@@ -2146,14 +2105,15 @@
                 <div class="info-card">
                     <h4>⏰ 48h pre polaska trajekta:</h4>
                     <ul class="checklist">
-                        <li>Obaviti web check-in za trajekt (Seajets) i sačuvati e-karte</li>
+                        <li>Instalirati eSIM kartice: instalirati profile (Aleksandar, Ajna)</li>
+                        <li>Obaviti web check-in za trajekt (Seajets)</li>
                     </ul>
                 </div>
                 
                 <div class="info-card">
                     <h4>⏰ 24h pre leta:</h4>
                     <ul class="checklist">
-                        <li><strong>Obaviti online check-in za letove (Ryanair):</strong> OBAVEZNO da se izbegnu troškovi na aerodromu</li>
+                        <li>Obaviti online check-in za letove (Ryanair)</li>
                     </ul>
                 </div>
             </div>
@@ -2185,6 +2145,9 @@
                 content.classList.remove('active');
                 icon.style.transform = 'rotate(0deg)';
                 icon.textContent = '▼';
+                // a11y: update ARIA state on header
+                const header = content.previousElementSibling;
+                if (header) header.setAttribute('aria-expanded', 'false');
             } else {
                 // Close all other accordions
                 const allContents = document.querySelectorAll('.accordion-content');
@@ -2192,6 +2155,9 @@
                 
                 allContents.forEach(item => {
                     item.classList.remove('active');
+                    // a11y: collapse ARIA for all
+                    const h = item.previousElementSibling;
+                    if (h) h.setAttribute('aria-expanded', 'false');
                 });
                 
                 allIcons.forEach(item => {
@@ -2203,6 +2169,9 @@
                 content.classList.add('active');
                 icon.style.transform = 'rotate(180deg)';
                 icon.textContent = '▲';
+                // a11y: expand ARIA for current
+                const header = content.previousElementSibling;
+                if (header) header.setAttribute('aria-expanded', 'true');
             }
         }
         
@@ -2228,11 +2197,17 @@
                 content.classList.remove('active');
                 icon.style.transform = 'rotate(0deg)';
                 icon.textContent = '▼';
+                // a11y: update ARIA state on header
+                const header = content.previousElementSibling;
+                if (header) header.setAttribute('aria-expanded', 'false');
             } else {
                 // Open current accordion
                 content.classList.add('active');
                 icon.style.transform = 'rotate(180deg)';
                 icon.textContent = '▲';
+                // a11y: expand ARIA for current
+                const header = content.previousElementSibling;
+                if (header) header.setAttribute('aria-expanded', 'true');
             }
         }
         
@@ -2256,13 +2231,29 @@
             const img = document.getElementById('lightbox-img');
             img.src = src;
             lb.style.display = 'flex';
+            // Prevent body scroll while lightbox is open
+            document.body.dataset.prevOverflow = document.body.style.overflow || '';
+            document.body.style.overflow = 'hidden';
         }
         function closeLightbox(){
             const lb = document.getElementById('img-lightbox');
             const img = document.getElementById('lightbox-img');
             img.src = '';
             lb.style.display = 'none';
+            // Restore body scroll
+            if (document.body.dataset.prevOverflow !== undefined) {
+                document.body.style.overflow = document.body.dataset.prevOverflow;
+                delete document.body.dataset.prevOverflow;
+            }
         }
+
+        // Close lightbox with Escape
+        window.addEventListener('keydown', (e) => {
+            const lb = document.getElementById('img-lightbox');
+            if (e.key === 'Escape' && lb && lb.style.display !== 'none') {
+                closeLightbox();
+            }
+        });
 
         // AGNONTAS timetable data (manually extracted from provided images; Mon–Sun)
         const agnontasData = {
@@ -2316,6 +2307,32 @@
                 btnLo.addEventListener('click', ()=>renderAgnontas('loutraki'));
                 renderAgnontas('skopelos');
             }
+        });
+
+        // A11y minimal: make accordion headers keyboard accessible and add ARIA wiring
+        window.addEventListener('DOMContentLoaded', () => {
+            const headers = document.querySelectorAll('.accordion-header, .main-accordion-header');
+            headers.forEach(h => {
+                // Ensure focusability and button semantics
+                h.setAttribute('role', 'button');
+                h.setAttribute('tabindex', '0');
+
+                // Link header to its panel and set initial expanded state
+                const panel = h.nextElementSibling;
+                if (panel && (panel.classList.contains('accordion-content') || panel.classList.contains('main-accordion-content'))){
+                    if (panel.id) h.setAttribute('aria-controls', panel.id);
+                    const expanded = panel.classList.contains('active') ? 'true' : 'false';
+                    h.setAttribute('aria-expanded', expanded);
+                }
+
+                // Keyboard support: Enter/Space toggles click
+                h.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        h.click();
+                    }
+                });
+            });
         });
         
         // Funkcija za automatsko računanje dana do putovanja
