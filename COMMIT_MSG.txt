@@ -1,0 +1,5 @@
+﻿index.html: Dan 1  Urban Touch map panel; lightbox consistency; Nerešene cleanup; add rel="noopener noreferrer"; contacts updated
+
+plan_rada.md: status updated, removed finished tasks; next steps
+
+Plan_putovanja: synced Urban Touch/eSIM

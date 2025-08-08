@@ -76,10 +76,13 @@
 - **Ocjena:** 9,8/10 (13 recenzija)
 - **Status:** ✅ Rezervisano
 
-### Solun - Odlazak (potrebna rezervacija)
+### Solun - Odlazak — Palioktima - sleep and go
 - **Datum:** 4-5. septembar 2025. (1 noć)
-- **Lokacija:** Blizu aerodroma
-- **Status:** ❌ POTREBNO REZERVISATI
+- **Lokacija:** Φλόκα 7, Néon Rýsion, 57001, Greece (blizu aerodroma SKG)
+- **Cijena:** €53 (25.08. biće naplaćeno od Ajne)
+- **Kontakt:** +30 694 464 0829
+- **Mapa:** https://www.google.com/maps/place/Pal%C4%93okt%C4%93ma/@40.5095412,22.9882998,14.17z/data=!4m6!3m5!1s0x14a86b2b938a0e47:0xf93a7c4d7d40d92b!8m2!3d40.5028853!4d23.0018329!16s%2Fg%2F11rp6mwfzx
+- **Status:** ✅ Rezervisano
 
 ## Detaljni raspored po danima
 
@@ -160,7 +163,7 @@
 - 14:30 - Ukrcavanje na trajekt
 - 15:00 - Polazak trajekta
 - 18:55 - Dolazak u Solun
-- Check-in u smeštaj blizu aerodroma
+- Check-in u Palioktima - sleep and go (Palēoktēma ΠΑΛΗΟΚΤΗΜΑ)
 - Večera u Solunu
 
 ### Dan 15 - Petak, 5. septembar 2025.
@@ -196,8 +199,9 @@
 - **To Ktima tis Matinas:** €117.00
 - **The Pine Trees ostatak:** €390.00
 - **Klimatska taksa:** €20.00
-- **Smeštaj Solun (2 noći):** ~€120.00
-- **UKUPNO ZA PLAĆANJE:** ~€647.00
+- **Solun smeštaj 1 (Urban Touch):** €65.00 (plaća se na licu mjesta)
+- **Solun smeštaj 2 (Palioktima):** €53.00 (biće naplaćeno 25.08. od Ajne)
+- **UKUPNO ZA PLAĆANJE:** ~€645.00
 
 ### Dodatni troškovi (procjena)
 - **Hrana i piće:** €800-1000
@@ -274,14 +278,7 @@
 
 ## Nerešene stavke - HITNO
 
-### Prioritet 1 (do kraja augusta)
-- [ ] **Rezervacija smeštaja u Solunu 22-23. august**
-  - Lokacija: Blizu luke (Ladadika četvrt)
-  - Preporuка: Hotel Mandrino, Colors Urban Hotel
-  
-- [ ] **Rezervacija smeštaja u Solunu 4-5. septembar**
-  - Lokacija: Blizu aerodroma (ili sa lakim pristupom)
-  - Preporuка: Airport hotels ili centar sa dobrim vezama
+Sve kritične rezervacije smeštaja su završene. Otvorene stvari:
 
 ### Prioritet 2 (do početka septembra)
 - [ ] **Prevoz aerodrom ↔ smeštaj u Solunu**
@@ -292,11 +289,6 @@
 
 - [ ] **Lokalni prevoz na Skopelosu**
   - Istražiti: iznajmljivanje skutera, automobila, lokalnih buseva
-
-### Prioritet 3
-- [ ] **Detaljni plan aktivnosti**
-- [ ] **Rezervacije za posebne restorane**
-- [ ] **Rezervacije za izlete/aktivnosti**
 
 ## Podsetniki pred put
 
