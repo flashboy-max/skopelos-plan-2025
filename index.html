@@ -1870,7 +1870,7 @@
                     Nismo sigurni šta bismo danas? Klikni na dugme i smisliću nam neki kreativan plan za istraživanje ostrva!
                 </p>
                 <p style="font-size: 0.8em; color: #666; margin-bottom: 15px; padding: 8px; background: #f1f3f4; border-radius: 6px;">
-                    ℹ️ <strong>Napomena:</strong> Ova funkcija radi samo na GitHub Pages verziji stranice, privremeno, u testnoj fazi.
+                    💡 <strong>Napomena:</strong> Aleksandrov Prijedlog sada "vidi" sve plaže i restorane iz našeg plana i daje personalizovane preporuke!
                 </p>
                 <button id="generate-plan-btn" class="gemini-btn" onclick="generateDetailedPlan()">
                     <span id="gemini-btn-text">Šta predlažem za danas...</span>
@@ -2081,21 +2081,21 @@
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
                                 
                                 <div class="card" style="background: white; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Agnontas Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Agnontas Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak, 2 min hoda)</strong></p>
                                     <p>Naša "kućna" plaža. Mirna, zaštićena uvala sa tavernama uz more. Idealna za brzo ili večernje kupanje.</p>
                                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2189.9167286424426!2d23.709525440088967!3d39.08347136794277!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3f4c6e71f%3A0x9c0f499ba964cf4b!2sParalia%20Agnontas!5e0!3m2!1sen!2sba!4v1754378151895!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                                 
                                 <div class="card" style="background: white; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Amarantos Cape</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Amarantos Cape</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Stjenovite uvale, 5 min vožnje)</strong></p>
                                     <p>Ikonični rt sa borovima. Nije klasična plaža, već niz uvala za fotografisanje, sunčanje na stijenama i skakanje u vodu.</p>
                                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4380.2265540184435!2d23.710904920833457!3d39.07713950458711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1a934965bbf%3A0xb72d0761e2850d46!2sParalia%20Amarantos!5e0!3m2!1sen!2sba!4v1754378577340!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Stafilos Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Stafilos Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Pijesak i šljunak)</strong></p>
                                     <p>Najbliža plaža našem prvom smještaju. Organizovana, sa restoranom. Idealna za prvi dan.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 5 min hoda (od Ktima tis Matinas) | 7 min vožnje (od Pine Trees)</p>
@@ -2103,7 +2103,7 @@
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Panormos Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Panormos Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
                                     <p>Jedna od najpopularnijih plaža, poznata po dubokoj, kristalnoj vodi i prelijepom zalasku sunca. Mnoštvo taverni.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Ktima tis Matinas) | 10 min vožnje (od Pine Trees)</p>
@@ -2111,7 +2111,7 @@
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Milia Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Milia Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni šljunak/pijesak)</strong></p>
                                     <p>Po mnogima najljepša plaža na ostrvu. Duga, prostrana, sa barovima i ležaljkama. Voda je nevjerovatno čista.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 17 min vožnje (od Ktima tis Matinas) | 12 min vožnje (od Pine Trees)</p>
@@ -2119,7 +2119,7 @@
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Kastani Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Kastani Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni šljunak/pijesak)</strong></p>
                                     <p>Svjetski poznata kao "Mamma Mia!" plaža. Potpuno organizovana sa velikim beach barom i glasnijom muzikom.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 19 min vožnje (od Ktima tis Matinas) | 14 min vožnje (od Pine Trees)</p>
@@ -2127,7 +2127,7 @@
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Ftelia Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Ftelia Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
                                     <p>Mala, mirna plaža u blizini Kastani i Milia. Odličan izbor za miran dan daleko od gužve.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 20 min vožnje (od Ktima tis Matinas) | 15 min vožnje (od Pine Trees)</p>
@@ -2135,7 +2135,7 @@
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Hovolo Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Hovolo Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Sitni pijesak i stijene)</strong></p>
                                     <p>Egzotična plaža sa bijelim stijenama i tirkiznom vodom. Potrebno je malo prošetati kroz plićak do najljepših dijelova.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 25 min vožnje (od Ktima tis Matinas) | 20 min vožnje (od Pine Trees)</p>
@@ -2143,7 +2143,7 @@
                                 </div>
 
                                 <div class="card" style="background: white; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-                                    <h5 style="margin-bottom: 5px;">Glisteri Beach</h5>
+                                    <h5 class="beach-name" style="margin-bottom: 5px;">Glisteri Beach</h5>
                                     <p style="font-size: 0.9em; color: #6c757d;"><strong>(Šljunak)</strong></p>
                                     <p>Smještena u dubokoj, izolovanoj uvali sa prepoznatljivim beach barom. Popularna među mladima.</p>
                                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 25 min vožnje (od Ktima tis Matinas) | 20 min vožnje (od Pine Trees)</p>
@@ -2205,17 +2205,17 @@
                     <h5 style="color: #2e7d32;"><span class="icon">🌲</span> U blizini "The Pine Trees" (Agnontas)</h5>
                     <p style="font-size: 0.9em; color: #6c757d;">Restorani dostupni peške, idealni za večere bez vožnje tokom boravka od 25. avgusta do 4. septembra.</p>
 
-                    <p style="margin-top: 15px;"><strong>Korali Seafood Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Korali Seafood Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Jedan od najcenjenijih restorana na ostrvu, sa stolovima direktno na plaži. Savršen za svežu ribu i romantičnu atmosferu.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 2 min hoda (od Pine Trees) | 8 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.029282575138!2d23.708941176352024!3d39.083030735729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b392a9eaa1%3A0x94d3937ff79e3cc!2sKorali%20Seafood%20Restaurant%20.%20Agnontas%20Skopelos!5e0!3m2!1sen!2sus!4v1754387327557!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
                     
-                    <p style="margin-top: 15px;"><strong>Mouria Fish Tavern</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Mouria Fish Tavern</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Taverna u hladovini velikog drveta, poznata po tradicionalnim jelima i opuštenoj atmosferi.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 1 min hoda (od Pine Trees) | 8 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.0289194465804!2d23.708941176227295!3d39.083039007186365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b38ddad881%3A0xf4491fdf72bc5b38!2sMouria%20Fish%20Tavern%20Agnontas!5e0!3m2!1sen!2sus!4v1754387378821!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
 
-                    <p style="margin-top: 15px;"><strong>Apanemo Restaurant & Beach Bar</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Apanemo Restaurant & Beach Bar</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Nalazi se u prelepoj uvali Limnonari. Odličan izbor za ručak i celodnevni boravak na plaži.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 5 min vožnje (od Pine Trees) | 12 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12386.926681708821!2d23.679120540618886!3d39.0898093463254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b8d2ddf1c7%3A0x91bc2e60c926e0fd!2sApanemo%20Restaurant%20%26%20Beach%20Bar!5e0!3m2!1sen!2sus!4v1754387481070!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
@@ -2225,12 +2225,12 @@
                     <h5 style="color: #1565c0;"><span class="icon">🏡</span> U blizini "To Ktima tis Matinas" (Stafilos)</h5>
                     <p style="font-size: 0.9em; color: #6c757d;">Restorani idealni za prva dva dana našeg boravka (23-25. avgust).</p>
                     
-                    <p style="margin-top: 15px;"><strong>Stafilos Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Stafilos Restaurant</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Restoran na samoj plaži gde imate rođendansku rezervaciju. Savršen za večeru uz zalazak sunca.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 5 min hoda (od Ktima tis Matinas) | 7 min vožnje (od Pine Trees)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.872608238415!2d23.7451393071181!3d39.08564808388133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c0117de3020d%3A0x6566fa528f819ae8!2sStafilos%20Restaurant!5e0!3m2!1sen!2sus!4v1754387527705!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
 
-                    <p style="margin-top: 15px;"><strong>Rosemary</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Rosemary</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Nudi kreativnu grčku kuhinju sa prelepim pogledom. Odličan izbor za malo drugačiju, finiju večeru.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 4 min vožnje (od Ktima tis Matinas) | 10 min vožnje (od Pine Trees)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24767.880315175127!2d23.72351975495607!3d39.10681076412462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea9c063366c1%3A0x75fac1c07ff3bbac!2sRosemary!5e0!3m2!1sen!2sus!4v1754387619922!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
@@ -2240,12 +2240,12 @@
                     <h5 style="color: #f57f17;"><span class="icon">🏛️</span> Skopelos Town (Chora)</h5>
                     <p style="font-size: 0.9em; color: #6c757d;">Dostupni autobusom ili taksijem iz oba smeštaja. Idealni za večernje izlaske.</p>
 
-                    <p style="margin-top: 15px;"><strong>Pizzeria Gousto</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Pizzeria Gousto</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Jedna od najboljih pica na ostrvu, odlična opcija za promenu od grčke kuhinje.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Pine Trees) | 10 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7362.087193898444!2d23.722201919972996!3d39.120666200861436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6ea9221cf72a7%3A0x24b0003be2140841!2sPizzeria%20Gousto!5e0!3m2!1sen!2sus!4v1754387793267!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
 
-                    <p style="margin-top: 15px;"><strong>El Atrio</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>El Atrio</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Ušuškan u sporednim ulicama Chore, poznat po odličnim doručcima, branču i laganim jelima.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Pine Trees) | 10 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7362.087193898444!2d23.722201919972996!3d39.120666200861436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6eb2b84e30291%3A0xffb6d455d471e3f4!2sEl%20Atrio!5e0!3m2!1sen!2sus!4v1754387836698!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
@@ -2255,12 +2255,12 @@
                     <h5 style="color: #6a1b9a;"><span class="icon">🌅</span> Za poseban doživljaj (Izlet)</h5>
                     <p style="font-size: 0.9em; color: #6c757d;">Ovi restorani zahtevaju dužu vožnju, ali nude nezaboravan pogled i atmosferu.</p>
 
-                    <p style="margin-top: 15px;"><strong>Agnanti</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Agnanti</strong> <span style="color: #ffc107; font-weight: bold;">€€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">Smatra se jednim od najboljih restorana u Grčkoj. Tradicionalna jela na moderan način sa spektakularnim pogledom u selu Glossa.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 40 min vožnje (od Pine Trees) | 45 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8748.968745380314!2d23.60509781642941!3d39.169547097842404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6e8fc897a08f7%3A0x1fc4259a73e3dc62!2sAgnanti!5e0!3m2!1sen!2sus!4v1754387988874!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
 
-                    <p style="margin-top: 15px;"><strong>Delfini Taverna (Panormos)</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
+                    <p class="restaurant-name" style="margin-top: 15px;"><strong>Delfini Taverna (Panormos)</strong> <span style="color: #28a745; font-weight: bold;">€€</span></p>
                     <p style="font-size: 0.9em; color: #6c757d;">*Napomena: Ovo je Delfini u Panormosu, ne Agnontasu.* Odlična taverna na prelepoj plaži Panormos, idealna za ručak tokom dana na plaži.</p>
                     <p style="font-size: 0.9em; color: #444;">📍 <strong>Udaljenost:</strong> 15 min vožnje (od Pine Trees) | 20 min vožnje (od Ktima tis Matinas)</p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35035.15013085003!2d23.690451579921177!3d39.09055273351912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c202c207d0ab%3A0x58e3949e7e20df4!2sDOLPHIN%20OF%20SKOPELOS%2C%20RESTAURANT%20%7C%20CHATZIVASILEIOU%20FOTIOS!5e0!3m2!1sen!2sus!4v1754387189766!5m2!1sen!2sus" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
@@ -2269,23 +2269,23 @@
                     <h5 style="color: #444;"><span class="icon">🏙️</span> Solun — Ladadika/Centar (Dan 1)</h5>
                     <p style="font-size: 0.9em; color: #6c757d;">Opcije oko Urban Touch Studios i luke — 5–15 min pješice.</p>
 
-                    <p style="margin-top: 12px;"><strong>Loupino</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — mediteransko, moderni grčki. 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Loupino</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — mediteransko, moderni grčki. 
                         <a href="https://www.google.com/maps/search/?api=1&query=Loupino%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Loupino+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Full tou Meze</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — meze/taverna, Ladadika. 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Full tou Meze</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — meze/taverna, Ladadika. 
                         <a href="https://www.google.com/maps/search/?api=1&query=Full%20tou%20Meze%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Full+tou+Meze+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Zythos – Ladadika</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — grčka kuhinja + craft pivo. 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Zythos – Ladadika</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — grčka kuhinja + craft pivo. 
                         <a href="https://www.google.com/maps/search/?api=1&query=Zythos%20Ladadika%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Zythos+Ladadika+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Frutti di Mare</strong> <span style="color: #ffc107; font-weight: bold;">€€–€€€</span> — odlična morska hrana (blizu Aristotelous). 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Frutti di Mare</strong> <span style="color: #ffc107; font-weight: bold;">€€–€€€</span> — odlična morska hrana (blizu Aristotelous). 
                         <a href="https://www.google.com/maps/search/?api=1&query=Frutti%20di%20Mare%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Frutti+di+Mare+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Kitchen Bar</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — na vodi, u luci (magacin). 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Kitchen Bar</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — na vodi, u luci (magacin). 
                         <a href="https://www.google.com/maps/search/?api=1&query=Kitchen%20Bar%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Kitchen+Bar+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
@@ -2295,19 +2295,19 @@
                     <h5 style="color: #1565c0;"><span class="icon">🛫</span> Solun — SKG/Neo Rysio/Termi/Perea (Dan 14/15)</h5>
                     <p style="font-size: 0.9em; color: #6c757d;">Blizu Palioktima i aerodroma (10–25 min kolima).</p>
 
-                    <p style="margin-top: 12px;"><strong>ERGON Agora East (Pylaia)</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — moderni grčki/deli market. 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">ERGON Agora East</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — moderni grčki/deli market. 
                         <a href="https://www.google.com/maps/search/?api=1&query=ERGON%20Agora%20East%20Pylaia" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=ERGON+Agora+East+Pylaia&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Aroma Glykanisos (Nea Krini)</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — morska hrana, lepa šetnica. 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Aroma Glykanisos</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — morska hrana, lepa šetnica. 
                         <a href="https://www.google.com/maps/search/?api=1&query=Aroma%20Glykanisos%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Aroma+Glykanisos+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Nea Diagonios (Kalamaria)</strong> <span style="color: #28a745; font-weight: bold;">€–€€</span> — žar/gyros/bifteci, lokalna institucija. 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Nea Diagonios</strong> <span style="color: #28a745; font-weight: bold;">€–€€</span> — žar/gyros/bifteci, lokalna institucija. 
                         <a href="https://www.google.com/maps/search/?api=1&query=Nea%20Diagonios%20Thessaloniki" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Nea+Diagonios+Thessaloniki&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                    <p style="margin-top: 12px;"><strong>Peraia seafront</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — En Plo, Okeanis, Thalassopoulia (šetalište uz more). 
+                    <p style="margin-top: 12px;"><strong class="restaurant-name">Peraia seafront</strong> <span style="color: #28a745; font-weight: bold;">€€</span> — En Plo, Okeanis, Thalassopoulia (šetalište uz more). 
                         <a href="https://www.google.com/maps/search/?api=1&query=Peraia%20seafront%20restaurants" target="_blank" rel="noopener noreferrer">Mapa</a>
                     </p>
                     <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=Peraia+seafront+restaurants&output=embed" width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
@@ -2847,29 +2847,40 @@
             loader.style.display = 'block';
             outputDiv.innerHTML = '<p style="color: #888; text-align: center;">Smišljam nam savršen plan...</p>';
 
+            // --- NOVI KOD ZA PRIKUPLJANJE KONTEKSTA ---
+            const allBeaches = Array.from(document.querySelectorAll('.beach-name')).map(el => el.textContent.trim());
+            const allRestaurants = Array.from(document.querySelectorAll('.restaurant-name')).map(el => el.textContent.trim().replace(/\s*[€€€]*\s*$/, ''));
+
+            const planContext = `
+Naš plan već sadrži listu plaža koje želimo obići: ${allBeaches.join(', ')}.
+Takođe, imamo i listu preporučenih restorana: ${allRestaurants.join(', ')}.
+`;
+            // --- KRAJ NOVOG KODA ---
+
             // Dobijanje trenutnog datuma
             const today = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const todayFormatted = today.toLocaleDateString('bs-BA', options);
 
-            const prompt = `Ponašaj se kao Aleksandar, koji pravi kreativan i romantičan plan za sebe i svoju verenicu Ajnu za jedan dan na ostrvu Skopelos u Grčkoj. Piši na srpskom (latinica, ijekavica) jeziku, u prvom licu jednine ("Razmišljao sam...", "Predlažem da mi...") i obraćaj se direktno Ajni. Koristi tople i lične izraze kao 'ljubavi', 'MioFio', ili 'MyLove'.
+            const prompt = `Ponašaj se kao Aleksandar, koji piše lični, kreativan i romantičan predlog za svoju verenicu Ajnu za jedan savršen dan na ostrvu Skopelos, Grčka. Piši na bosanskom jeziku, u prvom licu ("Razmišljao sam...", "Mogli bismo...") i direktno se obraćaj Ajni, koristeći tople izraze kao 'ljubavi', 'MioFio', ili 'MyLove'.
             
-            KONTEKST:
-            - Današnji datum je: ${todayFormatted}.
-            - Naše putovanje traje od 22. augusta do 5. septembra 2025.
-            - Naša baza (smeštaj) na Skopelosu je u mestu Agnontas.
-            - Volimo prelepe plaže, zalazak sunca, popiti vino, autentičnu grčku hranu, opuštenu atmosferu i lepe poglede.
+KONTEKST ZA TEBE:
+- Današnji datum je: ${todayFormatted}.
+- Naše putovanje traje od 22. augusta do 5. septembra 2025.
+- Smešteni smo u mestu Agnontas.
+- Naše generalne želje su: prelepe plaže, zalazak sunca, dobro vino, autentična grčka hrana i opuštena atmosfera.
+- ${planContext}
 
-            TVOJ ZADATAK:
-            Kreiraj detaljan i vizuelno privlačan plan za jedan dan. Plan mora sadržati:
-            1.  **Jutro:** Predloži odlazak na jednu od prelepih plaža (npr. Milia, Kastani, Panormos, Hovolo). Opiši zašto baš ta plaža i šta bismo tamo mogli raditi. Uključi emotikone.
-            2.  **Ručak:** Predloži neku tavernu u blizini te plaže, sa konkretnim predlogom šta bismo mogli jesti.
-            3.  **Popodne:** Daj ideju za opuštenu popodnevnu aktivnost. To može biti kratka šetnja, poseta nekom vidikovcu, ili povratak u Agnontas na odmor.
-            4.  **Veče:** Predloži plan za večeru u Agnontasu, s obzirom da smo tamo smešteni. Opiši atmosferu.
-            
-            FORMAT ODGOVORA:
-            Tvoj odgovor MORA biti formatiran kao HTML. Koristi <ul> i <li> tagove. Svaka stavka treba da sadrži i koristan link ka Google Mapama za predloženu lokaciju. Primer linka: <a href="https://www.google.com/maps/search/?api=1&query=Milia+Beach+Skopelos" target="_blank">Pogledaj na mapi</a>.
-            Odgovor mora zvučati kao lični predlog, a ne kao generički odgovor AI-ja.`;
+TVOJ ZADATAK:
+Kreiraj detaljan i vizuelno privlačan plan za jedan dan koji je NOV i KREATIVAN. Izbegavaj da ponavljaš očigledne stvari i pokušaj da nas iznenadiš. Plan mora da sadrži:
+1.  **Jutro☀️:** Predloži odlazak na neku prelepu plažu. Probaj da izabereš neku manje poznatu "skrivenu gemu" koja nije na našoj glavnoj listi, ili kombinaciju dve manje plaže. Objasni zašto je baš to mesto posebno.
+2.  **Ručak 🍽️:** Predloži autentičnu tavernu. Ako je neka sa naše liste u blizini, super! Ako nije, predloži neku novu, visoko ocenjenu. Daj i konkretan predlog šta bismo mogli naručiti.
+3.  **Popodne 🎨:** Smisli neku opuštenu, ali zanimljivu popodnevnu aktivnost. Možda poseta nekoj maloj umetničkoj galeriji u Skopelos gradu, degustacija lokalnih proizvoda, ili šetnja do nekog prelepog, ali ne previše napornog vidikovca.
+4.  **Veče 🌙:** Predloži romantičnu večeru u Agnontasu, s obzirom da smo tamo smešteni. Opiši atmosferu i zašto je baš to mesto savršeno za kraj dana.
+
+FORMAT ODGOVORA:
+Tvoj odgovor MORA biti formatiran kao HTML. Koristi <ul> i <li> tagove, emotikone da dočaraš atmosferu i obavezno uključi korisne linkove ka Google Mapama za svaku predloženu lokaciju. Primer: <a href="https://www.google.com/maps/search/?api=1&query=Milia+Beach+Skopelos" target="_blank">Pogledaj na mapi</a>.
+Tvoj ton mora biti topao i ličan, kao da zaista pišem poruku svojoj verenici.`;
 
             try {
                 // API ključ sa ograničenjem na flashboy-max.github.io/*
