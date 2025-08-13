@@ -14,10 +14,6 @@
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         /* === Osnovna sigurnosna margina za sve uređaje === */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -140,113 +136,6 @@
             background: #f8d7da;
             border-color: #f5c6cb;
             color: #721c24;
-        }
-        
-        /* NOVI STILOVI ZA POBOLJŠANE INFO KARTICE */
-        .info-grid-v2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .info-card-v2 {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-left: 5px solid;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .info-card-v2:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        .info-card-v2 .info-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        .info-card-v2 .info-header .title {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-        }
-        .info-card-v2 .info-header .icon {
-            font-size: 1.6em;
-            margin-right: 12px;
-        }
-        .info-card-v2 .info-details p {
-            margin-bottom: 8px;
-            font-size: 1em;
-        }
-        .info-card-v2 .info-details p:last-child {
-            margin-bottom: 0;
-        }
-        .info-card-v2.osnovno { border-color: #667eea; }
-        .info-card-v2.osnovno .info-header { color: #5a6fd8; }
-        .info-card-v2.letovi { background: #e3f2fd; border-color: #2196f3; }
-        .info-card-v2.letovi .info-header { color: #1565c0; }
-        .info-card-v2.trajekt { background: #e8f5e9; border-color: #2e7d32; }
-        .info-card-v2.trajekt .info-header { color: #1b5e20; }
-        
-        /* GEMINI API STILOVI */
-        .gemini-feature-box {
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            border: 1px solid #ddd;
-            border-left: 5px solid #764ba2;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 25px;
-        }
-        .gemini-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .gemini-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
-        }
-        .gemini-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        .gemini-output {
-            margin-top: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            min-height: 50px;
-        }
-        .gemini-output ul {
-            padding-left: 20px;
-            list-style: none;
-        }
-        .gemini-output li {
-            margin-bottom: 15px;
-        }
-        .loader {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
         
         .icon {
@@ -421,27 +310,16 @@
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 15px;
-            position: sticky;
-            top: 10px;
-            z-index: 1000;
         }
         .quick-nav a {
             color: white;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
-            transition: all 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 20px;
+            transition: transform 0.2s ease;
         }
         .quick-nav a:hover {
             transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .quick-nav a.active {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
         
         @media (max-width: 768px) {
@@ -478,38 +356,6 @@
                 background: #2c3e50 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-            }
-            
-            .quick-nav, .main-accordion-header, button, .modal-overlay, .gemini-feature-box {
-                display: none !important;
-            }
-            
-            .main-accordion-item {
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
-            
-            .main-accordion-content {
-                max-height: none !important;
-                display: block !important;
-            }
-            
-            .main-accordion-body {
-                padding: 15px 0 !important;
-            }
-            
-            h2 {
-                margin-top: 25px;
-                color: #333 !important;
-                page-break-after: avoid;
-            }
-            
-            .info-card, .timeline-item, .restaurant-card {
-                page-break-inside: avoid;
-            }
-            
-            iframe {
-                display: none;
             }
             
             .print-only {
@@ -978,170 +824,6 @@
             outline-offset: 2px;
         }
         
-        /* === PASSWORD MODAL STYLES === */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-        }
-        
-        .modal-content h3 {
-            margin-top: 0;
-            color: #2c3e50;
-            font-size: 1.4em;
-        }
-        
-        .modal-content p {
-            margin: 15px 0;
-            color: #666;
-        }
-        
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 15px 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1.1em;
-            text-align: center;
-            transition: border-color 0.3s ease;
-        }
-        
-        .modal-content input:focus {
-            outline: none;
-            border-color: #4facfe;
-            box-shadow: 0 0 10px rgba(79, 172, 254, 0.2);
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .modal-content button {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            min-width: 100px;
-        }
-        
-        .modal-content button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-        }
-        
-        .modal-content button:nth-child(2) {
-            background: #6c757d;
-        }
-        
-        .modal-content button:nth-child(2):hover {
-            background: #5a6268;
-            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
-        }
-
-        /* === INTERACTIVE CHECKLIST STYLES === */
-        .interactive-checklist {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .interactive-checklist .checklist-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-        
-        .interactive-checklist .checklist-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
-        
-        .interactive-checklist .checklist-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-right: 12px;
-            cursor: pointer;
-            accent-color: #28a745;
-        }
-        
-        .interactive-checklist .checklist-item label {
-            flex-grow: 1;
-            cursor: pointer;
-            font-weight: 500;
-            color: #333;
-        }
-        
-        .interactive-checklist .checklist-item.done {
-            background: #d4edda;
-            border-left-color: #28a745;
-        }
-        
-        .interactive-checklist .checklist-item.done label {
-            text-decoration: line-through;
-            color: #6c757d;
-            opacity: 0.8;
-        }
-        
-        /* Priority indicators */
-        .priority-high {
-            border-left-color: #dc3545 !important;
-        }
-        
-        .priority-medium {
-            border-left-color: #ffc107 !important;
-        }
-        
-        .priority-low {
-            border-left-color: #28a745 !important;
-        }
-        
-        .priority-section {
-            margin-bottom: 25px;
-            padding: 15px;
-            border-radius: 10px;
-            background: #f8f9fa;
-        }
-        
-        .priority-section h4 {
-            margin: 0 0 15px 0;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #dee2e6;
-        }
-
         /* Accommodation Card Styles */
         .accommodation-card { 
             background: #f8f9fa; 
@@ -1263,52 +945,35 @@
             
             <div class="quick-nav">
                 <a href="#finansije">💰 Budžet</a>
-                <a href="#zadaci">🎯 Zadaci</a>
                 <a href="#raspored">📅 Raspored</a>
                 <a href="#plaze">🏖️ Plaže</a>
                 <a href="#restorani">🍽️ Restorani</a>
-                <a href="#aktivnosti">🎯 Aktivnosti</a>
-                <a href="#pakovanje">🧳 Pakovanje</a>
                 <a href="#kontakti">📞 Kontakti</a>
             </div>
         </header>
         
         <div class="content">
-            <div class="info-grid-v2">
-                <div class="info-card-v2 osnovno">
-                    <div class="info-header">
-                        <div class="title"><span class="icon">📅</span>Osnovne informacije</div>
-                    </div>
-                    <div class="info-details">
-                        <p><strong>Period:</strong> 22. avgust - 5. sept. 2025. (15 dana)</p>
-                        <p><strong>Valuta:</strong> Euro (€)</p>
-                        <p><strong>Vremenska zona:</strong> EEST (GMT+3), jedan sat ispred Sarajeva</p>
-                    </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📅 Osnovne informacije</h4>
+                    <p><strong>Period:</strong> 22. august - 5. septembar 2025. (15 dana)</p>
+                    <p><strong>Valuta:</strong> Euro (€)</p>
+                    <p><strong>Vremenska zona:</strong> EEST (GMT+3), <strong>jedan sat ispred Sarajeva</strong></p>
                 </div>
                 
-                <div class="info-card-v2 letovi">
-                    <div class="info-header">
-                        <div class="title"><span class="icon">✈️</span>Letovi - Potvrđeno</div>
-                        <svg width="80" height="25" viewBox="0 0 150 40"><path fill="#073590" d="M14.7 4.7c-1.8 0-3.5.5-5 1.5-1.5 1-2.6 2.3-3.4 4-.8 1.6-1.2 3.4-1.2 5.3s.4 3.7 1.2 5.3c.8 1.6 1.9 3 3.4 4 1.5 1 3.2 1.5 5 1.5s3.5-.5 5-1.5c1.5-1 2.6-2.3 3.4-4 .8-1.6 1.2-3.4 1.2-5.3s-.4-3.7-1.2-5.3c-.8-1.6-1.9-3-3.4-4-1.5-1-3.2-1.5-5-1.5zM35.4 5.2l-6.2 14.4-1.4-1.2 5.5-12.7-6.1.1-1.3-1.6h9.5zM45.1 5.2l-1.3 1.6-6.1-.1 5.5 12.7-1.4 1.2-6.2-14.4h2.2l5.1 11.9 5.1-11.9zM62.1 5.2l-7.2 14.4h-2.1l9.3-18.7h2.1l9.3 18.7h-2.1zM89.3 5.2l-1.3 1.6-6.1-.1 5.5 12.7-1.4 1.2-6.2-14.4h2.2l5.1 11.9 5.1-11.9zM106.3 5.2l-7.2 14.4h-2.1l9.3-18.7h2.1l9.3 18.7h-2.1zM133.5 5.2l-1.3 1.6-6.1-.1 5.5 12.7-1.4 1.2-6.2-14.4h2.2l5.1 11.9 5.1-11.9z"></path></svg>
-                    </div>
-                    <div class="info-details">
-                        <p><strong>Odlazak:</strong> FR5005 Ryanair</p>
-                        <p>22.08. (10:10 → 12:30)</p>
-                        <p><strong>Povratak:</strong> FR5004 Ryanair</p>
-                        <p>05.09. (09:25 → 09:45)</p>
-                    </div>
+                <div class="info-card status-confirmed">
+                    <h4>✈️ Letovi - Potvrđeno</h4>
+                    <p><strong>Odlazak:</strong> FR5005 Ryanair</p>
+                    <p>22. august, 10:10 → 12:30</p>
+                    <p><strong>Povratak:</strong> FR5004 Ryanair</p>
+                    <p>5. septembar, 09:25 → 09:45</p>
                 </div>
                 
-                <div class="info-card-v2 trajekt">
-                    <div class="info-header">
-                        <div class="title"><span class="icon">⛴️</span>Trajekt - Potvrđeno</div>
-                        <svg width="80" height="25" viewBox="0 0 200 50" style="background:#00A651; border-radius: 4px;"><path fill="#FFF" d="M40 15h120v20H40z"></path><path fill="#00A651" d="M50 20h100v10H50z"></path><path fill="#FFF" d="M60 22.5h80v5H60z"></path></svg>
-                    </div>
-                    <div class="info-details">
-                        <p><strong>Odlazak:</strong> 23.08. (08:30 → 12:20)</p>
-                        <p><strong>Povratak:</strong> 04.09. (15:00 → 18:55)</p>
-                        <p>Seajets SPEEDRUNNER JET</p>
-                    </div>
+                <div class="info-card status-confirmed">
+                    <h4>⛴️ Trajekt - Potvrđeno</h4>
+                    <p><strong>Odlazak:</strong> 23. august, 08:30 → 12:20</p>
+                    <p><strong>Povratak:</strong> 4. septembar, 15:00 → 18:55</p>
+                    <p>Seajets SPEEDRUNNER JET</p>
                 </div>
             </div>
 
@@ -1519,47 +1184,6 @@
                 <a href="https://www.google.com/maps/place/Pal%C4%93okt%C4%93ma/@40.5095412,22.9882998,14.17z/data=!4m6!3m5!1s0x14a86b2b938a0e47:0xf93a7c4d7d40d92b!8m2!3d40.5028853!4d23.0018329!16s%2Fg%2F11rp6mwfzx?hl=en-US&entry=ttu&g_ep=EgoyMDI1MDgwNS4wIKXMDSoASAFQAw%3D%3D" 
                    target="_blank" rel="noopener noreferrer" class="accommodation-map-link">📍 Lokacija na Google mapama</a>
             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="main-accordion-item">
-                    <div class="main-accordion-header" onclick="toggleMainAccordion('zadaci')">
-                        <h2 id="zadaci">🎯 Nerešene stavke i zadaci</h2>
-                        <span class="main-accordion-icon" id="zadaci-icon">▼</span>
-                    </div>
-                    <div class="main-accordion-content" id="zadaci-content">
-                        <div class="main-accordion-body">
-                            
-                            <div class="priority-section priority-high">
-                                <h4>🔴 Visoki prioritet</h4>
-                                <ul class="interactive-checklist" id="todo-high">
-                                    <!-- JS će popuniti ovaj sadržaj -->
-                                </ul>
-                            </div>
-                            
-                            <div class="priority-section priority-medium">
-                                <h4>🟡 Srednji prioritet</h4>
-                                <ul class="interactive-checklist" id="todo-medium">
-                                    <!-- JS će popuniti ovaj sadržaj -->
-                                </ul>
-                            </div>
-                            
-                            <div class="priority-section priority-low">
-                                <h4>🟢 Nizak prioritet</h4>
-                                <ul class="interactive-checklist" id="todo-low">
-                                    <!-- JS će popuniti ovaj sadržaj -->
-                                </ul>
-                            </div>
-                            
-                            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #2196f3;">
-                                <h5 style="color: #1565c0; margin: 0 0 8px 0;">💡 Napomene za zadatke</h5>
-                                <ul style="margin: 0; color: #333; font-size: 0.9em;">
-                                    <li>Zadaci se automatski čuvaju u vašem pretraživaču</li>
-                                    <li>Kliknite na checkbox da označite zadatak kao završen</li>
-                                    <li>Prioriteti: 🔴 = hitno, 🟡 = važno, 🟢 = može sačekati</li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1862,25 +1486,6 @@
                     </div>
                     <div class="main-accordion-content" id="raspored-content">
                         <div class="main-accordion-body">
-            
-            <!-- ALEKSANDROV PRIJEDLOG ZA DAN - na vrhu rasporeda -->
-            <div class="gemini-feature-box">
-                <h4 style="color: #5a6fd8; margin-bottom: 15px;">💡 Aleksandrov prijedlog za Ajnu</h4>
-                <p style="font-size: 0.9em; color: #555; margin-bottom: 15px;">
-                    Nismo sigurni šta bismo danas? Klikni na dugme i smisliću nam neki kreativan plan za istraživanje ostrva!
-                </p>
-                <p style="font-size: 0.8em; color: #666; margin-bottom: 15px; padding: 8px; background: #f1f3f4; border-radius: 6px;">
-                    ℹ️ <strong>Napomena:</strong> Ova funkcija radi samo na GitHub Pages verziji stranice (flashboy-max.github.io)
-                </p>
-                <button id="generate-plan-btn" class="gemini-btn" onclick="generateDetailedPlan()">
-                    <span id="gemini-btn-text">Šta predlažem za danas...</span>
-                    <div id="gemini-loader" class="loader" style="display: none;"></div>
-                </button>
-                <div id="gemini-output" class="gemini-output">
-                    <p style="color: #888; text-align: center;">Moj prijedlog za naš savršen dan će se pojaviti ovdje...</p>
-                </div>
-            </div>
-            
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="day-header">📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</div>
@@ -2564,80 +2169,116 @@
                         <div class="main-accordion-body">
             <div class="info-grid">
                 <div class="info-card">
-                    <h4>👕 Odjeća i obuća:</h4>
-                    <ul class="interactive-checklist" id="packing-list-odjeca">
-                        <!-- JS će popuniti ovaj sadržaj -->
+                    <h4>👕 Odjeća:</h4>
+                    <ul>
+                        <li>Kupaci kostimi (2-3 para)</li>
+                        <li>Ljetnja odjeća (majice, šortovi, haljine)</li>
+                        <li>Jedna toplija jakna za večeri <em>(može biti vjetrovka)</em></li>
+                        <li>Udobna obuća za hodanje </li>
+                        <li>Sandale/papuče za plažu</li>
+                        <li>Elegantna odjeća za večeru</li>
+                        <li>Donji veš (dovoljno za 14 dana)</li>
+                        <li>Čarape (tanje za ljeto)</li>
+                        <li>Odjeća za spavanje</li>
+                        <li>Peškir za plažu (veliki)</li>
                     </ul>
-                    <!-- Progress indicator za odjeću -->
-                    <div style="background: #e8f5e8; padding: 10px; border-radius: 8px; margin-top: 15px; border-left: 3px solid #28a745;">
-                        <div style="background: #fff; border-radius: 10px; height: 15px; overflow: hidden;">
-                            <div id="packing-progress-odjeca" style="background: linear-gradient(90deg, #28a745, #20c997); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
-                        </div>
-                        <p style="margin: 5px 0 0 0; font-size: 0.8em; color: #2e7d32;" id="packing-status-odjeca">0% završeno</p>
-                    </div>
                 </div>
                 
                 <div class="info-card">
-                    <h4>🎒 Ostalo (oprema, kozmetika...):</h4>
-                    <ul class="interactive-checklist" id="packing-list-ostalo">
-                        <!-- JS će popuniti ovaj sadržaj -->
+                    <h4>🎒 Ostalo:</h4>
+                    <ul>
+                        <li>Krema za sunčanje (SPF 50+)</li>
+                        <li>Krema nakon sunčanja/aloe vera</li>  
+                        <li>Kozmetika (šampon, gel, krema...)</li>
+                        <li>Četkica za zube + pasta</li>
+                        <li>Repelent za komarce</li>
+                        <li>Krema za posle ujeda insekata</li>
+                        <li>Naočare za sunce</li>
+                        <li>Šešir / kačket</li>
+                        <li>Adapter za struju (punjač za telefon + kabl 2x)</li>
+                        <li>Gadgeti (tablet, slušalice - sa trening opreme)</li>
+                        <li>Powerbank (bežični)</li>
+                        <li>Kamera/GoPro (potražiti)</li>
+                        <li>Lijekovi (osnovni, prva pomoć)</li>
+                        <li>Vodene cipele / štitnici</li>                              
+                        <li>Snorkel oprema (naočale, maska, čepići)</li>
+                        <li>Vodootporna torba (mobilni frižider)</li>
+                        <li>Neseser i torba za plažu</li>
+                        <li>Decathlon plažni suncobran sa podlogom</li>
+                        <li>Dušek za plažu</li>
                     </ul>
-                    <!-- Progress indicator za ostalo -->
-                    <div style="background: #e8f5e8; padding: 10px; border-radius: 8px; margin-top: 15px; border-left: 3px solid #17a2b8;">
-                        <div style="background: #fff; border-radius: 10px; height: 15px; overflow: hidden;">
-                            <div id="packing-progress-ostalo" style="background: linear-gradient(90deg, #17a2b8, #20c997); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
-                        </div>
-                        <p style="margin: 5px 0 0 0; font-size: 0.8em; color: #2e7d32;" id="packing-status-ostalo">0% završeno</p>
-                    </div>
                 </div>
                 
                 <div class="info-card">
-                    <h4>� Dokumenta i novac:</h4>
-                    <ul class="interactive-checklist" id="packing-list-dokumenta">
-                        <!-- JS će popuniti ovaj sadržaj -->
+                    <h4>📄 Dokumenta:</h4>
+                    <ul>
+                        <li>Pasoš/lična karta (važeći minimum 6 mjeseci)</li>
+                        <li>Avionske karte (printane + digitalne)</li>
+                        <li>Trajekt karte (printane + digitalne)</li>
+                        <li>Rezervacije smeštaja (printane potvrde)</li>
+                        <li>Putno osiguranje (polisa + broj za kontakt)</li>
+                        <li>Kopije dokumenata (u slučaju gubitka)</li>
+                        <li>Gotov novac u eurima (€300-500)</li>
+                        <li>Kartice (Visa/Mastercard)</li>
                     </ul>
-                    <!-- Progress indicator za dokumenta -->
-                    <div style="background: #e8f5e8; padding: 10px; border-radius: 8px; margin-top: 15px; border-left: 3px solid #ffc107;">
-                        <div style="background: #fff; border-radius: 10px; height: 15px; overflow: hidden;">
-                            <div id="packing-progress-dokumenta" style="background: linear-gradient(90deg, #ffc107, #fd7e14); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
-                        </div>
-                        <p style="margin: 5px 0 0 0; font-size: 0.8em; color: #2e7d32;" id="packing-status-dokumenta">0% završeno</p>
-                    </div>
                 </div>
-            </div>
-            
-            <!-- Ukupni progress indicator -->
-            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #2196f3;">
-                <h5 style="color: #1976d2; margin: 0 0 10px 0;">📊 Ukupan progress pakovanja</h5>
-                <div style="background: #fff; border-radius: 20px; height: 20px; overflow: hidden; margin: 10px 0;">
-                    <div id="packing-progress-bar" style="background: linear-gradient(90deg, #2196f3, #03dac6); height: 100%; width: 0%; transition: width 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8em;"></div>
+                
+                <div class="info-card">
+                    <h4>🏖️ Specifično za Skopelos:</h4>
+                    <ul>
+                        <li>Vodene cipele/štitnici <em>(kamenje na plažama)</em></li>
+                        <li>Maske za snorkeling <em>(ako ne kupujete tamo)</em></li>
+                        <li>Powerbank za ceo dan <em>(fotografisanje + navigacija)</em></li>
+                    </ul>
                 </div>
-                <p style="margin: 0; font-size: 0.9em; color: #1976d2;" id="packing-status">0% završeno - Kliknite stavke dok pakujete!</p>
             </div>
                         </div>
                     </div>
                 </div>
 
-
+                <div class="main-accordion-item">
+                    <div class="main-accordion-header" onclick="toggleMainAccordion('podsetnici')">
+                        <h2 id="podsetnici">📋 Podsetnici pred put</h2>
+                        <span class="main-accordion-icon" id="podsetnici-icon">▼</span>
+                    </div>
+                    <div class="main-accordion-content" id="podsetnici-content">
+                        <div class="main-accordion-body">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📅 Par dana pre polaska:</h4>
+                    <ul class="checklist">
+                        <li>Provjeriti vremensku prognozu za Skopelos</li>
+                        <li>Potvrditi dimenzije i težinu prtljaga (Ryanair pravila)</li>
+                        <li>Pripremiti gadžete (powerbank, filmovi, punjači)</li>
+                        <li>Pripremiti odjeću i opremu za plažu</li>
+                        <li>Pripremiti dokumente</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>⏰ 48h pre polaska trajekta:</h4>
+                    <ul class="checklist">
+                        <li>Aktivirati eSIM kartice: instalirati profile (Aleksandar, Ajna)</li>
+                        <li>Obaviti web check-in za trajekt (Seajets)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>⏰ 24h pre leta:</h4>
+                    <ul class="checklist">
+                        <li>Obaviti online check-in za letove (Ryanair)</li>
+                    </ul>
+                </div>
+            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="print-only">
                 <p style="text-align: center; margin-top: 30px; font-style: italic; color: #666;">
                     Naš putni plan kreiran 4. augusta 2025. - Aleksandar & Ajna
                 </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Password Modal -->
-    <div id="password-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>🔐 Pristup finansijskim podacima</h3>
-            <p>Unesite šifru za pristup ovoj sekciji:</p>
-            <input type="password" id="password-input" placeholder="Šifra..." autocomplete="off">
-            <div class="modal-buttons">
-                <button onclick="checkPassword()">✅ Potvrdi</button>
-                <button onclick="closePasswordModal()">❌ Otkaži</button>
             </div>
         </div>
     </div>
@@ -2649,286 +2290,6 @@
 </div>
 
 <script>
-        // === DATA FOR INTERACTIVE FEATURES ===
-        
-        // To-Do zadaci po prioritetima (prilagođeno trenutnom stanju)
-        const todoItems = {
-            high: [
-                { text: 'Online check-in za letove (24h prije polaska)', done: false },
-                { text: 'Aktivirati eSIM kartice (48h prije polaska)', done: false },
-                { text: 'Obaviti web check-in za trajekt (48h prije)', done: false }
-            ],
-            medium: [
-                { text: 'Rezervisati "Mamma Mia!" turu za 24. august', done: false },
-                { text: 'Pripremiti kopije dokumenata', done: false },
-                { text: 'Razmijeniti novac u eure', done: false }
-            ],
-            low: [
-                { text: 'Istražiti dodatne prevoz opcije na Skopelosu', done: false },
-                { text: 'Provjeriti vremensku prognozu nedjelju prije', done: false },
-                { text: 'Skinuti aplikacije za offline mape', done: false },
-                { text: 'Napraviti backup telefona', done: false },
-                { text: 'Pripremiti playlist za putovanje', done: false }
-            ]
-        };
-
-        // Lista za pakovanje po kategorijama
-        const packingItems = {
-            odjeca: [
-                "Kupaći kostimi (2-3 para)",
-                "Ljetnja odjeća (majice, šortovi, haljine)",
-                "Jedna toplija jakna za večeri",
-                "Udobna obuća za hodanje",
-                "Sandale/papuče za plažu",
-                "Vodene cipele/štitnici (kamenje na plažama)",
-                "Elegantna odjeća za večeru",
-                "Donji veš (dovoljno za 14 dana)",
-                "Čarape (tanje za ljeto)",
-                "Odjeća za spavanje",
-                "Peškir za plažu (veliki)"
-            ],
-            ostalo: [
-                "Krema za sunčanje (SPF 50+)",
-                "Krema nakon sunčanja/aloe vera",
-                "Kozmetika (šampon, gel, krema...)",
-                "Četkica za zube + pasta",
-                "Repelent za komarce",
-                "Krema za posle ujeda insekata",
-                "Naočare za sunce",
-                "Šešir / kačket",
-                "Adapter za struju (punjač za telefon + kabl 2x)",
-                "Gadžeti (tablet, slušalice)",
-                "Powerbank (bežični)",
-                "Powerbank za ceo dan (fotografisanje + navigacija)",
-                "Kamera/GoPro",
-                "Lijekovi (osnovni, prva pomoć)",
-                "Vodootporna torba",
-                "Neseser i torba za plažu",
-                "Plažni suncobran sa podlogom",
-                "Dušek za plažu",
-                "Snorkel oprema (maske i naočale za snorkeling)"
-            ],
-            dokumenta: [
-                "Pasoš/lična karta (važeći minimum 6 mjeseci)",
-                "Avionske karte (printane + digitalne)",
-                "Trajekt karte (printane + digitalne)",
-                "Rezervacije smeštaja (printane potvrde)",
-                "Putno osiguranje (polisa + broj za kontakt)",
-                "Kopije dokumenata (u slučaju gubitka)",
-                "Gotov novac u eurima (€800-1000)",
-                "Kartice (Visa/Mastercard)"
-            ]
-        };
-
-        // === INTERACTIVE FUNCTIONALITY ===
-        let financialPasswordEntered = false;
-
-        function renderChecklist(listId, items, storagePrefix, priority = null) {
-            const listElement = document.getElementById(listId);
-            if (!listElement) return;
-            
-            listElement.innerHTML = '';
-            items.forEach((item, index) => {
-                const text = typeof item === 'object' ? item.text : item;
-                const storageKey = `${storagePrefix}_${index}`;
-                const isDone = localStorage.getItem(storageKey) === 'true';
-
-                const li = document.createElement('li');
-                li.className = `checklist-item ${priority ? 'priority-' + priority : ''} ${isDone ? 'done' : ''}`;
-                
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.checked = isDone;
-                checkbox.id = storageKey;
-                
-                const label = document.createElement('label');
-                label.htmlFor = storageKey;
-                label.textContent = text;
-                
-                li.appendChild(checkbox);
-                li.appendChild(label);
-
-                checkbox.addEventListener('change', function() {
-                    localStorage.setItem(storageKey, this.checked.toString());
-                    li.classList.toggle('done', this.checked);
-                    updatePackingProgress(); // Update progress for packing lists
-                });
-                
-                listElement.appendChild(li);
-            });
-        }
-
-        function updatePackingProgress() {
-            // Kategoriija-specifični progress barovi
-            const categories = ['odjeca', 'ostalo', 'dokumenta'];
-            
-            let totalCompleted = 0;
-            let totalItems = 0;
-            
-            categories.forEach(category => {
-                const checkboxes = document.querySelectorAll(`#packing-list-${category} input`);
-                const checkedBoxes = document.querySelectorAll(`#packing-list-${category} input:checked`);
-                
-                const percentage = checkboxes.length > 0 ? Math.round((checkedBoxes.length / checkboxes.length) * 100) : 0;
-                
-                const progressBar = document.getElementById(`packing-progress-${category}`);
-                const statusText = document.getElementById(`packing-status-${category}`);
-                
-                if (progressBar && statusText) {
-                    progressBar.style.width = percentage + '%';
-                    statusText.textContent = `${percentage}% završeno (${checkedBoxes.length}/${checkboxes.length})`;
-                }
-                
-                totalCompleted += checkedBoxes.length;
-                totalItems += checkboxes.length;
-            });
-            
-            // Ukupni progress bar
-            const totalPercentage = totalItems > 0 ? Math.round((totalCompleted / totalItems) * 100) : 0;
-            const totalProgressBar = document.getElementById('packing-progress-bar');
-            const totalStatusText = document.getElementById('packing-status');
-            
-            if (totalProgressBar && totalStatusText) {
-                totalProgressBar.style.width = totalPercentage + '%';
-                totalProgressBar.textContent = totalPercentage < 10 ? '' : totalPercentage + '%';
-                
-                if (totalPercentage === 0) {
-                    totalStatusText.textContent = 'Počnite pakovanje - kliknite stavke dok ih pakujete!';
-                } else if (totalPercentage < 25) {
-                    totalStatusText.textContent = `${totalPercentage}% završeno - Samo počnite! 💪`;
-                } else if (totalPercentage < 50) {
-                    totalStatusText.textContent = `${totalPercentage}% završeno - Dobro napredujete! 👍`;
-                } else if (totalPercentage < 75) {
-                    totalStatusText.textContent = `${totalPercentage}% završeno - Skoro ste gotovi! 🎯`;
-                } else if (totalPercentage < 100) {
-                    totalStatusText.textContent = `${totalPercentage}% završeno - Još malo pa završavate! 🚀`;
-                } else {
-                    totalStatusText.textContent = `${totalPercentage}% završeno - Savršeno! Spremni ste za putovanje! 🎉`;
-                }
-            }
-        }
-
-        // === PASSWORD MODAL FUNCTIONS ===
-        function checkPassword() {
-            const input = document.getElementById('password-input');
-            if (input.value === '2345') {
-                financialPasswordEntered = true;
-                closePasswordModal();
-                // Otvori finansije sekciju
-                const content = document.getElementById('finansije-content');
-                const icon = document.getElementById('finansije-icon');
-                content.classList.add('active');
-                icon.style.transform = 'rotate(180deg)';
-                icon.textContent = '▲';
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                alert('❌ Pogrešna šifra! Pokušajte ponovo.');
-                input.value = '';
-                input.focus();
-            }
-        }
-
-        function closePasswordModal() {
-            const modal = document.getElementById('password-modal');
-            const input = document.getElementById('password-input');
-            modal.style.display = 'none';
-            input.value = '';
-        }
-
-        // === GEMINI API FUNCTION ===
-        async function generateDetailedPlan() {
-            const generateBtn = document.getElementById('generate-plan-btn');
-            const btnText = document.getElementById('gemini-btn-text');
-            const loader = document.getElementById('gemini-loader');
-            const outputDiv = document.getElementById('gemini-output');
-
-            generateBtn.disabled = true;
-            btnText.textContent = 'Mislim...';
-            loader.style.display = 'block';
-            outputDiv.innerHTML = '<p style="color: #888; text-align: center;">Smišljam nam savršen plan...</p>';
-
-            // Dobijanje trenutnog datuma
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const todayFormatted = today.toLocaleDateString('bs-BA', options);
-
-            const prompt = `Ponašaj se kao Aleksandar, koji pravi kreativan i romantičan plan za sebe i svoju verenicu Ajnu za jedan dan na ostrvu Skopelos u Grčkoj. Piši na srpskom (latinica, ijekavica) jeziku, u prvom licu jednine ("Razmišljao sam...", "Predlažem da mi...") i obraćaj se direktno Ajni. Koristi tople i lične izraze kao 'ljubavi', 'MioFio', ili 'MyLove'.
-            
-            KONTEKST:
-            - Današnji datum je: ${todayFormatted}.
-            - Naše putovanje traje od 22. augusta do 5. septembra 2025.
-            - Naša baza (smeštaj) na Skopelosu je u mestu Agnontas.
-            - Volimo prelepe plaže, zalazak sunca, popiti vino, autentičnu grčku hranu, opuštenu atmosferu i lepe poglede.
-
-            TVOJ ZADATAK:
-            Kreiraj detaljan i vizuelno privlačan plan za jedan dan. Plan mora sadržati:
-            1.  **Jutro:** Predloži odlazak na jednu od prelepih plaža (npr. Milia, Kastani, Panormos, Hovolo). Opiši zašto baš ta plaža i šta bismo tamo mogli raditi. Uključi emotikone.
-            2.  **Ručak:** Predloži neku tavernu u blizini te plaže, sa konkretnim predlogom šta bismo mogli jesti.
-            3.  **Popodne:** Daj ideju za opuštenu popodnevnu aktivnost. To može biti kratka šetnja, poseta nekom vidikovcu, ili povratak u Agnontas na odmor.
-            4.  **Veče:** Predloži plan za večeru u Agnontasu, s obzirom da smo tamo smešteni. Opiši atmosferu.
-            
-            FORMAT ODGOVORA:
-            Tvoj odgovor MORA biti formatiran kao HTML. Koristi <ul> i <li> tagove. Svaka stavka treba da sadrži i koristan link ka Google Mapama za predloženu lokaciju. Primer linka: <a href="https://www.google.com/maps/search/?api=1&query=Milia+Beach+Skopelos" target="_blank">Pogledaj na mapi</a>.
-            Odgovor mora zvučati kao lični predlog, a ne kao generički odgovor AI-ja.`;
-
-            try {
-                // API ključ sa ograničenjem na flashboy-max.github.io/*
-                const apiKey = "AIzaSyBA30OZkcaVnNJr_hxxlVj-oql0S3xVOx8";
-
-                if (!apiKey) {
-                    outputDiv.innerHTML = '<p style="color: red;">Greška: API ključ nije unet. Molim unesite ključ u index.html fajl.</p>';
-                    return;
-                }
-
-                // Proverava da li je stranica na GitHub Pages domenu
-                const currentDomain = window.location.hostname;
-                if (currentDomain !== 'flashboy-max.github.io' && currentDomain !== 'localhost' && currentDomain !== '127.0.0.1') {
-                    outputDiv.innerHTML = '<p style="color: orange;">⚠️ Aleksandrov prijedlog radi samo na GitHub Pages stranici (flashboy-max.github.io). Lokalno testiranje nije moguće zbog API ograničenja.</p>';
-                    return;
-                }
-
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                
-                const payload = {
-                    contents: [{
-                        parts: [{
-                            text: prompt
-                        }]
-                    }]
-                };
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates.length > 0 && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts.length > 0) {
-                    const generatedText = data.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = generatedText;
-                } else {
-                    outputDiv.innerHTML = '<p style="color: red;">Došlo je do greške pri generisanju plana. Molim pokušajte ponovo.</p>';
-                }
-
-            } catch (error) {
-                console.error('Greška pri pozivu Gemini API:', error);
-                outputDiv.innerHTML = '<p style="color: red;">Nažalost, nije moguće generisati plan u ovom trenutku. Provjerite konekciju i pokušajte kasnije.</p>';
-            } finally {
-                generateBtn.disabled = false;
-                btnText.textContent = 'Daj mi novu ideju!';
-                loader.style.display = 'none';
-            }
-        }
-
-        // === EXISTING FUNCTIONS (updated) ===
         function toggleAccordion(id) {
             const content = document.getElementById(id + '-content');
             const icon = document.getElementById(id + '-icon');
@@ -2967,14 +2328,19 @@
             }
         }
         
+        // Password zaštita za finansijsku sekciju
+        let financialPasswordEntered = false;
         
         function toggleMainAccordion(id) {
-            // Specijalna provjera za finansije - koristi modal umjesto prompt
+            // Specijalna provjera za finansije
             if (id === 'finansije' && !financialPasswordEntered) {
-                const modal = document.getElementById('password-modal');
-                modal.style.display = 'flex';
-                document.getElementById('password-input').focus();
-                return;
+                const password = prompt('🔐 Unesite šifru za pristup finansijskim podacima:');
+                if (password !== '2345') {
+                    alert('❌ Pogrešna šifra! Pristup odbijen.');
+                    return;
+                }
+                financialPasswordEntered = true;
+                alert('✅ Pristup odobren! Finansijska sekcija se otvara...');
             }
             
             const content = document.getElementById(id + '-content');
@@ -2984,7 +2350,6 @@
                 content.classList.remove('active');
                 icon.style.transform = 'rotate(0deg)';
                 icon.textContent = '▼';
-                content.style.maxHeight = null;
                 // a11y: update ARIA state on header
                 const header = content.previousElementSibling;
                 if (header) header.setAttribute('aria-expanded', 'false');
@@ -2993,7 +2358,6 @@
                 content.classList.add('active');
                 icon.style.transform = 'rotate(180deg)';
                 icon.textContent = '▲';
-                content.style.maxHeight = content.scrollHeight + "px";
                 // a11y: expand ARIA for current
                 const header = content.previousElementSibling;
                 if (header) header.setAttribute('aria-expanded', 'true');
@@ -3156,81 +2520,6 @@
             }, { rootMargin: '50px' });
             
             lazyIframes.forEach(iframe => iframeObserver.observe(iframe));
-        });
-
-        // === INITIALIZATION ===
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize To-Do lists
-            renderChecklist('todo-high', todoItems.high, 'todo_high', 'high');
-            renderChecklist('todo-medium', todoItems.medium, 'todo_medium', 'medium');
-            renderChecklist('todo-low', todoItems.low, 'todo_low', 'low');
-            
-            // Initialize Packing lists
-            renderChecklist('packing-list-odjeca', packingItems.odjeca, 'pack_odjeca');
-            renderChecklist('packing-list-ostalo', packingItems.ostalo, 'pack_ostalo');
-            renderChecklist('packing-list-dokumenta', packingItems.dokumenta, 'pack_dokumenta');
-            
-            // Initialize packing progress
-            updatePackingProgress();
-            
-            // Modal close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    const modal = document.getElementById('password-modal');
-                    if (modal.style.display === 'flex') {
-                        closePasswordModal();
-                    }
-                }
-            });
-            
-            // Modal close on outside click
-            document.getElementById('password-modal').addEventListener('click', (e) => {
-                if (e.target.id === 'password-modal') {
-                    closePasswordModal();
-                }
-            });
-            
-            // Enter key for password submission
-            document.getElementById('password-input').addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
-            });
-            
-            // === ACTIVE LINK SCROLL TRACKING ===
-            const sections = document.querySelectorAll('.main-accordion-header h2[id]');
-            const navLinks = document.querySelectorAll('.quick-nav a[href^="#"]');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '-40% 0px -60% 0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                let visibleSectionId = null;
-                let maxIntersectionRatio = 0;
-                
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && entry.intersectionRatio > maxIntersectionRatio) {
-                        maxIntersectionRatio = entry.intersectionRatio;
-                        visibleSectionId = entry.target.getAttribute('id');
-                    }
-                });
-
-                if (visibleSectionId) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${visibleSectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
         });
     </script>
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>
