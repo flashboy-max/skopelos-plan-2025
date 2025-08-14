@@ -6,6 +6,7 @@ let placesData = null;
 let restaurantsData = null;
 let transportData = null;
 let activitiesData = null;
+let currentWeatherData = null;
 
 // === UČITAVANJE PODATAKA ===
 async function loadData() {
@@ -16,11 +17,54 @@ async function loadData() {
             fetch('./data/transport.json').then(r => r.json()),
             fetch('./data/activities.json').then(r => r.json())
         ]);
-        
-        placesData = places;
+    // === RENDERING ===
+function renderPlan(plan) {
+    const output = document.getElementById('ai-output');
+    
+    let html = '';
+    
+    // Weather widget (if weather data available)
+    if (plan.weatherData && plan.weatherData.current) {
+        html += renderWeatherWidget(plan.weatherData);
+    }
+    
+    // Weather override notification
+    if (plan.weatherOverride) {
+        html += `
+            <div style="background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); 
+                        color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;
+                        border-left: 4px solid #ffffff;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.5em;">🌦️</span>
+                    <div>
+                        <strong>AI preporučuje drugačiji scenario</strong><br>
+                        <small style="opacity: 0.9;">
+                            Umesto "${plan.weatherOverride.original}" → "${plan.weatherOverride.suggested}"<br>
+                            Razlog: ${plan.weatherOverride.reason}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    html += `
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                    color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <h3 style="margin: 0 0 10px 0; font-size: 1.5em;">${plan.title}</h3>
+            <div style="opacity: 0.9; font-size: 0.95em;">
+                ${plan.budgetNote || ''}
+            </div>
+        </div>`;  placesData = places;
         restaurantsData = restaurants;
         transportData = transport;
         activitiesData = activities;
+        
+        // Load weather data if weather module is available
+        if (window.weatherManager) {
+            currentWeatherData = await window.weatherManager.getWeatherData();
+            console.log('🌦️ Weather data loaded');
+        }
         
         console.log('✅ Svi podaci su uspešno učitani');
         return true;
@@ -640,18 +684,52 @@ async function generateAIPlan() {
         }
     }
     
+    // Učitaj fresh weather data ako je moguće
+    if (window.weatherManager) {
+        try {
+            currentWeatherData = await window.weatherManager.getWeatherData();
+            console.log('🌦️ Fresh weather data loaded for planning');
+        } catch (error) {
+            console.warn('Weather data unavailable, using fallback:', error);
+        }
+    }
+    
     // Čitanje forme
     const formData = new FormData(document.getElementById('ai-form'));
     const dayMode = formData.get('dayMode');
     const baseLocation = formData.get('baseLocation') || 'pineTrees';
-    const seaCondition = formData.get('seaCondition') || 'calm';
-    const weather = formData.get('weather') || 'sunny';
+    let seaCondition = formData.get('seaCondition') || 'calm';
+    let weather = formData.get('weather') || 'sunny';
+    
+    // Weather override - koristi real weather data ako je dostupno
+    if (currentWeatherData && currentWeatherData.current) {
+        const realWeather = currentWeatherData.analysis.condition;
+        const realWind = currentWeatherData.analysis.wind;
+        
+        // Override form values sa real weather
+        weather = realWeather;
+        if (realWind === 'very_windy' || realWind === 'windy') {
+            seaCondition = 'rough';
+        }
+        
+        console.log(`🌦️ Using real weather: ${realWeather}, sea: ${seaCondition}`);
+    }
     
     console.log(`🤖 Generišem plan: ${dayMode}, more: ${seaCondition}, vreme: ${weather}`);
     
+    // Auto scenario suggestion based on weather
+    let suggestedScenario = dayMode;
+    if (currentWeatherData && currentWeatherData.scenarios.length > 0) {
+        const topWeatherScenario = currentWeatherData.scenarios[0];
+        if (topWeatherScenario.priority === 'high') {
+            suggestedScenario = topWeatherScenario.id;
+            console.log(`🌦️ Weather suggests: ${suggestedScenario} (${topWeatherScenario.reason})`);
+        }
+    }
+    
     // Generisanje na osnovu scenarija
     let plan;
-    switch(dayMode) {
+    switch(suggestedScenario) {
         case 'beachDinner':
             plan = planBeachDinner(seaCondition, weather);
             break;
@@ -672,6 +750,31 @@ async function generateAIPlan() {
             break;
         default:
             plan = planBeachDinner(seaCondition, weather);
+    }
+    
+    // Enrich plan with weather data
+    if (currentWeatherData) {
+        plan.weatherData = currentWeatherData;
+        plan.weatherEnhanced = true;
+        
+        // Add weather alerts to tips
+        if (currentWeatherData.alerts && currentWeatherData.alerts.length > 0) {
+            plan.weatherAlerts = currentWeatherData.alerts;
+        }
+        
+        // Add clothing recommendations
+        if (currentWeatherData.analysis && currentWeatherData.analysis.clothingAdvice) {
+            plan.clothingAdvice = currentWeatherData.analysis.clothingAdvice;
+        }
+        
+        // Override scenario if weather forced a change
+        if (suggestedScenario !== dayMode) {
+            plan.weatherOverride = {
+                original: dayMode,
+                suggested: suggestedScenario,
+                reason: currentWeatherData.scenarios[0]?.reason || 'Weather-based suggestion'
+            };
+        }
     }
     
     return plan;
@@ -731,6 +834,104 @@ function renderPlan(plan) {
         // Sačuvaj trenutni plan globalno
         window.currentPlan = plan;
     }
+}
+
+// === WEATHER WIDGET RENDERING ===
+function renderWeatherWidget(weatherData) {
+    if (!weatherData || !weatherData.current) return '';
+    
+    const current = weatherData.current;
+    const analysis = weatherData.analysis;
+    
+    // Format weather display
+    const temp = Math.round(current.temp || current.main?.temp);
+    const description = current.weather[0].description;
+    const icon = getWeatherIcon(current.weather[0].icon);
+    const feels = current.feels_like ? Math.round(current.feels_like) : null;
+    
+    // Weather alerts
+    let alertsHtml = '';
+    if (weatherData.alerts && weatherData.alerts.length > 0) {
+        alertsHtml = weatherData.alerts.map(alert => `
+            <div class="weather-alert ${alert.type}">
+                <div class="weather-alert-icon">${alert.icon}</div>
+                <div class="weather-alert-content">
+                    <div class="weather-alert-title">${alert.title}</div>
+                    <div class="weather-alert-message">${alert.message}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    // Beach suitability
+    const beachScore = analysis.beachSuitability || 50;
+    let suitabilityLabel = 'Umeren';
+    let suitabilityClass = 'fair';
+    if (beachScore >= 80) { suitabilityLabel = 'Odličan'; suitabilityClass = 'excellent'; }
+    else if (beachScore >= 60) { suitabilityLabel = 'Dobar'; suitabilityClass = 'good'; }
+    else if (beachScore < 40) { suitabilityLabel = 'Loš'; suitabilityClass = 'poor'; }
+    
+    return `
+        <div class="weather-widget ${analysis.condition}">
+            <div class="weather-current">
+                <div class="weather-main">
+                    <div class="weather-icon">${icon}</div>
+                    <div class="weather-info">
+                        <h3>${temp}°C</h3>
+                        <p>${description.charAt(0).toUpperCase() + description.slice(1)}</p>
+                        ${feels ? `<p>Osećaj ${feels}°C</p>` : ''}
+                    </div>
+                </div>
+                <div class="weather-temp">
+                    <div style="font-size: 0.6em; opacity: 0.8;">Poslednja promena</div>
+                    <div style="font-size: 0.5em; opacity: 0.7;">${weatherData.lastUpdate}</div>
+                </div>
+            </div>
+            
+            <div class="weather-details">
+                <div class="weather-detail">
+                    <div class="weather-detail-label">Vetar</div>
+                    <div class="weather-detail-value">${Math.round(current.wind_speed || current.wind?.speed || 0)} km/h</div>
+                </div>
+                <div class="weather-detail">
+                    <div class="weather-detail-label">Vlažnost</div>
+                    <div class="weather-detail-value">${current.humidity || current.main?.humidity || 0}%</div>
+                </div>
+                <div class="weather-detail">
+                    <div class="weather-detail-label">Vidljivost</div>
+                    <div class="weather-detail-value">${Math.round((current.visibility || 10000) / 1000)} km</div>
+                </div>
+            </div>
+            
+            ${alertsHtml}
+            
+            <div class="beach-suitability">
+                <div class="suitability-icon">🏖️</div>
+                <div class="suitability-info">
+                    <div class="suitability-label">Pogodnost za plažu</div>
+                    <div class="suitability-score ${suitabilityClass}">${suitabilityLabel} (${beachScore}%)</div>
+                    <div class="suitability-bar">
+                        <div class="suitability-fill" style="width: ${beachScore}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function getWeatherIcon(iconCode) {
+    const icons = {
+        '01d': '☀️', '01n': '🌙',
+        '02d': '⛅', '02n': '☁️', 
+        '03d': '☁️', '03n': '☁️',
+        '04d': '☁️', '04n': '☁️',
+        '09d': '🌧️', '09n': '🌧️',
+        '10d': '🌦️', '10n': '🌧️',
+        '11d': '⛈️', '11n': '⛈️',
+        '13d': '❄️', '13n': '❄️',
+        '50d': '🌫️', '50n': '🌫️'
+    };
+    return icons[iconCode] || '🌤️';
 }
 
 // === EVENT LISTENERS ===
