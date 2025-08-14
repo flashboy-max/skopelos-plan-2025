@@ -1294,6 +1294,144 @@
                 width: 100% !important;
             }
         }
+
+        /* === WEATHER FORECAST CARDS === */
+        .weather-forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .weather-forecast-card {
+            background: linear-gradient(135deg, #e8f4fd 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .weather-forecast-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .forecast-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #1e40af;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .forecast-day {
+            flex-grow: 1;
+        }
+
+        .forecast-date {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-left: 8px;
+        }
+
+        .forecast-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .forecast-icon {
+            font-size: 2.2em;
+        }
+
+        .forecast-temp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .forecast-temp-main {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .forecast-temp-range {
+            font-size: 0.85em;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .forecast-description {
+            text-align: center;
+            color: #374151;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .forecast-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            font-size: 0.85em;
+        }
+
+        .forecast-detail {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+        }
+
+        .forecast-detail-label {
+            color: #6b7280;
+            font-size: 0.75em;
+            margin-bottom: 2px;
+        }
+
+        .forecast-detail-value {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .forecast-loading {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .weather-forecast-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .forecast-main {
+                gap: 12px;
+            }
+            
+            .forecast-icon {
+                font-size: 1.8em;
+            }
+            
+            .forecast-temp-main {
+                font-size: 1.5em;
+            }
+            
+            .forecast-details {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1378,6 +1516,25 @@
                     </div>
                     <div class="info-details" id="weather-details">
                         <div class="weather-loading">🌦️ Učitavam weather podatke...</div>
+                    </div>
+                    
+                    <!-- NEW: 3-day forecast cards -->
+                    <div class="weather-forecast-grid" id="weather-forecast-grid">
+                        <div class="weather-forecast-card" id="forecast-tomorrow">
+                            <div class="forecast-header">
+                                <div class="forecast-day">Sutra</div>
+                                <div class="forecast-date" id="tomorrow-date">...</div>
+                            </div>
+                            <div class="forecast-loading">🌤️ Učitavam...</div>
+                        </div>
+                        
+                        <div class="weather-forecast-card" id="forecast-day-after">
+                            <div class="forecast-header">
+                                <div class="forecast-day">Prekosutra</div>
+                                <div class="forecast-date" id="day-after-date">...</div>
+                            </div>
+                            <div class="forecast-loading">🌤️ Učitavam...</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3526,6 +3683,14 @@
                     weatherUpdate.textContent = 'Mock Mode';
                 }
             }
+            
+            // NEW: Load weather forecast
+            try {
+                await loadWeatherForecast();
+            } catch (forecastError) {
+                console.error('🌤️ Forecast loading failed:', forecastError);
+                renderMockForecast();
+            }
         }
         
         function renderWeatherCard(weatherData) {
@@ -3643,6 +3808,195 @@
                 '50d': '🌫️', '50n': '🌫️'
             };
             return iconMap[iconCode] || '☀️';
+        }
+
+        // === NEW FORECAST FUNCTIONS ===
+        
+        // Load 3-day forecast function
+        async function loadWeatherForecast() {
+            console.log('🌤️ Loading weather forecast...');
+            
+            try {
+                let forecastData;
+                
+                if (window.weatherManagerInstance && typeof window.weatherManagerInstance.getForecast === 'function') {
+                    // Try to get forecast from WeatherManager
+                    forecastData = await window.weatherManagerInstance.getForecast();
+                }
+                
+                if (!forecastData || !forecastData.forecast) {
+                    console.log('🌤️ Using mock forecast data');
+                    forecastData = getMockForecastData();
+                }
+                
+                renderForecastCards(forecastData);
+                
+            } catch (error) {
+                console.error('🌤️ Forecast loading error:', error);
+                renderMockForecast();
+            }
+        }
+
+        // Render forecast cards
+        function renderForecastCards(forecastData) {
+            const tomorrowCard = document.getElementById('forecast-tomorrow');
+            const dayAfterCard = document.getElementById('forecast-day-after');
+            const tomorrowDate = document.getElementById('tomorrow-date');
+            const dayAfterDate = document.getElementById('day-after-date');
+            
+            if (!tomorrowCard || !dayAfterCard) {
+                console.log('🌤️ Forecast card elements not found');
+                return;
+            }
+            
+            try {
+                // Calculate dates
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const dayAfter = new Date();
+                dayAfter.setDate(dayAfter.getDate() + 2);
+                
+                // Format dates
+                const tomorrowFormatted = tomorrow.toLocaleDateString('sr-RS', { 
+                    weekday: 'short', 
+                    day: 'numeric', 
+                    month: 'short' 
+                });
+                const dayAfterFormatted = dayAfter.toLocaleDateString('sr-RS', { 
+                    weekday: 'short', 
+                    day: 'numeric', 
+                    month: 'short' 
+                });
+                
+                if (tomorrowDate) tomorrowDate.textContent = tomorrowFormatted;
+                if (dayAfterDate) dayAfterDate.textContent = dayAfterFormatted;
+                
+                // Render tomorrow's forecast
+                if (forecastData.forecast && forecastData.forecast[0]) {
+                    const tomorrowData = forecastData.forecast[0];
+                    tomorrowCard.innerHTML = generateForecastCardHTML(tomorrowData, 'Sutra', tomorrowFormatted);
+                } else {
+                    tomorrowCard.innerHTML = generateForecastCardHTML(getMockDayData(1), 'Sutra', tomorrowFormatted);
+                }
+                
+                // Render day after forecast
+                if (forecastData.forecast && forecastData.forecast[1]) {
+                    const dayAfterData = forecastData.forecast[1];
+                    dayAfterCard.innerHTML = generateForecastCardHTML(dayAfterData, 'Prekosutra', dayAfterFormatted);
+                } else {
+                    dayAfterCard.innerHTML = generateForecastCardHTML(getMockDayData(2), 'Prekosutra', dayAfterFormatted);
+                }
+                
+                console.log('🌤️ Forecast cards rendered successfully');
+                
+            } catch (error) {
+                console.error('🌤️ Error rendering forecast cards:', error);
+                renderMockForecast();
+            }
+        }
+
+        // Generate forecast card HTML
+        function generateForecastCardHTML(dayData, dayLabel, dateLabel) {
+            const temp = Math.round(dayData.temp || dayData.main?.temp || 29);
+            const tempMin = Math.round(dayData.temp_min || dayData.main?.temp_min || 22);
+            const tempMax = Math.round(dayData.temp_max || dayData.main?.temp_max || 32);
+            const description = dayData.description || dayData.weather?.[0]?.description || 'sunčano';
+            const icon = getWeatherIcon(dayData.icon || dayData.weather?.[0]?.icon || '01d');
+            const humidity = dayData.humidity || dayData.main?.humidity || 60;
+            const windSpeed = Math.round(dayData.wind_speed || dayData.wind?.speed || 8);
+            const cloudiness = dayData.clouds || dayData.clouds?.all || 10;
+            
+            // Beach suitability calculation
+            let beachScore = 90;
+            if (temp < 25) beachScore -= 20;
+            if (windSpeed > 15) beachScore -= 15;
+            if (cloudiness > 50) beachScore -= 10;
+            if (humidity > 80) beachScore -= 5;
+            beachScore = Math.max(0, Math.min(100, beachScore));
+            
+            let beachLabel = 'Umeren';
+            if (beachScore >= 80) beachLabel = 'Odličan';
+            else if (beachScore >= 60) beachLabel = 'Dobar';
+            else if (beachScore < 40) beachLabel = 'Loš';
+            
+            return `
+                <div class="forecast-header">
+                    <div class="forecast-day">${dayLabel}</div>
+                    <div class="forecast-date">${dateLabel}</div>
+                </div>
+                <div class="forecast-main">
+                    <div class="forecast-icon">${icon}</div>
+                    <div class="forecast-temp">
+                        <div class="forecast-temp-main">${temp}°C</div>
+                        <div class="forecast-temp-range">${tempMin}° - ${tempMax}°</div>
+                    </div>
+                </div>
+                <div class="forecast-description">
+                    ${description.charAt(0).toUpperCase() + description.slice(1)}
+                </div>
+                <div class="forecast-details">
+                    <div class="forecast-detail">
+                        <div class="forecast-detail-label">Vjetar</div>
+                        <div class="forecast-detail-value">${windSpeed} km/h</div>
+                    </div>
+                    <div class="forecast-detail">
+                        <div class="forecast-detail-label">Vlažnost</div>
+                        <div class="forecast-detail-value">${humidity}%</div>
+                    </div>
+                    <div class="forecast-detail">
+                        <div class="forecast-detail-label">Plaža</div>
+                        <div class="forecast-detail-value">${beachLabel}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Mock forecast data
+        function getMockForecastData() {
+            return {
+                forecast: [
+                    getMockDayData(1),
+                    getMockDayData(2)
+                ]
+            };
+        }
+
+        function getMockDayData(dayOffset) {
+            const temps = [
+                { temp: 30, temp_min: 24, temp_max: 33, description: 'sunčano', icon: '01d', humidity: 58, wind_speed: 6, clouds: 5 },
+                { temp: 28, temp_min: 22, temp_max: 31, description: 'djelomično oblačno', icon: '02d', humidity: 65, wind_speed: 12, clouds: 30 }
+            ];
+            
+            return temps[dayOffset - 1] || temps[0];
+        }
+
+        // Render mock forecast when data fails
+        function renderMockForecast() {
+            const tomorrowCard = document.getElementById('forecast-tomorrow');
+            const dayAfterCard = document.getElementById('forecast-day-after');
+            
+            if (!tomorrowCard || !dayAfterCard) return;
+            
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dayAfter = new Date();
+            dayAfter.setDate(dayAfter.getDate() + 2);
+            
+            const tomorrowFormatted = tomorrow.toLocaleDateString('sr-RS', { 
+                weekday: 'short', 
+                day: 'numeric', 
+                month: 'short' 
+            });
+            const dayAfterFormatted = dayAfter.toLocaleDateString('sr-RS', { 
+                weekday: 'short', 
+                day: 'numeric', 
+                month: 'short' 
+            });
+            
+            tomorrowCard.innerHTML = generateForecastCardHTML(getMockDayData(1), 'Sutra', tomorrowFormatted);
+            dayAfterCard.innerHTML = generateForecastCardHTML(getMockDayData(2), 'Prekosutra', dayAfterFormatted);
+            
+            console.log('🌤️ Mock forecast cards rendered');
         }
 
         // Weather Widget Integration

@@ -750,6 +750,106 @@ class WeatherIntegration {
         
         return recommendations;
     }
+
+    // === FORECAST METHODS ===
+    async getForecast() {
+        debugLog('getForecast() called');
+        
+        try {
+            if (!this.hasValidApiKey()) {
+                debugLog('No valid API key for forecast, using mock data');
+                return this.getMockForecastData();
+            }
+            
+            const url = `${WEATHER_CONFIG.baseUrl}/forecast?lat=${WEATHER_CONFIG.location.lat}&lon=${WEATHER_CONFIG.location.lon}&appid=${WEATHER_CONFIG.apiKey}&units=metric&lang=sr&cnt=16`;
+            debugLog('Making forecast API call to:', url.replace(WEATHER_CONFIG.apiKey, 'API_KEY_HIDDEN'));
+            
+            const response = await fetch(url);
+            debugLog('Forecast API Response status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const data = await response.json();
+            debugLog('Forecast API Response data received:', data);
+            
+            // Process forecast data to daily summaries
+            const dailyForecast = this.processDailyForecast(data.list);
+            
+            return {
+                forecast: dailyForecast.slice(0, 3), // Next 3 days
+                location: data.city
+            };
+            
+        } catch (error) {
+            debugLog('Forecast API failed, using mock data:', error);
+            return this.getMockForecastData();
+        }
+    }
+
+    processDailyForecast(forecastList) {
+        const dailyData = {};
+        
+        forecastList.forEach(item => {
+            const date = new Date(item.dt * 1000).toDateString();
+            
+            if (!dailyData[date]) {
+                dailyData[date] = {
+                    temps: [],
+                    conditions: [],
+                    humidity: [],
+                    wind: [],
+                    clouds: []
+                };
+            }
+            
+            dailyData[date].temps.push(item.main.temp);
+            dailyData[date].conditions.push(item.weather[0]);
+            dailyData[date].humidity.push(item.main.humidity);
+            dailyData[date].wind.push(item.wind.speed * 3.6); // Convert to km/h
+            dailyData[date].clouds.push(item.clouds.all);
+        });
+        
+        // Convert to daily summaries
+        return Object.entries(dailyData).map(([date, data]) => {
+            const avgTemp = data.temps.reduce((a, b) => a + b, 0) / data.temps.length;
+            const maxTemp = Math.max(...data.temps);
+            const minTemp = Math.min(...data.temps);
+            const avgHumidity = data.humidity.reduce((a, b) => a + b, 0) / data.humidity.length;
+            const avgWind = data.wind.reduce((a, b) => a + b, 0) / data.wind.length;
+            const avgClouds = data.clouds.reduce((a, b) => a + b, 0) / data.clouds.length;
+            
+            // Most common weather condition
+            const conditionCounts = {};
+            data.conditions.forEach(cond => {
+                conditionCounts[cond.description] = (conditionCounts[cond.description] || 0) + 1;
+            });
+            const mostCommon = Object.entries(conditionCounts).sort((a, b) => b[1] - a[1])[0];
+            const condition = data.conditions.find(c => c.description === mostCommon[0]);
+            
+            return {
+                date: date,
+                temp: avgTemp,
+                temp_min: minTemp,
+                temp_max: maxTemp,
+                description: condition.description,
+                icon: condition.icon,
+                humidity: avgHumidity,
+                wind_speed: avgWind,
+                clouds: avgClouds
+            };
+        });
+    }
+
+    getMockForecastData() {
+        return {
+            forecast: [
+                { temp: 30, temp_min: 24, temp_max: 33, description: 'sunčano', icon: '01d', humidity: 58, wind_speed: 6, clouds: 5 },
+                { temp: 28, temp_min: 22, temp_max: 31, description: 'djelomično oblačno', icon: '02d', humidity: 65, wind_speed: 12, clouds: 30 }
+            ]
+        };
+    }
 }
 
 // === INICIJALIZACIJA ===
