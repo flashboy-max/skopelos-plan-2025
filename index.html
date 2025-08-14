@@ -1298,9 +1298,16 @@
         /* === WEATHER FORECAST CARDS === */
         .weather-forecast-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
             margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .weather-forecast-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
         }
 
         .weather-forecast-card {
@@ -1432,6 +1439,98 @@
                 gap: 6px;
             }
         }
+
+        /* === EXPANDABLE WEATHER === */
+        .weather-clickable {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .weather-clickable:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .forecast-toggle-icon {
+            font-size: 0.8em;
+            margin-left: 8px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .forecast-toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+
+        .weather-forecast-expandable {
+            overflow: hidden;
+            transition: all 0.5s ease;
+            margin-top: 0;
+        }
+
+        .weather-forecast-expandable.expanded {
+            margin-top: 15px;
+        }
+
+        .forecast-divider {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .forecast-divider span {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .forecast-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #bfdbfe, transparent);
+            z-index: -1;
+        }
+
+        /* Smooth animation for expandable - NO SCROLL */
+        .weather-forecast-expandable {
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: all 0.4s ease;
+        }
+
+        .weather-forecast-expandable.show {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+
+        /* Better organization for info cards */
+        .info-cards-v2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .info-cards-v2 {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .forecast-divider span {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1511,29 +1610,36 @@
                 
                 <div class="info-card-v2 weather" id="weather-card">
                     <div class="info-header">
-                        <div class="title"><span class="icon">🌤️</span>Trenutno vreme Skopelos</div>
+                        <div class="title">
+                            <span class="icon">🌤️</span>Trenutno vreme Skopelos
+                        </div>
                         <div class="weather-update" id="weather-update">⏳ Učitava...</div>
                     </div>
                     <div class="info-details" id="weather-details">
                         <div class="weather-loading">🌦️ Učitavam weather podatke...</div>
                     </div>
                     
-                    <!-- NEW: 3-day forecast cards -->
-                    <div class="weather-forecast-grid" id="weather-forecast-grid">
-                        <div class="weather-forecast-card" id="forecast-tomorrow">
-                            <div class="forecast-header">
-                                <div class="forecast-day">Sutra</div>
-                                <div class="forecast-date" id="tomorrow-date">...</div>
-                            </div>
-                            <div class="forecast-loading">🌤️ Učitavam...</div>
+                    <!-- ALWAYS VISIBLE: 3-day forecast cards -->
+                    <div class="weather-forecast-expandable show" id="weather-forecast-expandable">
+                        <div class="forecast-divider">
+                            <span>📅 Prognoza za naredne dane</span>
                         </div>
-                        
-                        <div class="weather-forecast-card" id="forecast-day-after">
-                            <div class="forecast-header">
-                                <div class="forecast-day">Prekosutra</div>
-                                <div class="forecast-date" id="day-after-date">...</div>
+                        <div class="weather-forecast-grid" id="weather-forecast-grid">
+                            <div class="weather-forecast-card" id="forecast-tomorrow">
+                                <div class="forecast-header">
+                                    <div class="forecast-day">Sutra</div>
+                                    <div class="forecast-date" id="tomorrow-date">...</div>
+                                </div>
+                                <div class="forecast-loading">🌤️ Učitavam...</div>
                             </div>
-                            <div class="forecast-loading">🌤️ Učitavam...</div>
+                            
+                            <div class="weather-forecast-card" id="forecast-day-after">
+                                <div class="forecast-header">
+                                    <div class="forecast-day">Prekosutra</div>
+                                    <div class="forecast-date" id="day-after-date">...</div>
+                                </div>
+                                <div class="forecast-loading">🌤️ Učitavam...</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3638,6 +3744,8 @@
                 
                 if (weatherData && weatherData.current) {
                     renderWeatherCard(weatherData);
+                    // Auto-load forecast after main weather is loaded
+                    loadWeatherForecast();
                 } else {
                     console.warn('🌦️ No valid weather data, using fallback');
                     // Try mock data fallback
@@ -3655,6 +3763,8 @@
                         isMockData: true
                     };
                     renderWeatherCard(mockData);
+                    // Auto-load forecast for mock data too
+                    loadWeatherForecast();
                 }
                 
             } catch (error) {
@@ -3684,13 +3794,8 @@
                 }
             }
             
-            // NEW: Load weather forecast
-            try {
-                await loadWeatherForecast();
-            } catch (forecastError) {
-                console.error('🌤️ Forecast loading failed:', forecastError);
-                renderMockForecast();
-            }
+            // NOTE: Forecast loading is now on-demand via toggleWeatherForecast()
+            console.log('🌤️ Weather widget loaded. Forecast available on click.');
         }
         
         function renderWeatherCard(weatherData) {
@@ -3997,6 +4102,59 @@
             dayAfterCard.innerHTML = generateForecastCardHTML(getMockDayData(2), 'Prekosutra', dayAfterFormatted);
             
             console.log('🌤️ Mock forecast cards rendered');
+        }
+
+        // === EXPANDABLE WEATHER TOGGLE ===
+        function toggleWeatherForecast() {
+            const expandableSection = document.getElementById('weather-forecast-expandable');
+            const toggleIcon = document.getElementById('forecast-toggle-icon');
+            
+            if (!expandableSection || !toggleIcon) {
+                console.log('🌤️ Expandable elements not found');
+                return;
+            }
+            
+            const isVisible = expandableSection.style.display !== 'none';
+            
+            if (isVisible) {
+                // Collapsing
+                expandableSection.classList.remove('show');
+                setTimeout(() => {
+                    expandableSection.style.display = 'none';
+                }, 300);
+                toggleIcon.classList.remove('expanded');
+                console.log('🌤️ Forecast collapsed');
+            } else {
+                // Expanding
+                expandableSection.style.display = 'block';
+                setTimeout(() => {
+                    expandableSection.classList.add('show');
+                }, 10);
+                toggleIcon.classList.add('expanded');
+                console.log('🌤️ Forecast expanded');
+                
+                // Load forecast data if not already loaded
+                ensureForecastLoaded();
+            }
+        }
+
+        function ensureForecastLoaded() {
+            const tomorrowCard = document.getElementById('forecast-tomorrow');
+            const dayAfterCard = document.getElementById('forecast-day-after');
+            
+            if (tomorrowCard && dayAfterCard) {
+                const tomorrowContent = tomorrowCard.innerHTML;
+                const dayAfterContent = dayAfterCard.innerHTML;
+                
+                // If cards still have loading content, load forecast
+                if (tomorrowContent.includes('Učitavam') || dayAfterContent.includes('Učitavam')) {
+                    console.log('🌤️ Loading forecast on demand...');
+                    loadWeatherForecast().catch(error => {
+                        console.error('🌤️ On-demand forecast loading failed:', error);
+                        renderMockForecast();
+                    });
+                }
+            }
         }
 
         // Weather Widget Integration
@@ -4363,6 +4521,9 @@
 
         // === PUSH NOTIFICATIONS ===
         function requestNotificationPermission() {
+            // DISABLED: Notifications temporarily disabled per user request
+            return;
+            /*
             if ('Notification' in window && 'serviceWorker' in navigator) {
                 Notification.requestPermission().then(permission => {
                     if (permission === 'granted') {
@@ -4374,6 +4535,7 @@
                     }
                 });
             }
+            */
         }
 
         function setupTravelNotifications() {
@@ -4421,6 +4583,9 @@
         }
 
         function showNotificationToast() {
+            // DISABLED: Notification toast disabled per user request
+            return;
+            /*
             const toast = document.createElement('div');
             toast.innerHTML = '🔔 Notifikacije omogućene! Dobićete podsetnik prije polaska.';
             toast.style.cssText = `
@@ -4440,6 +4605,7 @@
             
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 6000);
+            */
         }
 
         // === OFFLINE/ONLINE DETECTION ===
@@ -4482,11 +4648,12 @@
         }
 
         // Auto-request notifications after 15 seconds (give user time to explore)
-        setTimeout(() => {
-            if ('Notification' in window && Notification.permission === 'default') {
-                requestNotificationPermission();
-            }
-        }, 15000);
+        // DISABLED: Notifications temporarily disabled per user request
+        // setTimeout(() => {
+        //     if ('Notification' in window && Notification.permission === 'default') {
+        //         requestNotificationPermission();
+        //     }
+        // }, 15000);
 
         // Test PWA features on development
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
