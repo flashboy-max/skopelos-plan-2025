@@ -393,7 +393,35 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             text-wrap: balance;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .day-header:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .day-toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .day-toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+
+        .day-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .day-content.show {
+            max-height: 2000px;
         }
         
         .checklist {
@@ -2257,7 +2285,11 @@
             
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="day-header">📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</div>
+                    <div class="day-header" onclick="toggleDay(1)">
+                        <span>📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</span>
+                        <span class="day-toggle-icon" id="day-toggle-1">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-1">
                     <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2196f3;">
                         <strong>🏨 Smeštaj:</strong> Urban Touch Studios (check-in: 22. avgust, check-out: 23. avgust)
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Thessaloniki, Greece</p>
@@ -2273,10 +2305,15 @@
                         <li>Check-in i odmor (moguće od 15h)</li>
                         <li>Šetnja po centru Soluna</li>
                     </ul>
+                    </div> <!-- Close day-content-1 -->
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="day-header">⛴️ Dan 2 - Subota, 23. august 2025. - Putovanje na Skopelos</div>
+                    <div class="day-header" onclick="toggleDay(2)">
+                        <span>⛴️ Dan 2 - Subota, 23. august 2025. - Putovanje na Skopelos</span>
+                        <span class="day-toggle-icon" id="day-toggle-2">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-2">
                     <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #ff9800;">
                         <strong>🏨 Smeštaj:</strong> Το Κτήμα της Ματίνας (To Ktima tis Matinas) (check-in: 23. avgust, check-out: 25. avgust)
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Stafylos 370 03, Greece</p>
@@ -2293,10 +2330,15 @@
                         <li>13:00 - Check-in u To Ktima tis Matinas (Stafilos)</li>
                         <li>Istraživanje Stafilosa i obližnjih plaža</li>
                     </ul>
+                    </div> <!-- Close day-content-2 -->
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="day-header">🎂 Dan 3 - Nedjelja, 24. august 2025. - Rođendan i "Mamma Mia!" dan</div>
+                    <div class="day-header" onclick="toggleDay(3)">
+                        <span>🎂 Dan 3 - Nedjelja, 24. august 2025. - Rođendan i "Mamma Mia!" dan</span>
+                        <span class="day-toggle-icon" id="day-toggle-3">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-3">
                     
                     <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">☀️ Jutarnji program</h5>
                     <ul>
@@ -2346,9 +2388,15 @@
                         <li style="font-size: 0.9em; color: #6c757d;">✅ Rezervacija već potvrđena</li>
                     </ul>
                 </div>
+                    </div> <!-- Close day-content-3 -->
+                </div>
                 
                 <div class="timeline-item">
-                    <div class="day-header">🚚 Dan 4 - Ponedjeljak, 25. august 2025. - Prelazak u Agnontas</div>
+                    <div class="day-header" onclick="toggleDay(4)">
+                        <span>🚚 Dan 4 - Ponedjeljak, 25. august 2025. - Prelazak u Agnontas</span>
+                        <span class="day-toggle-icon" id="day-toggle-4">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-4">
                     <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
                         <strong>🏨 Novi smeštaj:</strong> Pine Trees, Agnontas (25. avgust - 4. septembar)
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Agnontas, Skòpelos, Agnontas 370 03, Greece</p>
@@ -2362,10 +2410,15 @@
                         <li>Check-in u The Pine Trees</li>
                         <li>Ručak i upoznavanje sa novom lokacijom</li>
                     </ul>
+                    </div> <!-- Close day-content-4 -->
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="day-header">🏖️ Dan 5-13 - Utorak, 26. august - Srijeda, 3. septembar 2025. - Istraživanje Skopelosa</div>
+                    <div class="day-header" onclick="toggleDay(5)">
+                        <span>🏖️ Dan 5-13 - Utorak, 26. august - Srijeda, 3. septembar 2025. - Istraživanje Skopelosa</span>
+                        <span class="day-toggle-icon" id="day-toggle-5">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-5">
                     <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
                         <p><strong>🏨 Smeštaj:</strong> Pine Trees, Agnontas</p>
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">Ovo je period za slobodno istraživanje ostrva sa bazom u Agnontasu. Detaljan pregled plaža, restorana i aktivnosti nalazi se u posebnim sekcijama ispod.</p>
@@ -2379,9 +2432,15 @@
                         <li>Ne propustite "Mamma Mia! Night" srijedom u Tikiti Maji baru.</li>
                     </ul>
                 </div>
+                    </div> <!-- Close day-content-5 -->
+                </div>
                 
                 <div class="timeline-item">
-                    <div class="day-header">⛴️ Dan 14 - Četvrtak, 4. septembar 2025. - Povratak u Solun</div>
+                    <div class="day-header" onclick="toggleDay(14)">
+                        <span>⛴️ Dan 14 - Četvrtak, 4. septembar 2025. - Povratak u Solun</span>
+                        <span class="day-toggle-icon" id="day-toggle-14">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-14">
                     <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2e7d32;">
                         <strong>🏨 Smeštaj:</strong> Palioktima - sleep and go (Palēoktēma ΠΑΛΗΟΚΤΗΜΑ) (check-in: 4. septembar, check-out: 5. septembar)
                         <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Φλόκα 7, Néon Rýsion, 57001, Greece</p>
@@ -2397,11 +2456,15 @@
                         <li>18:55 - Dolazak u Solun</li>
                         <li>Check-in u Palioktima - sleep and go</li>
                     </ul>
-
+                    </div> <!-- Close day-content-14 -->
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="day-header">✈️ Dan 15 - Petak, 5. septembar 2025. - Povratak kući</div>
+                    <div class="day-header" onclick="toggleDay(15)">
+                        <span>✈️ Dan 15 - Petak, 5. septembar 2025. - Povratak kući</span>
+                        <span class="day-toggle-icon" id="day-toggle-15">▼</span>
+                    </div>
+                    <div class="day-content" id="day-content-15">
                     <!-- ✈️ Airport transfer tip (premješteno u jutro Dan 15) -->
                     <div style="background:#e3f2fd; padding:15px; border-radius:8px; margin:10px 0; border-left:4px solid #2196f3;">
                         <h5 style="color:#1565c0; margin:0 0 8px 0;">✈️ Transfer do aerodroma (SKG) — Taxi vs. Autobus 01X/01N</h5>
@@ -2435,6 +2498,7 @@
                         <li>09:25 - Let FR5004 (Solun → Sarajevo)</li>
                         <li>09:45 - Dolazak u Sarajevo</li>
                     </ul>
+                    </div> <!-- Close day-content-15 -->
                 </div>
             </div>
                         </div>
@@ -3278,6 +3342,27 @@
                 // a11y: expand ARIA for current
                 const header = content.previousElementSibling;
                 if (header) header.setAttribute('aria-expanded', 'true');
+            }
+        }
+        
+        // Funkcija za toggle dana u rasporedu
+        function toggleDay(dayNumber) {
+            const content = document.getElementById(`day-content-${dayNumber}`);
+            const icon = document.getElementById(`day-toggle-${dayNumber}`);
+            
+            if (!content || !icon) {
+                console.log(`Day elements not found for day ${dayNumber}`);
+                return;
+            }
+            
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                icon.textContent = '▼';
+                icon.classList.remove('expanded');
+            } else {
+                content.classList.add('show');
+                icon.textContent = '▲';
+                icon.classList.add('expanded');
             }
         }
         
