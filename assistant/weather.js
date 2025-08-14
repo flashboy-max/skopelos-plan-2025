@@ -4,15 +4,26 @@
 // === WEATHER API CONFIGURATION ===
 const WEATHER_CONFIG = {
     // Free OpenWeatherMap API - 1000 calls/day
-    apiKey: '6ab372d98d3e3530f812f5cef6840ecf', // Korisnik će dodati svoj key
+    apiKey: 'b1fcd61b0aadae316a345d4bc90e25a8', // Primary API key
+    fallbackApiKey: '6ab372d98d3e3530f812f5cef6840ecf', // Backup API key
     baseUrl: 'https://api.openweathermap.org/data/2.5',
     location: {
         lat: 39.0831, // Skopelos coordinates
         lon: 23.7089
     },
     updateInterval: 30 * 60 * 1000, // 30 minuta
-    cacheDuration: 15 * 60 * 1000   // 15 minuta cache
+    cacheDuration: 15 * 60 * 1000,   // 15 minuta cache
+    cacheMinutes: 15
 };
+
+// Debug mode - log all API calls
+const DEBUG_WEATHER = true;
+
+function debugLog(message, ...args) {
+    if (DEBUG_WEATHER) {
+        console.log(`🌦️ [Weather Debug] ${message}`, ...args);
+    }
+}
 
 // === WEATHER DATA CACHE ===
 class WeatherCache {
@@ -49,26 +60,34 @@ class WeatherCache {
 // === WEATHER MANAGER ===
 class WeatherManager {
     constructor() {
+        debugLog('WeatherManager initialized');
         this.cache = new WeatherCache();
         this.isOnline = navigator.onLine;
         this.setupEventListeners();
         
+        debugLog('Config:', WEATHER_CONFIG);
+        debugLog('API Key available:', this.hasValidApiKey());
+        
         // Mock data za development bez API key-a
         this.mockWeatherData = {
             current: {
-                temp: 28,
-                feels_like: 32,
-                humidity: 65,
-                wind_speed: 12,
+                temp: 29,
+                feels_like: 33,
+                humidity: 62,
+                wind_speed: 8,
                 weather: [{
                     main: 'Clear',
-                    description: 'clear sky',
+                    description: 'sunčano nebo',
                     icon: '01d'
                 }],
                 visibility: 10000,
-                uv_index: 7
+                uv_index: 8
             },
-            forecast: this.generateMockForecast()
+            forecast: this.generateMockForecast(),
+            lastUpdate: new Date().toLocaleTimeString('sr-RS', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            })
         };
     }
     
@@ -103,36 +122,125 @@ class WeatherManager {
         });
     }
     
+    // === API DATA TRANSFORMATION ===
+    transformApiData(apiData) {
+        // Transform OpenWeatherMap current weather response to our format
+        return {
+            current: {
+                temp: apiData.main.temp,
+                feels_like: apiData.main.feels_like,
+                humidity: apiData.main.humidity,
+                wind_speed: apiData.wind.speed * 3.6, // Convert m/s to km/h
+                weather: [{
+                    main: apiData.weather[0].main,
+                    description: apiData.weather[0].description,
+                    icon: apiData.weather[0].icon
+                }],
+                visibility: apiData.visibility || 10000,
+                pressure: apiData.main.pressure
+            },
+            analysis: this.analyzeWeatherConditions({
+                temp: apiData.main.temp,
+                humidity: apiData.main.humidity,
+                wind_speed: apiData.wind.speed * 3.6,
+                weather: apiData.weather[0]
+            }),
+            location: {
+                name: apiData.name || 'Skopelos',
+                country: apiData.sys.country || 'GR'
+            },
+            lastUpdate: new Date().toLocaleTimeString('sr-RS', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            }),
+            isMockData: false
+        };
+    }
+    
     // === API CALLS ===
     async getCurrentWeather() {
+        debugLog('getCurrentWeather() called');
+        
         // Proverava cache prvo
         const cached = this.cache.get('current');
         if (cached) {
-            console.log('🌤️ Using cached weather data');
+            debugLog('Using cached weather data');
             return cached;
         }
         
         try {
             if (!this.hasValidApiKey()) {
-                console.log('🌤️ Using mock weather data (no API key)');
-                return this.mockWeatherData.current;
+                debugLog('No valid API key, using mock data');
+                
+                // Return properly formatted mock data like in catch block
+                const mockCurrent = this.mockWeatherData.current;
+                return {
+                    current: mockCurrent,
+                    analysis: this.analyzeWeatherConditions(mockCurrent),
+                    location: {
+                        name: 'Skopelos',
+                        country: 'GR'
+                    },
+                    lastUpdate: new Date().toLocaleTimeString('sr-RS', { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                    }),
+                    isMockData: true
+                };
             }
             
-            const response = await fetch(
-                `${WEATHER_CONFIG.baseUrl}/weather?lat=${WEATHER_CONFIG.location.lat}&lon=${WEATHER_CONFIG.location.lon}&appid=${WEATHER_CONFIG.apiKey}&units=metric`
-            );
+            // Try primary API key first with correct OpenWeatherMap format
+            let url = `${WEATHER_CONFIG.baseUrl}/weather?lat=${WEATHER_CONFIG.location.lat}&lon=${WEATHER_CONFIG.location.lon}&appid=${WEATHER_CONFIG.apiKey}&units=metric&lang=sr`;
+            debugLog('Making API call to:', url.replace(WEATHER_CONFIG.apiKey, 'API_KEY_HIDDEN'));
             
-            if (!response.ok) throw new Error('Weather API error');
+            let response = await fetch(url);
+            debugLog('API Response status:', response.status);
+            
+            // If primary fails, try fallback key
+            if (!response.ok && WEATHER_CONFIG.fallbackApiKey) {
+                debugLog('Primary API key failed, trying fallback...');
+                url = `${WEATHER_CONFIG.baseUrl}/weather?lat=${WEATHER_CONFIG.location.lat}&lon=${WEATHER_CONFIG.location.lon}&appid=${WEATHER_CONFIG.fallbackApiKey}&units=metric&lang=sr`;
+                response = await fetch(url);
+                debugLog('Fallback API Response status:', response.status);
+            }
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                debugLog('Weather API Error:', response.status, errorText);
+                throw new Error(`Weather API error: ${response.status} - ${errorText}`);
+            }
             
             const data = await response.json();
-            this.cache.set('current', data);
+            debugLog('Weather API Response data received:', data);
             
-            console.log('🌤️ Fresh weather data loaded');
-            return data;
+            // Transform OpenWeatherMap format to our format
+            const weatherData = this.transformApiData(data);
+            debugLog('Transformed weather data:', weatherData);
+            
+            // Store in cache
+            this.cache.set('current', weatherData, Date.now() + WEATHER_CONFIG.cacheMinutes * 60 * 1000);
+            debugLog('Weather data cached successfully');
+            
+            return weatherData;
             
         } catch (error) {
-            console.warn('Weather API failed, using mock data:', error);
-            return this.mockWeatherData.current;
+            debugLog('Weather API failed, using mock data:', error);
+            
+            // Return properly formatted mock data
+            const mockCurrent = this.mockWeatherData.current;
+            return {
+                current: mockCurrent,
+                analysis: this.analyzeWeatherConditions(mockCurrent),
+                location: {
+                    name: 'Skopelos',
+                    country: 'GR'
+                },
+                lastUpdate: new Date().toLocaleTimeString('sr-RS', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                }),
+                isMockData: true
+            };
         }
     }
     
@@ -165,11 +273,16 @@ class WeatherManager {
     
     // === WEATHER ANALYSIS ===
     analyzeWeatherConditions(weatherData) {
-        const weather = weatherData.weather[0];
-        const temp = weatherData.temp || weatherData.main?.temp;
-        const windSpeed = weatherData.wind_speed || weatherData.wind?.speed;
-        const humidity = weatherData.humidity || weatherData.main?.humidity;
+        debugLog('analyzeWeatherConditions called with:', weatherData);
+        
+        // Safely extract data from both API and mock format
+        const weather = weatherData.weather?.[0] || { main: 'Clear', description: 'clear sky' };
+        const temp = weatherData.temp || weatherData.main?.temp || 25;
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
+        const humidity = weatherData.humidity || weatherData.main?.humidity || 50;
         const visibility = weatherData.visibility || 10000;
+        
+        debugLog('Extracted weather values:', { temp, windSpeed, weather, humidity, visibility });
         
         return {
             condition: this.categorizeWeather(weather.main),
@@ -220,49 +333,63 @@ class WeatherManager {
     }
     
     calculateBeachSuitability(weatherData) {
-        const analysis = this.analyzeWeatherConditions(weatherData);
+        // Calculate directly without calling analyzeWeatherConditions to avoid infinite loop
         let score = 100;
         
+        const temp = weatherData.temp || weatherData.main?.temp || 25;
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
+        const weather = weatherData.weather?.[0] || { main: 'Clear' };
+        const humidity = weatherData.humidity || weatherData.main?.humidity || 50;
+        
         // Temperature scoring
-        if (analysis.temperature === 'hot') score -= 10; // Too hot
-        if (analysis.temperature === 'cool') score -= 30;
-        if (analysis.temperature === 'cold') score -= 60;
+        if (temp >= 30) score -= 10; // Too hot
+        else if (temp < 20) score -= 30; // Too cool
+        else if (temp < 15) score -= 60; // Too cold
         
         // Weather condition scoring
-        if (analysis.condition === 'rainy') score -= 70;
-        if (analysis.condition === 'stormy') score -= 90;
-        if (analysis.condition === 'cloudy') score -= 20;
+        if (weather.main === 'Rain' || weather.main === 'Drizzle') score -= 70;
+        else if (weather.main === 'Thunderstorm') score -= 90;
+        else if (weather.main === 'Clouds') score -= 10;
         
         // Wind scoring
-        if (analysis.wind === 'very_windy') score -= 50;
-        if (analysis.wind === 'windy') score -= 25;
+        if (windSpeed >= 20) score -= 40; // Very windy
+        else if (windSpeed >= 15) score -= 20; // Windy
+        
+        // Humidity scoring
+        if (humidity > 80) score -= 15; // Very humid
+        else if (humidity < 30) score -= 10; // Very dry
         
         return Math.max(0, Math.min(100, score));
     }
     
     getActivityRecommendations(weatherData) {
-        const analysis = this.analyzeWeatherConditions(weatherData);
+        // Process data directly to avoid infinite loop with analyzeWeatherConditions
         const recommendations = [];
         
+        const temp = weatherData.temp || weatherData.main?.temp || 25;
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
+        const weather = weatherData.weather?.[0] || { main: 'Clear' };
+        const beachScore = this.calculateBeachSuitability(weatherData);
+        
         // Beach activities
-        if (analysis.beachSuitability > 70) {
+        if (beachScore > 70) {
             recommendations.push('beach', 'swimming', 'sunbathing', 'watersports');
         }
         
         // Indoor activities for bad weather
-        if (analysis.condition === 'rainy' || analysis.condition === 'stormy') {
+        if (weather.main === 'Rain' || weather.main === 'Thunderstorm') {
             recommendations.push('museums', 'restaurants', 'shopping', 'spa');
         }
         
         // Wind-dependent activities
-        if (analysis.wind === 'breezy' || analysis.wind === 'windy') {
+        if (windSpeed >= 10 && windSpeed < 20) {
             recommendations.push('sailing', 'windsurfing');
-        } else {
+        } else if (windSpeed < 10) {
             recommendations.push('paddleboarding', 'kayaking');
         }
         
         // Temperature-based activities
-        if (analysis.temperature === 'hot') {
+        if (temp >= 30) {
             recommendations.push('shade_activities', 'indoor_cooling');
         }
         
@@ -270,31 +397,29 @@ class WeatherManager {
     }
     
     getClothingAdvice(weatherData) {
-        const analysis = this.analyzeWeatherConditions(weatherData);
+        // Process data directly to avoid infinite loop
         const advice = [];
+        const temp = weatherData.temp || weatherData.main?.temp || 25;
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
+        const weather = weatherData.weather?.[0] || { main: 'Clear' };
         
         // Temperature-based clothing
-        switch(analysis.temperature) {
-            case 'hot':
-                advice.push('Lagana letnja odeća', 'Šešir i naočare', 'Krema za sunčanje SPF 30+');
-                break;
-            case 'warm':
-                advice.push('Kratke rukave', 'Lagane pantalone', 'Krema za sunčanje');
-                break;
-            case 'mild':
-                advice.push('Dugih rukava', 'Lagani džemper za veče');
-                break;
-            case 'cool':
-                advice.push('Jakna ili džemper', 'Duže pantalone');
-                break;
+        if (temp >= 30) {
+            advice.push('Lagana letnja odeća', 'Šešir i naočare', 'Krema za sunčanje SPF 30+');
+        } else if (temp >= 25) {
+            advice.push('Kratke rukave', 'Lagane pantalone', 'Krema za sunčanje');
+        } else if (temp >= 20) {
+            advice.push('Dugih rukava', 'Lagani džemper za veče');
+        } else {
+            advice.push('Jakna ili džemper', 'Duže pantalone');
         }
         
         // Weather-specific clothing
-        if (analysis.condition === 'rainy') {
+        if (weather.main === 'Rain' || weather.main === 'Drizzle' || weather.main === 'Thunderstorm') {
             advice.push('Kišobran ili kišna jakna', 'Vodootporna obuća');
         }
         
-        if (analysis.wind === 'windy' || analysis.wind === 'very_windy') {
+        if (windSpeed >= 20) {
             advice.push('Vetrovka', 'Odeća koja se ne razvija');
         }
         
@@ -302,9 +427,11 @@ class WeatherManager {
     }
     
     getTransportAdvice(weatherData) {
-        const analysis = this.analyzeWeatherConditions(weatherData);
+        // Process data directly to avoid infinite loop
+        const weather = weatherData.weather?.[0] || { main: 'Clear' };
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
         
-        if (analysis.condition === 'rainy' || analysis.condition === 'stormy') {
+        if (weather.main === 'Rain' || weather.main === 'Thunderstorm') {
             return {
                 recommended: 'taxi',
                 reason: 'Loše vreme - izbegavaj javni transport',
@@ -312,7 +439,7 @@ class WeatherManager {
             };
         }
         
-        if (analysis.wind === 'very_windy') {
+        if (windSpeed >= 20) {
             return {
                 recommended: 'rent_car',
                 reason: 'Vetar može uticati na autobuske linije',
@@ -329,11 +456,14 @@ class WeatherManager {
     
     // === SCENARIO SUGGESTIONS ===
     getWeatherBasedScenarios(weatherData) {
-        const analysis = this.analyzeWeatherConditions(weatherData);
+        // Process data directly to avoid infinite loop
         const scenarios = [];
+        const beachScore = this.calculateBeachSuitability(weatherData);
+        const weather = weatherData.weather?.[0] || { main: 'Clear' };
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
         
         // Perfect beach day
-        if (analysis.beachSuitability > 80) {
+        if (beachScore > 80) {
             scenarios.push({
                 id: 'beachDinner',
                 priority: 'high',
@@ -347,7 +477,7 @@ class WeatherManager {
         }
         
         // Good for island exploration
-        if (analysis.beachSuitability > 60 && analysis.wind !== 'very_windy') {
+        if (beachScore > 60 && windSpeed < 20) {
             scenarios.push({
                 id: 'islandLoop',
                 priority: 'medium',
@@ -356,7 +486,7 @@ class WeatherManager {
         }
         
         // Romantic weather
-        if (analysis.condition === 'sunny' || analysis.condition === 'cloudy') {
+        if (weather.main === 'Clear' || weather.main === 'Clouds') {
             scenarios.push({
                 id: 'romantic',
                 priority: 'medium',
@@ -365,7 +495,7 @@ class WeatherManager {
         }
         
         // Bad weather - indoor activities
-        if (analysis.condition === 'rainy' || analysis.condition === 'stormy') {
+        if (weather.main === 'Rain' || weather.main === 'Thunderstorm') {
             scenarios.push({
                 id: 'badWeather',
                 priority: 'high',
@@ -387,10 +517,13 @@ class WeatherManager {
     // === WEATHER ALERTS ===
     checkWeatherAlerts(weatherData) {
         const alerts = [];
-        const analysis = this.analyzeWeatherConditions(weatherData);
+        // Process data directly to avoid infinite loop
+        const temp = weatherData.temp || weatherData.main?.temp || 25;
+        const windSpeed = weatherData.wind_speed || (weatherData.wind?.speed * 3.6) || 0;
+        const weather = weatherData.weather?.[0] || { main: 'Clear' };
         
         // Temperature alerts
-        if (analysis.temperature === 'hot') {
+        if (temp >= 30) {
             alerts.push({
                 type: 'warning',
                 title: '🌡️ Visoka temperatura',
@@ -400,7 +533,7 @@ class WeatherManager {
         }
         
         // Weather alerts
-        if (analysis.condition === 'rainy') {
+        if (weather.main === 'Rain' || weather.main === 'Drizzle') {
             alerts.push({
                 type: 'info',
                 title: '🌧️ Kiša',
@@ -409,7 +542,7 @@ class WeatherManager {
             });
         }
         
-        if (analysis.condition === 'stormy') {
+        if (weather.main === 'Thunderstorm') {
             alerts.push({
                 type: 'danger',
                 title: '⛈️ Nevreme',
@@ -419,7 +552,7 @@ class WeatherManager {
         }
         
         // Wind alerts
-        if (analysis.wind === 'very_windy') {
+        if (windSpeed >= 20) {
             alerts.push({
                 type: 'warning',
                 title: '💨 Jak vetar',
@@ -444,9 +577,18 @@ class WeatherManager {
     
     // === HELPER METHODS ===
     hasValidApiKey() {
-        return WEATHER_CONFIG.apiKey && 
+        const isValid = WEATHER_CONFIG.apiKey && 
                WEATHER_CONFIG.apiKey !== 'demo_key_replace_with_real' &&
                WEATHER_CONFIG.apiKey.length > 10;
+        
+        debugLog('API Key validation:', {
+            hasKey: !!WEATHER_CONFIG.apiKey,
+            keyLength: WEATHER_CONFIG.apiKey?.length,
+            isDemoKey: WEATHER_CONFIG.apiKey === 'demo_key_replace_with_real',
+            isValid: isValid
+        });
+        
+        return isValid;
     }
     
     processForecastData(apiData) {
@@ -479,17 +621,41 @@ class WeatherManager {
     
     // === PUBLIC API ===
     async getWeatherData() {
-        const current = await this.getCurrentWeather();
-        const forecast = await this.getWeatherForecast();
-        
-        return {
-            current: current,
-            forecast: forecast,
-            analysis: this.analyzeWeatherConditions(current),
-            scenarios: this.getWeatherBasedScenarios(current),
-            alerts: this.checkWeatherAlerts(current),
-            lastUpdate: new Date().toLocaleString('sr-RS')
-        };
+        try {
+            const current = await this.getCurrentWeather();
+            const forecast = await this.getWeatherForecast();
+            
+            // Ensure we have valid data structure
+            const weatherData = {
+                current: current,
+                forecast: forecast,
+                analysis: this.analyzeWeatherConditions(current),
+                scenarios: this.getWeatherBasedScenarios(current),
+                alerts: this.checkWeatherAlerts(current),
+                lastUpdate: new Date().toLocaleTimeString('sr-RS', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                })
+            };
+            
+            console.log('🌦️ Weather data assembled:', weatherData);
+            return weatherData;
+            
+        } catch (error) {
+            console.error('🌦️ Error in getWeatherData:', error);
+            
+            // Fallback to mock data with analysis
+            const mockCurrent = this.mockWeatherData.current;
+            return {
+                current: mockCurrent,
+                forecast: this.mockWeatherData.forecast,
+                analysis: this.analyzeWeatherConditions(mockCurrent),
+                scenarios: this.getWeatherBasedScenarios(mockCurrent),
+                alerts: this.checkWeatherAlerts(mockCurrent),
+                lastUpdate: this.mockWeatherData.lastUpdate,
+                isMockData: true
+            };
+        }
     }
     
     // Format weather for display
