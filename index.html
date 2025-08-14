@@ -7,6 +7,11 @@
     <meta name="description" content="Naš putni plan za Aleksandara i Ajnu - Skopelos, Grčka 2025. Detaljan itinerer, prevoz, plaže, restorani i budžet.">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5111/5111522.png" type="image/png">
     <title>Naš plan putovanja - Skopelos, Grčka 2025</title>
+    
+    <!-- Modularni AI Assistant CSS -->
+    <link rel="stylesheet" href="./assistant/assistant.css">
+    <link rel="stylesheet" href="./assistant/modals.css">
+    
     <style>
         * {
             margin: 0;
@@ -1863,23 +1868,60 @@
                     <div class="main-accordion-content" id="raspored-content">
                         <div class="main-accordion-body">
             
-            <!-- ALEKSANDROV PRIJEDLOG ZA DAN - na vrhu rasporeda -->
-            <div class="gemini-feature-box">
-                <h4 style="color: #5a6fd8; margin-bottom: 15px;">💡 Aleksandrov prijedlog za Ajnu</h4>
-                <p style="font-size: 0.9em; color: #555; margin-bottom: 15px;">
-                    Nismo sigurni šta bismo danas? Klikni na dugme i smisliću nam neki kreativan plan za istraživanje ostrva!
+            <!-- NAPREDNI AI ASISTENT - Modularni sistem -->
+            <section id="ai-assistant" class="info-card" style="border-left:5px solid #673ab7; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
+                <h3 style="margin-bottom:12px; color: #673ab7;">🤖 Aleksandrov prijedlog za Dan (v2.0)</h3>
+                <p style="font-size: 0.9em; color: #444; margin-bottom: 15px;">
+                    6 različitih scenarija, pametnim transport algoritmom i detaljnim budžet kalkulatorom!
                 </p>
-                <p style="font-size: 0.8em; color: #666; margin-bottom: 15px; padding: 8px; background: #f1f3f4; border-radius: 6px;">
-                    💡 <strong>Napomena:</strong> Samo dostupno preko GitHub-a!
-                </p>
-                <button id="generate-plan-btn" class="gemini-btn" onclick="generateDetailedPlan()">
-                    <span id="gemini-btn-text">Šta predlažem za danas...</span>
-                    <div id="gemini-loader" class="loader" style="display: none;"></div>
-                </button>
-                <div id="gemini-output" class="gemini-output">
-                    <p style="color: #888; text-align: center;">Moj prijedlog za naš savršen dan će se pojaviti ovdje...</p>
+                
+                <form id="ai-form" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;">
+                    <label>
+                        <strong>🏖️ Stanje mora</strong>
+                        <select name="seaCondition" id="seaCondition">
+                            <option value="calm">🌊 Mirno more</option>
+                            <option value="rough">⚡ Nemirno more</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <strong>🌤️ Vreme</strong>
+                        <select name="weather" id="weather">
+                            <option value="sunny">☀️ Sunčano</option>
+                            <option value="cloudy">☁️ Oblačno</option>
+                            <option value="windy">💨 Vetrovito</option>
+                            <option value="rainy">🌧️ Kišovito</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <strong>🧭 Željeni tip dana</strong>
+                        <select name="dayMode" id="dayMode">
+                            <option value="beachDinner">🏖️ Morski dan + večera</option>
+                            <option value="islandLoop">🗺️ Obilazak ostrva (avantura)</option>
+                            <option value="mix">🏛️ Mix: plaža + grad</option>
+                            <option value="romantic">💕 Romantični dan</option>
+                            <option value="active">🏃 Aktivni dan</option>
+                            <option value="badWeather">☔ Plan B (loše vreme)</option>
+                        </select>
+                    </label>
+
+                    <button type="button" id="generatePlan" class="gemini-btn" style="grid-column:1/-1;">
+                        📅 Generiši plan za danas
+                    </button>
+                </form>
+
+                <!-- Favoriti dugmad -->
+                <div id="favorites-section" style="margin-top:15px; display:none;">
+                    <button id="saveFavorite" class="btn-secondary">⭐ Sačuvaj kao favorit</button>
+                    <button id="loadFavorites" class="btn-secondary">📋 Učitaj favorit</button>
+                    <button id="exportPlan" class="btn-secondary">📤 Export (PDF/WhatsApp)</button>
                 </div>
-            </div>
+
+                <div id="ai-output" style="margin-top:20px;">
+                    <p style="text-align:center; color:#666;">Izaberite opcije i generišite vaš personalizovani plan!</p>
+                </div>
+            </section>
             
             <div class="timeline">
                 <div class="timeline-item">
@@ -2835,110 +2877,6 @@
             input.value = '';
         }
 
-        // === GEMINI API FUNCTION ===
-        async function generateDetailedPlan() {
-            const generateBtn = document.getElementById('generate-plan-btn');
-            const btnText = document.getElementById('gemini-btn-text');
-            const loader = document.getElementById('gemini-loader');
-            const outputDiv = document.getElementById('gemini-output');
-
-            generateBtn.disabled = true;
-            btnText.textContent = 'Mislim...';
-            loader.style.display = 'block';
-            outputDiv.innerHTML = '<p style="color: #888; text-align: center;">Smišljam nam savršen plan...</p>';
-
-            // --- NOVI KOD ZA PRIKUPLJANJE KONTEKSTA ---
-            const allBeaches = Array.from(document.querySelectorAll('.beach-name')).map(el => el.textContent.trim());
-            const allRestaurants = Array.from(document.querySelectorAll('.restaurant-name')).map(el => el.textContent.trim().replace(/\s*[€€€]*\s*$/, ''));
-
-            const planContext = `
-Naš plan već sadrži listu plaža koje želimo obići: ${allBeaches.join(', ')}.
-Takođe, imamo i listu preporučenih restorana: ${allRestaurants.join(', ')}.
-`;
-            // --- KRAJ NOVOG KODA ---
-
-            // Dobijanje trenutnog datuma
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const todayFormatted = today.toLocaleDateString('bs-BA', options);
-
-            const prompt = `Ponašaj se kao Aleksandar, koji piše lični, kreativan i romantičan predlog za svoju verenicu Ajnu za jedan savršen dan na ostrvu Skopelos, Grčka. Piši na bosanskom jeziku, u prvom licu ("Razmišljao sam...", "Mogli bismo...") i direktno se obraćaj Ajni, koristeći tople izraze kao 'ljubavi', 'MioFio', ili 'MyLove'.
-            
-KONTEKST ZA TEBE:
-- Današnji datum je: ${todayFormatted}.
-- Naše putovanje traje od 22. augusta do 5. septembra 2025.
-- Smešteni smo u mestu Agnontas.
-- Naše generalne želje su: prelepe plaže, zalazak sunca, dobro vino, autentična grčka hrana i opuštena atmosfera.
-- ${planContext}
-
-TVOJ ZADATAK:
-Kreiraj detaljan i vizuelno privlačan plan za jedan dan koji je NOV i KREATIVAN. Izbegavaj da ponavljaš očigledne stvari i pokušaj da nas iznenadiš. Plan mora da sadrži:
-1.  **Jutro☀️:** Predloži odlazak na neku prelepu plažu. Probaj da izabereš neku manje poznatu "skrivenu gemu" koja nije na našoj glavnoj listi, ili kombinaciju dve manje plaže. Objasni zašto je baš to mesto posebno.
-2.  **Ručak 🍽️:** Predloži autentičnu tavernu. Ako je neka sa naše liste u blizini, super! Ako nije, predloži neku novu, visoko ocenjenu. Daj i konkretan predlog šta bismo mogli naručiti.
-3.  **Popodne 🎨:** Smisli neku opuštenu, ali zanimljivu popodnevnu aktivnost. Možda poseta nekoj maloj umetničkoj galeriji u Skopelos gradu, degustacija lokalnih proizvoda, ili šetnja do nekog prelepog, ali ne previše napornog vidikovca.
-4.  **Veče 🌙:** Predloži romantičnu večeru u Agnontasu, s obzirom da smo tamo smešteni. Opiši atmosferu i zašto je baš to mesto savršeno za kraj dana.
-
-FORMAT ODGOVORA:
-Tvoj odgovor MORA biti formatiran kao HTML. Koristi <ul> i <li> tagove, emotikone da dočaraš atmosferu i obavezno uključi korisne linkove ka Google Mapama za svaku predloženu lokaciju. Primer: <a href="https://www.google.com/maps/search/?api=1&query=Milia+Beach+Skopelos" target="_blank">Pogledaj na mapi</a>.
-Tvoj ton mora biti topao i ličan, kao da zaista pišem poruku svojoj verenici.`;
-
-            try {
-                // API ključ sa ograničenjem na flashboy-max.github.io/*
-                const apiKey = "AIzaSyBA30OZkcaVnNJr_hxxlVj-oql0S3xVOx8";
-
-                if (!apiKey) {
-                    outputDiv.innerHTML = '<p style="color: red;">Greška: API ključ nije unet. Molim unesite ključ u index.html fajl.</p>';
-                    return;
-                }
-
-                // Proverava da li je stranica na GitHub Pages domenu
-                const currentDomain = window.location.hostname;
-                if (currentDomain !== 'flashboy-max.github.io' && currentDomain !== 'localhost' && currentDomain !== '127.0.0.1') {
-                    outputDiv.innerHTML = '<p style="color: orange;">⚠️ Aleksandrov prijedlog radi samo na GitHub Pages stranici (flashboy-max.github.io). Lokalno testiranje nije moguće zbog API ograničenja.</p>';
-                    return;
-                }
-
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                
-                const payload = {
-                    contents: [{
-                        parts: [{
-                            text: prompt
-                        }]
-                    }]
-                };
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates.length > 0 && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts.length > 0) {
-                    const generatedText = data.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = generatedText;
-                } else {
-                    outputDiv.innerHTML = '<p style="color: red;">Došlo je do greške pri generisanju plana. Molim pokušajte ponovo.</p>';
-                }
-
-            } catch (error) {
-                console.error('Greška pri pozivu Gemini API:', error);
-                outputDiv.innerHTML = '<p style="color: red;">Nažalost, nije moguće generisati plan u ovom trenutku. Provjerite konekciju i pokušajte kasnije.</p>';
-            } finally {
-                generateBtn.disabled = false;
-                btnText.textContent = 'Daj mi novu ideju!';
-                loader.style.display = 'none';
-            }
-        }
-
         // === EXISTING FUNCTIONS (updated) ===
         function toggleAccordion(id) {
             const content = document.getElementById(id + '-content');
@@ -3244,6 +3182,11 @@ Tvoj ton mora biti topao i ličan, kao da zaista pišem poruku svojoj verenici.`
             });
         });
     </script>
+    
+    <!-- Modularni AI Assistant JavaScript -->
+    <script src="./assistant/assistant.js"></script>
+    <script src="./assistant/favorites.js"></script>
+    
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>
 </body>
 </html>

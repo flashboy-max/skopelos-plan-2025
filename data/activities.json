@@ -1,0 +1,134 @@
+[
+  {
+    "id": "sup",
+    "name": "Stand Up Paddling",
+    "category": "active",
+    "duration": 120,
+    "price": 25,
+    "location": "Panormos",
+    "weatherDependent": true,
+    "difficulty": "easy",
+    "description": "SUP na mirnim vodama Panormosa"
+  },
+  {
+    "id": "snorkeling",
+    "name": "Snorkeling",
+    "category": "active", 
+    "duration": 60,
+    "price": 0,
+    "location": "Panormos/Milia",
+    "weatherDependent": true,
+    "difficulty": "easy",
+    "description": "Istraživanje podvodnog sveta"
+  },
+  {
+    "id": "hiking",
+    "name": "Planinarenje do vidikovca",
+    "category": "active",
+    "duration": 240,
+    "price": 0,
+    "location": "Glossa",
+    "weatherDependent": false,
+    "difficulty": "medium",
+    "description": "Pešačenje do najlepših vidikovaca ostrva"
+  },
+  {
+    "id": "photo-tour",
+    "name": "Foto tura Mamma Mia lokacija",
+    "category": "cultural",
+    "duration": 180,
+    "price": 0,
+    "location": "Kastani/Milia",
+    "weatherDependent": false,
+    "difficulty": "easy",
+    "description": "Poseta lokacija gde je sniman film"
+  },
+  {
+    "id": "sunset-watching",
+    "name": "Gledanje zalaska sunca",
+    "category": "romantic",
+    "duration": 90,
+    "price": 0,
+    "location": "Amarantos/Panormos",
+    "weatherDependent": true,
+    "difficulty": "easy",
+    "description": "Najlepši zalasci sunca na ostrvu"
+  },
+  {
+    "id": "monastery-visit",
+    "name": "Poseta manastirima",
+    "category": "cultural",
+    "duration": 120,
+    "price": 0,
+    "location": "Various",
+    "weatherDependent": false,
+    "difficulty": "easy",
+    "description": "Istorijski manastiri ostrva"
+  },
+  {
+    "id": "couples-massage",
+    "name": "Parovi masaža na plaži",
+    "category": "romantic",
+    "duration": 90,
+    "price": 80,
+    "location": "Agnontas",
+    "weatherDependent": false,
+    "difficulty": "easy",
+    "description": "Relaksantna masaža za dvoje uz zvukove mora"
+  },
+  {
+    "id": "wine-tasting",
+    "name": "Degustacija lokalnih vina",
+    "category": "romantic",
+    "duration": 120,
+    "price": 35,
+    "location": "Skopelos Town",
+    "weatherDependent": false,
+    "difficulty": "easy",
+    "description": "Kušanje autentičnih grčkih vina sa lokalnim sirevima"
+  },
+  {
+    "id": "beach-volleyball",
+    "name": "Beach volleyball",
+    "category": "active",
+    "duration": 60,
+    "price": 0,
+    "location": "Panormos",
+    "weatherDependent": true,
+    "difficulty": "medium",
+    "description": "Sportska igra na pesku sa drugim turistima"
+  },
+  {
+    "id": "sea-kayaking",
+    "name": "Sea kayaking",
+    "category": "active",
+    "duration": 180,
+    "price": 40,
+    "location": "Agnontas",
+    "weatherDependent": true,
+    "difficulty": "medium",
+    "description": "Veslanje po kristalno čistoj vodi uz obalu"
+  },
+  {
+    "id": "private-picnic",
+    "name": "Privatni piknik za dvoje",
+    "category": "romantic",
+    "duration": 180,
+    "price": 50,
+    "location": "Amarantos Cape",
+    "weatherDependent": true,
+    "difficulty": "easy",
+    "description": "Organizovan romantični piknik sa grčkim specijalitetima"
+  },
+  {
+    "id": "morning-yoga",
+    "name": "Jutarnja joga na plaži",
+    "category": "active",
+    "duration": 60,
+    "price": 15,
+    "location": "Agnontas",
+    "weatherDependent": true,
+    "difficulty": "easy",
+    "description": "Opuštajuća joga sesija uz izlazak sunca"
+  }
+]

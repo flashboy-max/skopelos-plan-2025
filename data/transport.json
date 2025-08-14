@@ -1,0 +1,35 @@
+{
+  "bus": {
+    "name": "Gradski autobus",
+    "costPerRide": 2.50,
+    "maxDistance": 20,
+    "schedule": {
+      "morning": "09:00-12:00",
+      "afternoon": "15:00-18:00"
+    },
+    "routes": ["Skopelos Town", "Agnontas", "Stafilos", "Panormos"],
+    "weatherDependent": true,
+    "pros": ["Jeftino", "Lokalno iskustvo", "Redovni vozni park"],
+    "cons": ["Ograničene rute", "Zavisi od vremena", "Može biti zakašnjelo"]
+  },
+  "taxi": {
+    "name": "Taksi",
+    "costBase": 5,
+    "costPerKm": 1.80,
+    "maxDistance": 999,
+    "available247": false,
+    "weather": "all",
+    "pros": ["Brzo", "Direktno do destinacije", "Nezavisi od vremena"],
+    "cons": ["Skupo", "Može biti nedostupno", "Ograničeno noću"]
+  },
+  "rent": {
+    "name": "Iznajmljeni automobil",
+    "costPerDay": 30,
+    "fuel": 8,
+    "maxDistance": 999,
+    "freedom": true,
+    "weather": "all",
+    "pros": ["Potpuna sloboda", "Više destinacija", "Nezavisi od rasporedva"],
+    "cons": ["Dnevni troškovi", "Parking problemi", "Odgovornost za vozilo"]
+  }
+}

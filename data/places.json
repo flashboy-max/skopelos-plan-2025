@@ -1,0 +1,138 @@
+{
+  "bases": {
+    "pineTrees": {
+      "name": "The Pine Trees",
+      "label": "The Pine Trees — Agnontas",
+      "coords": [23.7089, 39.0831],
+      "area": "Agnontas"
+    }
+  },
+  "beaches": [
+    {
+      "id": "agnontas",
+      "name": "Agnontas Beach",
+      "area": "Agnontas",
+      "distance": 5,
+      "sheltered": true,
+      "sunset": false,
+      "watersports": false,
+      "tags": ["close", "calm", "family"],
+      "busAccessible": true,
+      "difficulty": "easy",
+      "bestFor": ["swimming", "relaxing"],
+      "gmaps": "https://maps.google.com/?q=Agnontas+Beach+Skopelos"
+    },
+    {
+      "id": "amarantos",
+      "name": "Amarantos Cape",
+      "area": "Agnontas",
+      "distance": 8,
+      "sheltered": false,
+      "sunset": true,
+      "watersports": false,
+      "tags": ["scenic", "quiet", "nature"],
+      "busAccessible": false,
+      "difficulty": "medium",
+      "bestFor": ["sunset", "photography"],
+      "gmaps": "https://maps.google.com/?q=Amarantos+Cape+Skopelos"
+    },
+    {
+      "id": "stafilos",
+      "name": "Stafilos Beach",
+      "area": "Stafilos",
+      "distance": 12,
+      "sheltered": true,
+      "sunset": false,
+      "watersports": false,
+      "tags": ["organized", "popular", "family"],
+      "busAccessible": true,
+      "difficulty": "easy",
+      "bestFor": ["swimming", "facilities"],
+      "gmaps": "https://maps.google.com/?q=Stafilos+Beach+Skopelos"
+    },
+    {
+      "id": "panormos",
+      "name": "Panormos Beach",
+      "area": "Panormos",
+      "distance": 15,
+      "sheltered": false,
+      "sunset": true,
+      "watersports": true,
+      "tags": ["organized", "snorkel", "family"],
+      "busAccessible": true,
+      "difficulty": "easy",
+      "bestFor": ["swimming", "snorkeling"],
+      "gmaps": "https://maps.google.com/?q=Panormos+Beach+Skopelos"
+    },
+    {
+      "id": "milia",
+      "name": "Milia Beach",
+      "area": "Panormos",
+      "distance": 18,
+      "sheltered": false,
+      "sunset": true,
+      "watersports": false,
+      "tags": ["scenic", "movie", "nature"],
+      "busAccessible": false,
+      "difficulty": "medium",
+      "bestFor": ["scenery", "photography"],
+      "gmaps": "https://maps.google.com/?q=Milia+Beach+Skopelos"
+    },
+    {
+      "id": "kastani",
+      "name": "Kastani Beach",
+      "area": "Panormos",
+      "distance": 20,
+      "sheltered": false,
+      "sunset": true,
+      "watersports": false,
+      "tags": ["movie", "famous", "scenic"],
+      "busAccessible": false,
+      "difficulty": "medium",
+      "bestFor": ["scenery", "movie spots"],
+      "gmaps": "https://maps.google.com/?q=Kastani+Beach+Skopelos"
+    },
+    {
+      "id": "ftelia",
+      "name": "Ftelia Beach",
+      "area": "North",
+      "distance": 25,
+      "sheltered": true,
+      "sunset": false,
+      "watersports": false,
+      "tags": ["quiet", "nature", "isolated"],
+      "busAccessible": false,
+      "difficulty": "hard",
+      "bestFor": ["privacy", "nature"],
+      "gmaps": "https://maps.google.com/?q=Ftelia+Beach+Skopelos"
+    },
+    {
+      "id": "hovolo",
+      "name": "Hovolo Beach",
+      "area": "North",
+      "distance": 28,
+      "sheltered": true,
+      "sunset": false,
+      "watersports": false,
+      "tags": ["secluded", "nature", "peaceful"],
+      "busAccessible": false,
+      "difficulty": "hard",
+      "bestFor": ["privacy", "relaxing"],
+      "gmaps": "https://maps.google.com/?q=Hovolo+Beach+Skopelos"
+    },
+    {
+      "id": "glisteri",
+      "name": "Glisteri Beach",
+      "area": "East",
+      "distance": 30,
+      "sheltered": true,
+      "sunset": false,
+      "watersports": false,
+      "tags": ["hidden", "nature", "peaceful"],
+      "busAccessible": false,
+      "difficulty": "hard",
+      "bestFor": ["privacy", "nature"],
+      "gmaps": "https://maps.google.com/?q=Glisteri+Beach+Skopelos"
+    }
+  ]
+}

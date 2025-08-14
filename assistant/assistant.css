@@ -1,0 +1,371 @@
+/* 🎨 AI Assistant Styles - Modularni CSS za napredni asistent */
+
+/* === AI ASSISTANT CONTAINER === */
+#ai-assistant {
+    border-left: 5px solid #673ab7;
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(103, 58, 183, 0.2);
+    margin: 25px 0;
+    overflow: hidden;
+}
+
+#ai-assistant h3 {
+    color: #673ab7;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* === FORMA STILOVI === */
+#ai-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#ai-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#ai-form label strong {
+    color: #333;
+    font-size: 0.9em;
+}
+
+#ai-form select {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+#ai-form select:focus {
+    border-color: #673ab7;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(103, 58, 183, 0.1);
+}
+
+/* === DUGMAD === */
+.gemini-btn {
+    background: linear-gradient(135deg, #673ab7 0%, #9c27b0 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.gemini-btn:hover {
+    background: linear-gradient(135deg, #5e35b1 0%, #8e24aa 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(103, 58, 183, 0.3);
+}
+
+.gemini-btn:active {
+    transform: translateY(0);
+}
+
+.gemini-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* === FAVORITI SEKCIJA === */
+#favorites-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(103, 58, 183, 0.2);
+}
+
+.btn-secondary {
+    background: white;
+    color: #673ab7;
+    border: 2px solid #673ab7;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-secondary:hover {
+    background: #673ab7;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* === OUTPUT STILOVI === */
+#ai-output {
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+#ai-output .plan-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#ai-output .plan-title {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#ai-output .plan-subtitle {
+    opacity: 0.9;
+    font-size: 0.95em;
+    margin: 0;
+}
+
+#ai-output .schedule-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+#ai-output .schedule-title {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#ai-output .schedule-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+#ai-output .schedule-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
+}
+
+#ai-output .schedule-time {
+    min-width: 60px;
+    color: #667eea;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+#ai-output .schedule-content {
+    margin-left: 15px;
+    flex: 1;
+}
+
+#ai-output .schedule-details {
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+/* === TIPS SEKCIJA === */
+#ai-output .tips-container {
+    background: #e8f5e8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #4caf50;
+}
+
+#ai-output .tips-title {
+    margin: 0 0 10px 0;
+    color: #2e7d32;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#ai-output .tip-item {
+    margin-bottom: 5px;
+    color: #2e7d32;
+    line-height: 1.4;
+}
+
+/* === BUDŽET SEKCIJA === */
+#ai-output .budget-container {
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+}
+
+#ai-output .budget-title {
+    margin: 0 0 10px 0;
+    color: #f57f17;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#ai-output .budget-item {
+    margin-bottom: 5px;
+    color: #e65100;
+    line-height: 1.4;
+}
+
+#ai-output .budget-total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ffcc02;
+    font-weight: 600;
+    color: #e65100;
+    font-size: 1.05em;
+}
+
+/* === GOOGLE MAPS LINKOVI === */
+#ai-output a {
+    color: #2196F3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#ai-output a:hover {
+    color: #1976D2;
+    text-decoration: underline;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    #ai-form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    #favorites-section {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-secondary {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    #ai-output .schedule-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    #ai-output .schedule-time {
+        min-width: auto;
+        margin-bottom: 5px;
+    }
+    
+    #ai-output .schedule-content {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    #ai-assistant {
+        margin: 15px -5px;
+        border-radius: 8px;
+    }
+    
+    #ai-output .plan-header {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    #ai-output .schedule-container,
+    #ai-output .tips-container,
+    #ai-output .budget-container {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* === ANIMACIJE === */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#ai-output > div {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* === LOADING STATE === */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    color: #666;
+}
+
+.loading::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-top: 2px solid #673ab7;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === ERROR STATE === */
+.error {
+    background: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #f44336;
+    text-align: center;
+}
+
+.error::before {
+    content: '❌ ';
+    font-size: 1.2em;
+}
