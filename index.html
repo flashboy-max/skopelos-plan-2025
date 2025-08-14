@@ -373,42 +373,141 @@
             color: #2d5f3f;
         }
         
-        /* Timeline stilovi - ISPRAVLJENO */
-        .timeline {
-            position: relative;
-            padding-left: 20px;
+        /* Novi unifikovan accordion sistem za dane */
+        .days-accordion {
             margin-top: 20px;
         }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #3498db;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-            background: #f8f9fa;
+
+        .day-accordion-item {
+            margin-bottom: 15px;
+            border: 1px solid #dee2e6;
             border-radius: 8px;
-            padding: 20px;
+            overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #ffffff;
         }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -27px;
-            top: 20px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #3498db;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #3498db;
+
+        .day-accordion-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            margin: 0; /* Unifikovana margina */
         }
-        
+
+        .day-accordion-header:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+
+        .day-title {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            margin: 0; /* Unifikovana margina */
+        }
+
+        .day-icon {
+            font-size: 1.4em;
+            margin-right: 12px;
+            width: 30px; /* Fiksirana širina za poravnavanje */
+            text-align: center;
+        }
+
+        .day-text {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin: 0; /* Unifikovana margina */
+        }
+
+        .day-accordion-arrow {
+            font-size: 1.2em;
+            color: #6c757d;
+            transition: transform 0.3s ease;
+            margin-left: 15px;
+            width: 20px; /* Fiksirana širina za poravnavanje */
+            text-align: center;
+        }
+
+        .day-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: #ffffff;
+        }
+
+        .day-accordion-content.active {
+            max-height: none; /* Neograničeno */
+            overflow: visible;
+        }
+
+        .day-accordion-body {
+            padding: 20px;
+            margin: 0; /* Unifikovana margina */
+        }
+
+        /* Unifikovani stilovi za sadržaj dana */
+        .day-accordion-body ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .day-accordion-body li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .day-accordion-body h5 {
+            color: #2c3e50;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        /* Responzivni stilovi */
+        @media (max-width: 768px) {
+            .day-accordion-header {
+                padding: 15px;
+            }
+            
+            .day-accordion-body {
+                padding: 15px;
+            }
+            
+            .day-text {
+                font-size: 1em;
+            }
+            
+            .day-icon {
+                font-size: 1.2em;
+                margin-right: 8px;
+                width: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .day-accordion-header {
+                padding: 12px;
+            }
+            
+            .day-accordion-body {
+                padding: 12px;
+            }
+            
+            .day-text {
+                font-size: 0.95em;
+            }
+            
+            .day-icon {
+                font-size: 1.1em;
+                width: 22px;
+            }
+        }
+
         .day-header {
             color: #2c3e50;
             font-size: 1.3em;
@@ -614,7 +713,7 @@
                 page-break-after: avoid;
             }
             
-            .info-card, .timeline-item, .restaurant-card {
+            .info-card, .day-accordion-item, .restaurant-card {
                 page-break-inside: avoid;
             }
             
@@ -626,7 +725,7 @@
                 display: block;
             }
             
-            .timeline-item {
+            .day-accordion-item {
                 break-inside: avoid;
             }
         }
@@ -683,18 +782,15 @@
         }
         
         .main-accordion-content.active {
-            max-height: 8000px;
+            max-height: none; /* Uklonjen limit za potpuni prikaz sadržaja */
+            overflow: visible; /* Ne seci sadržaj kada je otvoreno */
         }
-        
-        .main-accordion-body {
-            padding: 30px;
-        }
-        
+
         /* Accordion styles */
         .accordion {
             margin: 20px 0;
         }
-        
+
         .accordion-item {
             border: 1px solid #dee2e6;
             border-radius: 8px;
@@ -876,12 +972,6 @@
             .weather-forecast-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
-            }
-            .timeline {
-                padding-left: 15px;
-            }
-            .timeline-item::before {
-                left: -22px;
             }
             .header-images {
                 flex-direction: column;
@@ -2197,227 +2287,265 @@
                 </div>
             </section>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(1)">
-                        <span>📅 Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</span>
-                        <span class="day-toggle-icon" id="day-toggle-1">▼</span>
+            <div class="days-accordion">
+                <!-- Dan 1 -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day1')">
+                        <div class="day-title">
+                            <span class="day-icon">📅</span>
+                            <span class="day-text">Dan 1 - Petak, 22. august 2025. - Dolazak u Solun</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day1-arrow">▼</span>
                     </div>
-                    <div class="day-content" id="day-content-1">
-                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2196f3;">
-                        <strong>🏨 Smeštaj:</strong> Urban Touch Studios (check-in: 22. avgust, check-out: 23. avgust)
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Thessaloniki, Greece</p>
-                        <div style="margin: 10px 0;">
-                            <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=40.6423279,22.9348297&z=18&output=embed" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="day-accordion-content" id="day1-content">
+                        <div class="day-accordion-body">
+                            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2196f3;">
+                                <strong>🏨 Smeštaj:</strong> Urban Touch Studios (check-in: 22. avgust, check-out: 23. avgust)
+                                <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Thessaloniki, Greece</p>
+                                <div style="margin: 10px 0;">
+                                    <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps?q=40.6423279,22.9348297&z=18&output=embed" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>08:00 - Polazak za aerodrom Sarajevo</li>
+                                <li>10:10 - Let FR5005 (Sarajevo → Solun)</li>
+                                <li>12:30 - Dolazak u Solun (lokalno vrijeme)</li>
+                                <li>Prevoz do smeštaja u Solunu</li>
+                                <li>Check-in i odmor (moguće od 15h)</li>
+                                <li>Šetnja po centru Soluna</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul>
-                        <li>08:00 - Polazak za aerodrom Sarajevo</li>
-                        <li>10:10 - Let FR5005 (Sarajevo → Solun)</li>
-                        <li>12:30 - Dolazak u Solun (lokalno vrijeme)</li>
-                        <li>Prevoz do smeštaja u Solunu</li>
-                        <li>Check-in i odmor (moguće od 15h)</li>
-                        <li>Šetnja po centru Soluna</li>
-                    </ul>
-                    </div> <!-- Close day-content-1 -->
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(2)">
-                        <span>⛴️ Dan 2 - Subota, 23. august 2025. - Putovanje na Skopelos</span>
-                        <span class="day-toggle-icon" id="day-toggle-2">▼</span>
-                    </div>
-                    <div class="day-content" id="day-content-2">
-                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #ff9800;">
-                        <strong>🏨 Smeštaj:</strong> Το Κτήμα της Ματίνας (To Ktima tis Matinas) (check-in: 23. avgust, check-out: 25. avgust)
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Stafylos 370 03, Greece</p>
-                        <div style="margin: 10px 0;">
-                            <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10416.585311409557!2d23.733678468253785!3d39.086673779823926!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c017949bc685%3A0xb78e00e556901301!2zzqTOvyDOms-Ezq7OvM6xIM-EzrfPgiDOnM6xz4TOr869zrHPgg!5e0!3m2!1sen!2sba!4v1754380293654!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>Check-out</li>
-                        <li>07:30 - Putovanje do luke</li>
-                        <li>08:00 - Ukrcavanje na trajekt</li>
-                        <li>08:30 - Polazak trajekta (SPEEDRUNNER JET)</li>
-                        <li>12:20 - Dolazak na Skopelos</li>
-                        <li>13:00 - Check-in u To Ktima tis Matinas (Stafilos)</li>
-                        <li>Istraživanje Stafilosa i obližnjih plaža</li>
-                    </ul>
-                    </div> <!-- Close day-content-2 -->
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(3)">
-                        <span>🎂 Dan 3 - Nedjelja, 24. august 2025. - Rođendan i "Mamma Mia!" dan</span>
-                        <span class="day-toggle-icon" id="day-toggle-3">▼</span>
-                    </div>
-                    <div class="day-content" id="day-content-3">
-                    
-                    <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">☀️ Jutarnji program</h5>
-                    <ul>
-                        <li><strong>08:00</strong> - Buđenje i lagani doručak na terasi</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">💡 Preporuka: kupiti nešto za doručak večer ranije ili pitati domaćine</li>
-                        <li><strong>08:30</strong> - Polazak ka Skopelos gradu (Chora)</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">🚌 Autobus iz Stafilosa - cijena ~2€ po osobi (10-15 min vožnje)</li>
-                    </ul>
 
-                    <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🎬 "Mamma Mia!" tura</h5>
-                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                        <p><strong>09:00-16:00</strong> - "Mamma Mia Highlights Tour" sa vodičem (engleski jezik)</p>
-                        <p><strong>Cijena:</strong> ~40€ po osobi</p>
-                        <p><strong>Uključuje:</strong></p>
-                        <ul style="margin: 10px 0;">
-                            <li>🏛️ Agios Ioannis crkva (scena vjenčanja u filmu)</li>
-                            <li>🏖️ Kastani plaža (glavna plaža iz filma)</li>
-                            <li>🌊 Agnontas ili Panormos za kupanje/pauzu</li>
-                            <li>🚐 Transport, vodič, pauze za fotografisanje</li>
-                        </ul>
-                        <p><strong>📱 Rezervacije:</strong></p>
-                        <ul style="font-size: 0.9em;">
-                            <li><a href="https://www.tripadvisor.com/AttractionProductReview-g189501-d16823263-Mamma_Mia_Highlights_Skopelos_island-Skopelos_Sporades.html" target="_blank" rel="noopener noreferrer">TripAdvisor - Mamma Mia Tour</a></li>
-                            <li><a href="https://www.skopelosweb.gr/en/greek/rent/skopelostours" target="_blank" rel="noopener noreferrer">Skopelos Tours</a></li>
-                        </ul>
+                <!-- Dan 2 -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day2')">
+                        <div class="day-title">
+                            <span class="day-icon">⛴️</span>
+                            <span class="day-text">Dan 2 - Subota, 23. august 2025. - Putovanje na Skopelos</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day2-arrow">▼</span>
                     </div>
-
-                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #ff9800;">
-                        <strong>🚶‍♂️ Alternativa (samostalno):</strong><br>
-                        <ol style="padding-left: 20px; margin-top: 5px;">
-                            <li><strong>09:00:</strong> Uhvatiti autobus iz Stafilosa za Skopelos Town (~10 min).</li>
-                            <li>U Skopelos Townu presjesti na autobus za Glossa/Loutraki. Sići na stanici za Agios Ioannis (~45 min, 4€).</li>
-                            <li>Pješačenje i penjanje do crkve (~20 min). Uživati u pogledu.</li>
-                            <li>Vratiti se na glavnu cestu i uzeti taksi (ili sačekati bus) do plaže Kastani (~20 min, ~25€ taksi).</li>
-                            <li>Kupanje, ručak i opuštanje na Kastani plaži.</li>
-                            <li><strong>15:30:</strong> Uhvatiti autobus sa Kastani plaže nazad za Stafilos.</li>
-                        </ol>
-                    </div>
-
-                    <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🌅 Večernji program</h5>
-                    <ul>
-                        <li><strong>16:00-17:00</strong> - Povratak u smeštaj i odmor</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">🚿 Brzi tuš, presvlačenje, kratka pauza</li>
-                        <li><strong>19:00</strong> - 🎂 <strong>Rođendanska večera</strong> u <a href="https://maps.app.goo.gl/UdF5tXS4tExfSQr67" target="_blank" rel="noopener noreferrer">Stafilos Restaurant</a></li>
-                        <li style="font-size: 0.9em; color: #6c757d;">📍 Odmah uz more, 5 min hoda od smeštaja</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">🌅 Idealno vrijeme za zalazak sunca - sto sa pogledom na more</li>
-                        <li style="font-size: 0.9em; color: #6c757d;">✅ Rezervacija već potvrđena</li>
-                    </ul>
-                </div>
-                    </div> <!-- Close day-content-3 -->
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(4)">
-                        <span>🚚 Dan 4 - Ponedjeljak, 25. august 2025. - Prelazak u Agnontas</span>
-                        <span class="day-toggle-icon" id="day-toggle-4">▼</span>
-                    </div>
-                    <div class="day-content" id="day-content-4">
-                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
-                        <strong>🏨 Novi smeštaj:</strong> Pine Trees, Agnontas (25. avgust - 4. septembar)
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Agnontas, Skòpelos, Agnontas 370 03, Greece</p>
-                        <div style="margin: 10px 0;">
-                            <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10417.20992283608!2d23.72115615463591!3d39.08244402852887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3625e8c3f%3A0x87ee7f50c5ede7b5!2sPine%20Trees!5e0!3m2!1sen!2sba!4v1754380182756!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="day-accordion-content" id="day2-content">
+                        <div class="day-accordion-body">
+                            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #ff9800;">
+                                <strong>🏨 Smeštaj:</strong> Το Κτήμα της Ματίνας (To Ktima tis Matinas) (check-in: 23. avgust, check-out: 25. avgust)
+                                <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Stafylos 370 03, Greece</p>
+                                <div style="margin: 10px 0;">
+                                    <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10416.585311409557!2d23.733678468253785!3d39.086673779823926!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c017949bc685%3A0xb78e00e556901301!2zzqTOvyDOms-Ezq7OvM6xIM-EzrfPgiDOnM6xz4TOr869zrHPgg!5e0!3m2!1sen!2sba!4v1754380293654!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Check-out</li>
+                                <li>07:30 - Putovanje do luke</li>
+                                <li>08:00 - Ukrcavanje na trajekt</li>
+                                <li>08:30 - Polazak trajekta (SPEEDRUNNER JET)</li>
+                                <li>12:20 - Dolazak na Skopelos</li>
+                                <li>13:00 - Check-in u To Ktima tis Matinas (Stafilos)</li>
+                                <li>Istraživanje Stafilosa i obližnjih plaža</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul>
-                        <li>09:00 - Doručak i check-out iz To Ktima tis Matinas</li>
-                        <li>Putovanje do Agnontasa</li>
-                        <li>Check-in u The Pine Trees</li>
-                        <li>Ručak i upoznavanje sa novom lokacijom</li>
-                    </ul>
-                    </div> <!-- Close day-content-4 -->
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(5)">
-                        <span>🏖️ Dan 5-13 - Utorak, 26. august - Srijeda, 3. septembar 2025. - Istraživanje Skopelosa</span>
-                        <span class="day-toggle-icon" id="day-toggle-5">▼</span>
+
+                <!-- Dan 3 -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day3')">
+                        <div class="day-title">
+                            <span class="day-icon">🎂</span>
+                            <span class="day-text">Dan 3 - Nedjelja, 24. august 2025. - Rođendan i "Mamma Mia!" dan</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day3-arrow">▼</span>
                     </div>
-                    <div class="day-content" id="day-content-5">
-                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
-                        <p><strong>🏨 Smeštaj:</strong> Pine Trees, Agnontas</p>
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">Ovo je period za slobodno istraživanje ostrva sa bazom u Agnontasu. Detaljan pregled plaža, restorana i aktivnosti nalazi se u posebnim sekcijama ispod.</p>
-                    </div>
-                    
-                    <h4>⭐ Prijedlozi za dane:</h4>
-                    <ul>
-                        <li>Kombinacija opuštanja na obližnjim plažama (Agnontas, Panormos) i dnevnih izleta.</li>
-                        <li>Posjetite Skopelos Town (Chora) više puta, danju i noću, da doživite atmosferu.</li>
-                        <li>Iznajmite vozilo na 2-3 dana za obilazak udaljenijih plaža (Hovolo, Perivoliou) i manastira.</li>
-                        <li>Ne propustite "Mamma Mia! Night" srijedom u Tikiti Maji baru.</li>
-                    </ul>
-                </div>
-                    </div> <!-- Close day-content-5 -->
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(14)">
-                        <span>⛴️ Dan 14 - Četvrtak, 4. septembar 2025. - Povratak u Solun</span>
-                        <span class="day-toggle-icon" id="day-toggle-14">▼</span>
-                    </div>
-                    <div class="day-content" id="day-content-14">
-                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2e7d32;">
-                        <strong>🏨 Smeštaj:</strong> Palioktima - sleep and go (Palēoktēma ΠΑΛΗΟΚΤΗΜΑ) (check-in: 4. septembar, check-out: 5. septembar)
-                        <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Φλόκα 7, Néon Rýsion, 57001, Greece</p>
-                        <div style="margin: 10px 0;">
-                            <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.457415275203!2d22.9882998!3d40.5095412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a86b2b938a0e47%3A0xf93a7c4d7d40d92b!2sPal%C4%93okt%C4%93ma!5e0!3m2!1sen!2sba!4v1754655600000!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="day-accordion-content" id="day3-content">
+                        <div class="day-accordion-body">
+                            <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">☀️ Jutarnji program</h5>
+                            <ul>
+                                <li><strong>08:00</strong> - Buđenje i lagani doručak na terasi</li>
+                                <li style="font-size: 0.9em; color: #6c757d;">💡 Preporuka: kupiti nešto za doručak večer ranije ili pitati domaćine</li>
+                                <li><strong>08:30</strong> - Polazak ka Skopelos gradu (Chora)</li>
+                                <li style="font-size: 0.9em; color: #6c757d;">🚌 Autobus iz Stafilosa - cijena ~2€ po osobi (10-15 min vožnje)</li>
+                            </ul>
+
+                            <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🎬 "Mamma Mia!" tura</h5>
+                            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                                <p><strong>09:00-16:00</strong> - "Mamma Mia Highlights Tour" sa vodičem (engleski jezik)</p>
+                                <p><strong>Cijena:</strong> ~40€ po osobi</p>
+                                <p><strong>Uključuje:</strong></p>
+                                <ul style="margin: 10px 0;">
+                                    <li>🏛️ Agios Ioannis crkva (scena vjenčanja u filmu)</li>
+                                    <li>🏖️ Kastani plaža (glavna plaža iz filma)</li>
+                                    <li>🌊 Agnontas ili Panormos za kupanje/pauzu</li>
+                                    <li>🚐 Transport, vodič, pauze za fotografisanje</li>
+                                </ul>
+                                <p><strong>📱 Rezervacije:</strong></p>
+                                <ul style="font-size: 0.9em;">
+                                    <li><a href="https://www.tripadvisor.com/AttractionProductReview-g189501-d16823263-Mamma_Mia_Highlights_Skopelos_island-Skopelos_Sporades.html" target="_blank" rel="noopener noreferrer">TripAdvisor - Mamma Mia Tour</a></li>
+                                    <li><a href="https://www.skopelosweb.gr/en/greek/rent/skopelostours" target="_blank" rel="noopener noreferrer">Skopelos Tours</a></li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #ff9800;">
+                                <strong>🚶‍♂️ Alternativa (samostalno):</strong><br>
+                                <ol style="padding-left: 20px; margin-top: 5px;">
+                                    <li><strong>09:00:</strong> Uhvatiti autobus iz Stafilosa za Skopelos Town (~10 min).</li>
+                                    <li>U Skopelos Townu presjesti na autobus za Glossa/Loutraki. Sići na stanici za Agios Ioannis (~45 min, 4€).</li>
+                                    <li>Pješačenje i penjanje do crkve (~20 min). Uživati u pogledu.</li>
+                                    <li>Vratiti se na glavnu cestu i uzeti taksi (ili sačekati bus) do plaže Kastani (~20 min, ~25€ taksi).</li>
+                                    <li>Kupanje, ručak i opuštanje na Kastani plaži.</li>
+                                    <li><strong>15:30:</strong> Uhvatiti autobus sa Kastani plaže nazad za Stafilos.</li>
+                                </ol>
+                            </div>
+
+                            <h5 style="color: #2c3e50; margin: 15px 0 10px 0;">🌅 Večernji program</h5>
+                            <ul>
+                                <li><strong>16:00-17:00</strong> - Povratak u smeštaj i odmor</li>
+                                <li style="font-size: 0.9em; color: #6c757d;">🚿 Brzi tuš, presvlačenje, kratka pauza</li>
+                                <li><strong>19:00</strong> - 🎂 <strong>Rođendanska večera</strong> u <a href="https://maps.app.goo.gl/UdF5tXS4tExfSQr67" target="_blank" rel="noopener noreferrer">Stafilos Restaurant</a></li>
+                                <li style="font-size: 0.9em; color: #6c757d;">📍 Odmah uz more, 5 min hoda od smeštaja</li>
+                                <li style="font-size: 0.9em; color: #6c757d;">🌅 Idealno vrijeme za zalazak sunca - sto sa pogledom na more</li>
+                                <li style="font-size: 0.9em; color: #6c757d;">✅ Rezervacija već potvrđena</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul>
-                        <li>09:00 - Doručak i check-out</li>
-                        <li>Odlazak u luku</li>
-                        <li>14:30 - Ukrcavanje na trajekt</li>
-                        <li>15:00 - Polazak trajekta</li>
-                        <li>18:55 - Dolazak u Solun</li>
-                        <li>Check-in u Palioktima - sleep and go</li>
-                    </ul>
-                    </div> <!-- Close day-content-14 -->
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="day-header" onclick="toggleDay(15)">
-                        <span>✈️ Dan 15 - Petak, 5. septembar 2025. - Povratak kući</span>
-                        <span class="day-toggle-icon" id="day-toggle-15">▼</span>
+
+                <!-- Dan 4 -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day4')">
+                        <div class="day-title">
+                            <span class="day-icon">🚚</span>
+                            <span class="day-text">Dan 4 - Ponedjeljak, 25. august 2025. - Prelazak u Agnontas</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day4-arrow">▼</span>
                     </div>
-                    <div class="day-content" id="day-content-15">
-                    <!-- ✈️ Airport transfer tip (premješteno u jutro Dan 15) -->
-                    <div style="background:#e3f2fd; padding:15px; border-radius:8px; margin:10px 0; border-left:4px solid #2196f3;">
-                        <h5 style="color:#1565c0; margin:0 0 8px 0;">✈️ Transfer do aerodroma (SKG) — Taxi vs. Autobus 01X/01N</h5>
-                        <ul style="margin:0 0 8px 18px; color:#333;">
-                            <li><strong>Taxi</strong>: ≈ €15–20 iz Néon Rýsion (Palioktima) → SKG, ~15 min.</li>
-                            <li><strong>Autobus</strong>:
-                                <ul style="margin:6px 0 0 18px;">
-                                    <li><strong>01X (dan)</strong> — Airport ↔ City/Intercity. 
-                                        <a href="https://telematics.oasth.gr/en/#lineDetails_146_01X%20:%20AIRPORT%20-%20INTERCITY%20BUS%20TERMINAL%20(VIA%20CITY%20CENTRE)_76-69" target="_blank" rel="noopener noreferrer">Raspored 01X</a>
+                    <div class="day-accordion-content" id="day4-content">
+                        <div class="day-accordion-body">
+                            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
+                                <strong>🏨 Novi smeštaj:</strong> Pine Trees, Agnontas (25. avgust - 4. septembar)
+                                <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Agnontas, Skòpelos, Agnontas 370 03, Greece</p>
+                                <div style="margin: 10px 0;">
+                                    <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10417.20992283608!2d23.72115615463591!3d39.08244402852887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a6c1b3625e8c3f%3A0x87ee7f50c5ede7b5!2sPine%20Trees!5e0!3m2!1sen!2sba!4v1754380182756!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>09:00 - Doručak i check-out iz To Ktima tis Matinas</li>
+                                <li>Putovanje do Agnontasa</li>
+                                <li>Check-in u The Pine Trees</li>
+                                <li>Ručak i upoznavanje sa novom lokacijom</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dan 5–13 (sažeto) -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day5')">
+                        <div class="day-title">
+                            <span class="day-icon">🏖️</span>
+                            <span class="day-text">Dan 5-13 - Utorak, 26. august - Srijeda, 3. septembar 2025. - Istraživanje Skopelosa</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day5-arrow">▼</span>
+                    </div>
+                    <div class="day-accordion-content" id="day5-content">
+                        <div class="day-accordion-body">
+                            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #28a745;">
+                                <p><strong>🏨 Smeštaj:</strong> Pine Trees, Agnontas</p>
+                                <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">Ovo je period za slobodno istraživanje ostrva sa bazom u Agnontasu. Detaljan pregled plaža, restorana i aktivnosti nalazi se u posebnim sekcijama ispod.</p>
+                            </div>
+                            <h4>⭐ Prijedlozi za dane:</h4>
+                            <ul>
+                                <li>Kombinacija opuštanja na obližnjim plažama (Agnontas, Panormos) i dnevnih izleta.</li>
+                                <li>Posjetite Skopelos Town (Chora) više puta, danju i noću, da doživite atmosferu.</li>
+                                <li>Iznajmite vozilo na 2-3 dana za obilazak udaljenijih plaža (Hovolo, Perivoliou) i manastira.</li>
+                                <li>Ne propustite "Mamma Mia! Night" srijedom u Tikiti Maji baru.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dan 14 -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day14')">
+                        <div class="day-title">
+                            <span class="day-icon">⛴️</span>
+                            <span class="day-text">Dan 14 - Četvrtak, 4. septembar 2025. - Povratak u Solun</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day14-arrow">▼</span>
+                    </div>
+                    <div class="day-accordion-content" id="day14-content">
+                        <div class="day-accordion-body">
+                            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #2e7d32;">
+                                <strong>🏨 Smeštaj:</strong> Palioktima - sleep and go (Palēoktēma ΠΑΛΗΟΚΤΗΜΑ) (check-in: 4. septembar, check-out: 5. septembar)
+                                <p style="font-size: 0.9em; color: #6c757d; margin: 5px 0;">📍 Φλόκα 7, Néon Rýsion, 57001, Greece</p>
+                                <div style="margin: 10px 0;">
+                                    <iframe src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.457415275203!2d22.9882998!3d40.5095412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a86b2b938a0e47%3A0xf93a7c4d7d40d92b!2sPal%C4%93okt%C4%93ma!5e0!3m2!1sen!2sba!4v1754655600000!5m2!1sen!2sba" width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>09:00 - Doručak i check-out</li>
+                                <li>Odlazak u luku</li>
+                                <li>14:30 - Ukrcavanje na trajekt</li>
+                                <li>15:00 - Polazak trajekta</li>
+                                <li>18:55 - Dolazak u Solun</li>
+                                <li>Check-in u Palioktima - sleep and go</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dan 15 -->
+                <div class="day-accordion-item">
+                    <div class="day-accordion-header" onclick="toggleDayAccordion('day15')">
+                        <div class="day-title">
+                            <span class="day-icon">✈️</span>
+                            <span class="day-text">Dan 15 - Petak, 5. septembar 2025. - Povratak kući</span>
+                        </div>
+                        <span class="day-accordion-arrow" id="day15-arrow">▼</span>
+                    </div>
+                    <div class="day-accordion-content" id="day15-content">
+                        <div class="day-accordion-body">
+                            <!-- ✈️ Airport transfer tip (premješteno u jutro Dan 15) -->
+                            <div style="background:#e3f2fd; padding:15px; border-radius:8px; margin:10px 0; border-left:4px solid #2196f3;">
+                                <h5 style="color:#1565c0; margin:0 0 8px 0;">✈️ Transfer do aerodroma (SKG) — Taxi vs. Autobus 01X/01N</h5>
+                                <ul style="margin:0 0 8px 18px; color:#333;">
+                                    <li><strong>Taxi</strong>: ≈ €15–20 iz Néon Rýsion (Palioktima) → SKG, ~15 min.</li>
+                                    <li><strong>Autobus</strong>:
+                                        <ul style="margin:6px 0 0 18px;">
+                                            <li><strong>01X (dan)</strong> — Airport ↔ City/Intercity. 
+                                                <a href="https://telematics.oasth.gr/en/#lineDetails_146_01X%20:%20AIRPORT%20-%20INTERCITY%20BUS%20TERMINAL%20(VIA%20CITY%20CENTRE)_76-69" target="_blank" rel="noopener noreferrer">Raspored 01X</a>
+                                            </li>
+                                            <li><strong>01N (noć)</strong> — Airport ↔ City (noćna). 
+                                                <a href="https://telematics.oasth.gr/en/#lineDetails_146_01N%20:%20AIRPORT-INTERCITY%20BUS%20TERMINAL-NIGHT%20LINE_74-69" target="_blank" rel="noopener noreferrer">Raspored 01N</a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li><strong>01N (noć)</strong> — Airport ↔ City (noćna). 
-                                        <a href="https://telematics.oasth.gr/en/#lineDetails_146_01N%20:%20AIRPORT-INTERCITY%20BUS%20TERMINAL-NIGHT%20LINE_74-69" target="_blank" rel="noopener noreferrer">Raspored 01N</a>
+                                    <li><strong>Ruta (auto)</strong>: 
+                                        <a href="https://www.google.com/maps/dir/?api=1&origin=40.5028853,23.0018329&destination=40.51977,22.97095&travelmode=driving" target="_blank" rel="noopener noreferrer">Palioktima → SKG (Google Maps)</a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li><strong>Ruta (auto)</strong>: 
-                                <a href="https://www.google.com/maps/dir/?api=1&origin=40.5028853,23.0018329&destination=40.51977,22.97095&travelmode=driving" target="_blank" rel="noopener noreferrer">Palioktima → SKG (Google Maps)</a>
-                            </li>
-                        </ul>
-                        <div style="margin-top:8px;">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6270.829297313338!2d22.9638!3d40.5199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a86be9a4e42053%3A0x9a9f7f5d3e2b2bcd!2sThessaloniki%20Airport%20Makedonia%20(SKG)!5e0!3m2!1sen!2sba!4v1754661100000!5m2!1sen!2sba" 
-                                width="100%" height="140" style="border:0; border-radius:8px;" allowfullscreen=""
-                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <div style="margin-top:8px;">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6270.829297313338!2d22.9638!3d40.5199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a86be9a4e42053%3A0x9a9f7f5d3e2b2bcd!2sThessaloniki%20Airport%20Makedonia%20(SKG)!5e0!3m2!1sen!2sba!4v1754661100000!5m2!1sen!2sba" 
+                                        width="100%" height="140" style="border:0; border-radius:8px;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                                <p style="font-size:.85em; color:#555; margin-top:8px;">Napomena: provjeriti telematics linkove na dan puta (učestalost i cijene variraju).</p>
+                            </div>
+                            <ul>
+                                <li>06:00 - Doručak i check-out</li>
+                                <li>07:00 - Putovanje na aerodrom</li>
+                                <li>09:25 - Let FR5004 (Solun → Sarajevo)</li>
+                                <li>09:45 - Dolazak u Sarajevo</li>
+                            </ul>
                         </div>
-                        <p style="font-size:.85em; color:#555; margin-top:8px;">Napomena: provjeriti telematics linkove na dan puta (učestalost i cijene variraju).</p>
                     </div>
-                    <ul>
-                        <li>06:00 - Doručak i check-out</li>
-                        <li>07:00 - Putovanje na aerodrom</li>
-                        <li>09:25 - Let FR5004 (Solun → Sarajevo)</li>
-                        <li>09:45 - Dolazak u Sarajevo</li>
-                    </ul>
-                    </div> <!-- Close day-content-15 -->
                 </div>
+            </div>
             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="main-accordion-item">
                     <div class="main-accordion-header" onclick="toggleMainAccordion('plaze')">
@@ -3227,7 +3355,7 @@
         }
         
         
-        function toggleMainAccordion(id) {
+    function toggleMainAccordion(id) {
             // Specijalna provjera za finansije - koristi modal umjesto prompt
             if (id === 'finansije' && !financialPasswordEntered) {
                 const modal = document.getElementById('password-modal');
@@ -3252,14 +3380,49 @@
                 content.classList.add('active');
                 icon.style.transform = 'rotate(180deg)';
                 icon.textContent = '▲';
-                content.style.maxHeight = content.scrollHeight + "px";
+                // Za otvorene sekcije ne ograničavamo visinu
+                content.style.maxHeight = null;
                 // a11y: expand ARIA for current
                 const header = content.previousElementSibling;
                 if (header) header.setAttribute('aria-expanded', 'true');
             }
         }
         
-        // Funkcija za toggle dana u rasporedu
+        // Funkcija za toggle dana u novom accordion sistemu
+    function toggleDayAccordion(dayId) {
+            const content = document.getElementById(dayId + '-content');
+            const arrow = document.getElementById(dayId + '-arrow');
+            
+            if (!content || !arrow) {
+                console.log(`Day accordion elements not found for ${dayId}`);
+                return;
+            }
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                content.style.maxHeight = null;
+                arrow.style.transform = 'rotate(0deg)';
+                arrow.textContent = '▼';
+            } else {
+                // Opcionalno: zatvori sve ostale
+                const allContents = document.querySelectorAll('.day-accordion-content');
+                const allArrows = document.querySelectorAll('.day-accordion-arrow');
+                
+                allContents.forEach(item => { item.classList.remove('active'); item.style.maxHeight = null; });
+                allArrows.forEach(item => {
+                    item.style.transform = 'rotate(0deg)';
+                    item.textContent = '▼';
+                });
+                
+                // Otvori trenutni
+                content.classList.add('active');
+                content.style.maxHeight = null;
+                arrow.style.transform = 'rotate(180deg)';
+                arrow.textContent = '▲';
+            }
+        }
+        
+        // Stara funkcija za toggle dana (zadržana za kompatibilnost)
         function toggleDay(dayNumber) {
             const content = document.getElementById(`day-content-${dayNumber}`);
             const icon = document.getElementById(`day-toggle-${dayNumber}`);
