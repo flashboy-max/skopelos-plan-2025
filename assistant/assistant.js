@@ -1034,9 +1034,9 @@ function getWeatherIcon(iconCode) {
 }
 
 // === EVENT LISTENERS ===
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     // Učitaj podatke na početku
-    loadData();
+    await loadData();
     
     // Generate plan dugme
     const generateBtn = document.getElementById('generatePlan');

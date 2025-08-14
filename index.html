@@ -8,6 +8,15 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5111/5111522.png" type="image/png">
     <title>Naš plan putovanja - Skopelos, Grčka 2025</title>
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Apple PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Skopelos Plan">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/192/5111/5111522.png">
+    
     <!-- Modularni AI Assistant CSS -->
     <link rel="stylesheet" href="./assistant/assistant.css">
     <link rel="stylesheet" href="./assistant/modals.css">
@@ -3861,6 +3870,282 @@
             // Refresh weather every 30 minutes
             setInterval(initializeWeatherWidget, 30 * 60 * 1000);
         });
+    </script>
+
+    <!-- PWA Installation & Service Worker -->
+    <script>
+        // === PWA SERVICE WORKER ===
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('🚀 SW registered: ', registration);
+                        showPWAInstallToast();
+                    })
+                    .catch(registrationError => {
+                        console.log('❌ SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // === PWA INSTALLATION PROMPT ===
+        let deferredPrompt;
+        let installButtonShown = false;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            if (!installButtonShown) {
+                showInstallButton();
+                installButtonShown = true;
+            }
+        });
+
+        function showInstallButton() {
+            const installButton = document.createElement('button');
+            installButton.innerHTML = '📱 Instaliraj<br>aplikaciju';
+            installButton.className = 'gemini-btn';
+            installButton.style.cssText = `
+                position: fixed;
+                bottom: 80px;
+                right: 20px;
+                z-index: 1000;
+                padding: 12px 16px;
+                border: none;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 12px;
+                font-size: 12px;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                transition: all 0.3s ease;
+                text-align: center;
+                line-height: 1.2;
+                min-width: 80px;
+            `;
+            
+            installButton.addEventListener('mouseenter', () => {
+                installButton.style.transform = 'translateY(-2px)';
+                installButton.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.6)';
+            });
+            
+            installButton.addEventListener('mouseleave', () => {
+                installButton.style.transform = 'translateY(0)';
+                installButton.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+            });
+            
+            installButton.addEventListener('click', () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('✅ User accepted the A2HS prompt');
+                            showPWASuccessToast();
+                        } else {
+                            console.log('❌ User dismissed the A2HS prompt');
+                        }
+                        deferredPrompt = null;
+                        installButton.remove();
+                    });
+                }
+            });
+            
+            document.body.appendChild(installButton);
+            
+            // Auto-hide after 30 seconds
+            setTimeout(() => {
+                if (installButton.parentNode) {
+                    installButton.style.opacity = '0.6';
+                    installButton.style.transform = 'scale(0.9)';
+                }
+            }, 30000);
+        }
+
+        function showPWAInstallToast() {
+            const toast = document.createElement('div');
+            toast.innerHTML = '🚀 Aplikacija je spremna za offline korišćenje!';
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                padding: 12px 20px;
+                border-radius: 8px;
+                color: white;
+                background: linear-gradient(135deg, #4caf50, #45a049);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                font-weight: bold;
+                max-width: 300px;
+                text-align: center;
+            `;
+            
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        function showPWASuccessToast() {
+            const toast = document.createElement('div');
+            toast.innerHTML = '🎉 Aplikacija je instalirana! Pogledajte početni ekran.';
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                padding: 12px 20px;
+                border-radius: 8px;
+                color: white;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                font-weight: bold;
+                max-width: 300px;
+                text-align: center;
+            `;
+            
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 7000);
+        }
+
+        // === PUSH NOTIFICATIONS ===
+        function requestNotificationPermission() {
+            if ('Notification' in window && 'serviceWorker' in navigator) {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        console.log('🔔 Notification permission granted');
+                        setupTravelNotifications();
+                        showNotificationToast();
+                    } else {
+                        console.log('🔕 Notification permission denied');
+                    }
+                });
+            }
+        }
+
+        function setupTravelNotifications() {
+            const departureDate = new Date('2025-08-22T10:00:00');
+            const oneDayBefore = new Date(departureDate.getTime() - 24 * 60 * 60 * 1000);
+            const twoHoursBefore = new Date(departureDate.getTime() - 2 * 60 * 60 * 1000);
+            
+            const now = new Date();
+            
+            // Notifikacija dan prije polaska
+            if (now < oneDayBefore) {
+                setTimeout(() => {
+                    if ('serviceWorker' in navigator && 'PushManager' in window) {
+                        navigator.serviceWorker.ready.then(registration => {
+                            registration.showNotification('🧳 Skopelos Plan', {
+                                body: 'Sutra putujete! Proverite poslednji put check-in listu. ✈️',
+                                icon: 'https://cdn-icons-png.flaticon.com/192/5111/5111522.png',
+                                badge: 'https://cdn-icons-png.flaticon.com/192/5111/5111522.png',
+                                vibrate: [200, 100, 200],
+                                tag: 'departure-reminder',
+                                requireInteraction: true
+                            });
+                        });
+                    }
+                }, oneDayBefore.getTime() - now.getTime());
+            }
+            
+            // Notifikacija 2 sata prije polaska
+            if (now < twoHoursBefore) {
+                setTimeout(() => {
+                    if ('serviceWorker' in navigator && 'PushManager' in window) {
+                        navigator.serviceWorker.ready.then(registration => {
+                            registration.showNotification('🚀 Vrijeme za polazak!', {
+                                body: 'Let je za 2 sata! Vrijeme je da krenem prema aerodromu. 🛫',
+                                icon: 'https://cdn-icons-png.flaticon.com/192/5111/5111522.png',
+                                badge: 'https://cdn-icons-png.flaticon.com/192/5111/5111522.png',
+                                vibrate: [300, 100, 300, 100, 300],
+                                tag: 'departure-final',
+                                requireInteraction: true
+                            });
+                        });
+                    }
+                }, twoHoursBefore.getTime() - now.getTime());
+            }
+        }
+
+        function showNotificationToast() {
+            const toast = document.createElement('div');
+            toast.innerHTML = '🔔 Notifikacije omogućene! Dobićete podsetnik prije polaska.';
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                padding: 12px 20px;
+                border-radius: 8px;
+                color: white;
+                background: linear-gradient(135deg, #ff6b6b, #ffa726);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                font-weight: bold;
+                max-width: 300px;
+                text-align: center;
+            `;
+            
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 6000);
+        }
+
+        // === OFFLINE/ONLINE DETECTION ===
+        window.addEventListener('online', () => {
+            showStatusMessage('📶 Ponovo online!', 'success');
+            syncOfflineData();
+        });
+
+        window.addEventListener('offline', () => {
+            showStatusMessage('📵 Offline mode - lokalni sadržaj dostupan', 'info');
+        });
+
+        function showStatusMessage(message, type) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 10000;
+                padding: 12px 20px;
+                border-radius: 8px;
+                color: white;
+                background: ${type === 'success' ? '#4caf50' : '#2196f3'};
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                font-weight: bold;
+            `;
+            
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        function syncOfflineData() {
+            console.log('🔄 Syncing offline changes...');
+            // Sync favorite plans, checklist changes, etc.
+            const favorites = localStorage.getItem('favoriteAssistantPlans');
+            if (favorites) {
+                console.log('💾 Found offline favorites to sync');
+            }
+        }
+
+        // Auto-request notifications after 15 seconds (give user time to explore)
+        setTimeout(() => {
+            if ('Notification' in window && Notification.permission === 'default') {
+                requestNotificationPermission();
+            }
+        }, 15000);
+
+        // Test PWA features on development
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🔧 PWA Development mode detected');
+            
+            // Show install button immediately for testing
+            setTimeout(() => {
+                if (!installButtonShown && !deferredPrompt) {
+                    showInstallButton();
+                    installButtonShown = true;
+                }
+            }, 3000);
+        }
     </script>
 
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border:none;background:#2196f3;color:white;border-radius:50%;font-size:20px;cursor:pointer;z-index:999;box-shadow: 0 4px 10px rgba(0,0,0,0.2);">↑</button>

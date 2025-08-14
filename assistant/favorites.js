@@ -81,13 +81,17 @@ class FavoritesManager {
     
     // Prikaži favorite u modal dijalogu
     showFavoritesModal() {
+        console.log('📋 showFavoritesModal called');
         const favorites = this.getFavorites();
+        console.log('📋 Found favorites:', favorites.length);
         
         if (favorites.length === 0) {
+            console.log('📝 No favorites found');
             this.showNotification('📝 Nemate sačuvane favorite planove', 'info');
             return;
         }
         
+        console.log('✅ Creating favorites modal...');
         this.createFavoritesModal(favorites);
     }
     
@@ -426,45 +430,65 @@ class FavoritesManager {
     // Setup event listenera
     setupEventListeners() {
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('🌟 FavoritesManager: Setting up event listeners...');
+            
             // Save favorite dugme
             const saveBtn = document.getElementById('saveFavorite');
             if (saveBtn) {
+                console.log('✅ Save favorite button found');
                 saveBtn.addEventListener('click', () => {
+                    console.log('💾 Save favorite clicked, currentPlan:', window.currentPlan);
                     if (window.currentPlan) {
                         this.saveFavorite(window.currentPlan);
                     } else {
                         this.showNotification('❌ Nema plana za čuvanje', 'error');
                     }
                 });
+            } else {
+                console.log('❌ Save favorite button NOT found');
             }
             
             // Load favorites dugme
             const loadBtn = document.getElementById('loadFavorites');
             if (loadBtn) {
+                console.log('✅ Load favorites button found');
                 loadBtn.addEventListener('click', () => {
+                    console.log('📋 Load favorites clicked');
                     this.showFavoritesModal();
                 });
+            } else {
+                console.log('❌ Load favorites button NOT found');
             }
             
             // Export dugme
             const exportBtn = document.getElementById('exportPlan');
             if (exportBtn) {
+                console.log('✅ Export plan button found');
                 exportBtn.addEventListener('click', () => {
+                    console.log('📤 Export plan clicked, currentPlan:', window.currentPlan);
                     this.showExportModal();
                 });
+            } else {
+                console.log('❌ Export plan button NOT found');
             }
             
             // Ažuriraj broj favorita na početku
             this.updateFavoritesCount();
+            console.log('🌟 FavoritesManager: Event listeners setup completed');
         });
     }
     
     // Prikaži export modal
     showExportModal() {
+        console.log('📤 showExportModal called, currentPlan:', window.currentPlan);
+        
         if (!window.currentPlan) {
+            console.log('❌ No currentPlan available for export');
             this.showNotification('❌ Nema plana za export', 'error');
             return;
         }
+        
+        console.log('✅ Opening export modal...');
         
         // Ukloni postojeći modal
         const existingModal = document.getElementById('export-modal');

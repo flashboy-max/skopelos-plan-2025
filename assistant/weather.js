@@ -170,6 +170,7 @@ class WeatherManager {
         
         try {
             if (!this.hasValidApiKey()) {
+                console.log('🌦️ No valid API key, using mock data');
                 debugLog('No valid API key, using mock data');
                 
                 // Return properly formatted mock data like in catch block
@@ -191,9 +192,11 @@ class WeatherManager {
             
             // Try primary API key first with correct OpenWeatherMap format
             let url = `${WEATHER_CONFIG.baseUrl}/weather?lat=${WEATHER_CONFIG.location.lat}&lon=${WEATHER_CONFIG.location.lon}&appid=${WEATHER_CONFIG.apiKey}&units=metric&lang=sr`;
+            console.log('🌦️ Making API call to:', url.replace(WEATHER_CONFIG.apiKey, 'API_KEY_HIDDEN'));
             debugLog('Making API call to:', url.replace(WEATHER_CONFIG.apiKey, 'API_KEY_HIDDEN'));
             
             let response = await fetch(url);
+            console.log('🌦️ API Response status:', response.status);
             debugLog('API Response status:', response.status);
             
             // If primary fails, try fallback key

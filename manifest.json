@@ -1,0 +1,56 @@
+{
+  "name": "Aleksandar & Ajna - Skopelos 2025",
+  "short_name": "Skopelos Plan",
+  "description": "Naš putni plan za Grčku - Skopelos 2025",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#4facfe",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/192/5111/5111522.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/5111/5111522.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "lang": "sr",
+  "shortcuts": [
+    {
+      "name": "Plaže",
+      "short_name": "Plaže",
+      "description": "Vodič kroz plaže Skopelosa",
+      "url": "/#plaze",
+      "icons": [{ 
+        "src": "https://cdn-icons-png.flaticon.com/192/5111/5111522.png", 
+        "sizes": "192x192" 
+      }]
+    },
+    {
+      "name": "Restorani", 
+      "short_name": "Restorani",
+      "description": "Preporuke za restorane",
+      "url": "/#restorani",
+      "icons": [{ 
+        "src": "https://cdn-icons-png.flaticon.com/192/5111/5111522.png", 
+        "sizes": "192x192" 
+      }]
+    },
+    {
+      "name": "AI Assistant",
+      "short_name": "AI Plan",
+      "description": "Generiši personalizovani plan",
+      "url": "/#ai-assistant",
+      "icons": [{ 
+        "src": "https://cdn-icons-png.flaticon.com/192/5111/5111522.png", 
+        "sizes": "192x192" 
+      }]
+    }
+  ]
+}
