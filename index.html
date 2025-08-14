@@ -1370,11 +1370,6 @@
                     <div class="info-details" id="weather-details">
                         <div class="weather-loading">🌦️ Učitavam weather podatke...</div>
                     </div>
-                    <div style="padding: 10px;">
-                        <button onclick="testWeatherAPI()" style="padding: 5px 15px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">🧪 Test API</button>
-                        <button onclick="testWeatherManager()" style="padding: 5px 15px; background: #ff9800; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 5px;">🧪 Test Manager</button>
-                        <button onclick="forceRefreshWeather()" style="padding: 5px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 5px;">🔄 Force Refresh</button>
-                    </div>
                 </div>
             </div>
 
@@ -1956,6 +1951,13 @@
                     </label>
 
                     <label>
+                        <strong>📅 Generiši plan za dan</strong>
+                        <select name="targetDate" id="targetDate">
+                            <!-- JS će popuniti opcije dinamički -->
+                        </select>
+                    </label>
+
+                    <label>
                         <strong>🧭 Željeni tip dana</strong>
                         <select name="dayMode" id="dayMode">
                             <option value="beachDinner">🏖️ Morski dan + večera</option>
@@ -1968,7 +1970,7 @@
                     </label>
 
                     <button type="button" id="generatePlan" class="gemini-btn" style="grid-column:1/-1;">
-                        📅 Generiši plan za danas
+                        📅 Generiši plan za izabrani dan
                     </button>
                 </form>
 
@@ -3168,6 +3170,184 @@
             lazyIframes.forEach(iframe => iframeObserver.observe(iframe));
         });
 
+        // === DATE SELECTION FUNCTIONALITY ===
+        document.addEventListener('DOMContentLoaded', () => {
+            // Populate target date dropdown
+            populateTargetDates();
+            
+            // Setup event listeners for date changes
+            const targetDateSelect = document.getElementById('targetDate');
+            const generateButton = document.getElementById('generatePlan');
+            
+            if (targetDateSelect && generateButton) {
+                targetDateSelect.addEventListener('change', updateGenerateButtonText);
+                updateGenerateButtonText(); // Set initial text
+            }
+        });
+
+        function populateTargetDates() {
+            const targetDateSelect = document.getElementById('targetDate');
+            if (!targetDateSelect) return;
+            
+            // Vacation dates - naše datume odmora
+            const vacationStart = new Date('2025-08-22');
+            const vacationEnd = new Date('2025-09-05');
+            const today = new Date();
+            
+            // Clear existing options
+            targetDateSelect.innerHTML = '';
+            
+            // Create date options
+            const currentDate = new Date(vacationStart);
+            
+            while (currentDate <= vacationEnd) {
+                const option = document.createElement('option');
+                const dateString = currentDate.toISOString().split('T')[0];
+                
+                // Format display text
+                const displayDate = currentDate.toLocaleDateString('sr-RS', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short'
+                });
+                
+                // Calculate day number in vacation
+                const dayNumber = Math.floor((currentDate - vacationStart) / (1000 * 60 * 60 * 24)) + 1;
+                
+                // Special labels for specific days
+                let specialLabel = '';
+                if (currentDate.toDateString() === today.toDateString()) {
+                    specialLabel = ' (DANAS)';
+                } else if (currentDate > today) {
+                    const daysFromNow = Math.ceil((currentDate - today) / (1000 * 60 * 60 * 24));
+                    if (daysFromNow === 1) specialLabel = ' (sutra)';
+                    else if (daysFromNow <= 7) specialLabel = ` (za ${daysFromNow} dana)`;
+                }
+                
+                // Add context based on day number
+                let dayContext = '';
+                if (dayNumber === 1) dayContext = ' - Dolazak u Solun';
+                else if (dayNumber === 2) dayContext = ' - Putovanje na Skopelos';
+                else if (dayNumber === 3) dayContext = ' - Rođendan & Mamma Mia!';
+                else if (dayNumber === 4) dayContext = ' - Prelazak u Agnontas';
+                else if (dayNumber >= 5 && dayNumber <= 13) dayContext = ' - Istraživanje ostrva';
+                else if (dayNumber === 14) dayContext = ' - Povratak u Solun';
+                else if (dayNumber === 15) dayContext = ' - Povratak kući';
+                
+                option.value = dateString;
+                option.textContent = `Dan ${dayNumber}: ${displayDate}${dayContext}${specialLabel}`;
+                
+                // Select today by default if it's within vacation period
+                if (currentDate.toDateString() === today.toDateString() && 
+                    today >= vacationStart && today <= vacationEnd) {
+                    option.selected = true;
+                }
+                // Otherwise select the first day that's today or in future
+                else if (targetDateSelect.children.length === 0 && currentDate >= today) {
+                    option.selected = true;
+                }
+                
+                targetDateSelect.appendChild(option);
+                
+                // Move to next day
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            // If we're not in vacation period, select the closest appropriate day
+            if (targetDateSelect.selectedIndex === -1) {
+                if (today < vacationStart) {
+                    // Before vacation - select first day
+                    targetDateSelect.selectedIndex = 0;
+                } else {
+                    // After vacation - select last day for memory/planning
+                    targetDateSelect.selectedIndex = targetDateSelect.children.length - 1;
+                }
+            }
+        }
+
+        function updateGenerateButtonText() {
+            const targetDateSelect = document.getElementById('targetDate');
+            const generateButton = document.getElementById('generatePlan');
+            
+            if (!targetDateSelect || !generateButton) return;
+            
+            const selectedOption = targetDateSelect.options[targetDateSelect.selectedIndex];
+            if (selectedOption) {
+                const selectedText = selectedOption.textContent;
+                const dayMatch = selectedText.match(/Dan (\d+)/);
+                
+                if (dayMatch) {
+                    const dayNumber = dayMatch[1];
+                    if (selectedText.includes('DANAS')) {
+                        generateButton.innerHTML = `📅 Generiši plan za danas (Dan ${dayNumber})`;
+                    } else if (selectedText.includes('sutra')) {
+                        generateButton.innerHTML = `📅 Generiši plan za sutra (Dan ${dayNumber})`;
+                    } else {
+                        generateButton.innerHTML = `📅 Generiši plan za Dan ${dayNumber}`;
+                    }
+                } else {
+                    generateButton.innerHTML = '📅 Generiši plan za izabrani dan';
+                }
+            }
+        }
+
+        function getAccommodationForDay(dayNumber) {
+            if (dayNumber === 1) {
+                return { 
+                    name: 'Urban Touch Studios', 
+                    location: 'Solun',
+                    type: 'hotel',
+                    area: 'centar grada'
+                };
+            } else if (dayNumber === 2 || dayNumber === 3) {
+                return { 
+                    name: 'To Ktima tis Matinas', 
+                    location: 'Stafilos',
+                    type: 'vila',
+                    area: 'blizu plaže Stafilos'
+                };
+            } else if (dayNumber >= 4 && dayNumber <= 13) {
+                return { 
+                    name: 'The Pine Trees', 
+                    location: 'Agnontas',
+                    type: 'apartman',
+                    area: 'borova šuma, blizu plaže'
+                };
+            } else if (dayNumber === 14) {
+                return { 
+                    name: 'Palioktima', 
+                    location: 'Solun (okolina)',
+                    type: 'apartman',
+                    area: 'blizu aerodroma'
+                };
+            } else {
+                return { 
+                    name: 'Putovanje', 
+                    location: 'U tranzitu',
+                    type: 'transport',
+                    area: 'aerodrom/let'
+                };
+            }
+        }
+
+        function getLocationContextForDay(dayNumber) {
+            if (dayNumber === 1) {
+                return 'Prvi dan - dolazak, istraživanje Soluna';
+            } else if (dayNumber === 2) {
+                return 'Putovanje na Skopelos, prvi utisci';
+            } else if (dayNumber === 3) {
+                return 'Rođendanski dan + Mamma Mia tura';
+            } else if (dayNumber === 4) {
+                return 'Preseljenje u Agnontas, bazni logor';
+            } else if (dayNumber >= 5 && dayNumber <= 13) {
+                return 'Puno istraživanje Skopelosa, fleksibilni planovi';
+            } else if (dayNumber === 14) {
+                return 'Poslednji dan na ostrvu, pripreme za povratak';
+            } else {
+                return 'Putovanje kući';
+            }
+        }
+
         // === INITIALIZATION ===
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize To-Do lists
@@ -3456,52 +3636,6 @@
             return iconMap[iconCode] || '☀️';
         }
 
-        // === TEST WEATHER API FUNCTION ===
-        async function testWeatherAPI() {
-            console.log('🧪 Testing Weather API directly...');
-            
-            try {
-                const response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=39.0831&lon=23.7089&appid=b1fcd61b0aadae316a345d4bc90e25a8&units=metric&lang=sr');
-                console.log('🧪 Direct API test - Status:', response.status);
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('🧪 Direct API test - Data:', data);
-                    alert(`API Test successful! Temperature: ${data.main.temp}°C, Weather: ${data.weather[0].description}`);
-                } else {
-                    const errorText = await response.text();
-                    console.error('🧪 Direct API test - Error:', errorText);
-                    alert(`API Test failed: ${response.status} - ${errorText}`);
-                }
-            } catch (error) {
-                console.error('🧪 Direct API test - Exception:', error);
-                alert(`API Test exception: ${error.message}`);
-            }
-        }
-
-        // === TEST WEATHER MANAGER ===
-        async function testWeatherManager() {
-            console.log('🧪 Testing WeatherManager...');
-            
-            if (typeof WeatherManager === 'undefined') {
-                alert('WeatherManager class not available');
-                return;
-            }
-            
-            try {
-                const manager = new WeatherManager();
-                console.log('🧪 WeatherManager created');
-                
-                const data = await manager.getCurrentWeather();
-                console.log('🧪 WeatherManager data:', data);
-                
-                alert(`WeatherManager Test:\nTemp: ${data.current.temp}°C\nWeather: ${data.current.weather[0].description}\nMock Data: ${data.isMockData}`);
-            } catch (error) {
-                console.error('🧪 WeatherManager test error:', error);
-                alert(`WeatherManager Test failed: ${error.message}`);
-            }
-        }
-
         // Weather Widget Integration
         async function loadWeatherData() {
             try {
@@ -3703,20 +3837,6 @@
                         weatherUpdate.textContent = 'Static';
                     }
                 });
-        }
-
-        // === FORCE REFRESH WEATHER ===
-        async function forceRefreshWeather() {
-            console.log('🔄 Force refreshing weather data...');
-            
-            if (window.weatherManagerInstance) {
-                // Clear cache
-                window.weatherManagerInstance.cache.cache.clear();
-                console.log('🗑️ Weather cache cleared');
-            }
-            
-            // Reload widget
-            await loadWeatherWidget();
         }
 
         // Expose helper function for initializeWeatherWidget

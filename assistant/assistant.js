@@ -59,6 +59,64 @@ function formatTime(hour, minute = 0) {
     return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
 }
 
+// === DATE & ACCOMMODATION HELPERS ===
+function getAccommodationForDay(dayNumber) {
+    if (dayNumber === 1) {
+        return { 
+            name: 'Urban Touch Studios', 
+            location: 'Solun',
+            type: 'hotel',
+            area: 'centar grada'
+        };
+    } else if (dayNumber === 2 || dayNumber === 3) {
+        return { 
+            name: 'To Ktima tis Matinas', 
+            location: 'Stafilos',
+            type: 'vila',
+            area: 'blizu plaže Stafilos'
+        };
+    } else if (dayNumber >= 4 && dayNumber <= 13) {
+        return { 
+            name: 'The Pine Trees', 
+            location: 'Agnontas',
+            type: 'apartman',
+            area: 'borova šuma, blizu plaže'
+        };
+    } else if (dayNumber === 14) {
+        return { 
+            name: 'Palioktima', 
+            location: 'Solun (okolina)',
+            type: 'apartman',
+            area: 'blizu aerodroma'
+        };
+    } else {
+        return { 
+            name: 'Putovanje', 
+            location: 'U tranzitu',
+            type: 'transport',
+            area: 'aerodrom/let'
+        };
+    }
+}
+
+function getLocationContextForDay(dayNumber) {
+    if (dayNumber === 1) {
+        return 'Prvi dan - dolazak, istraživanje Soluna';
+    } else if (dayNumber === 2) {
+        return 'Putovanje na Skopelos, prvi utisci';
+    } else if (dayNumber === 3) {
+        return 'Rođendanski dan + Mamma Mia tura';
+    } else if (dayNumber === 4) {
+        return 'Preseljenje u Agnontas, bazni logor';
+    } else if (dayNumber >= 5 && dayNumber <= 13) {
+        return 'Puno istraživanje Skopelosa, fleksibilni planovi';
+    } else if (dayNumber === 14) {
+        return 'Poslednji dan na ostrvu, pripreme za povratak';
+    } else {
+        return 'Putovanje kući';
+    }
+}
+
 // === PAMETNI TRANSPORT ALGORITAM ===
 function smartTransportChoice(from, to, distance, weather, time, destinations = 1) {
     const transport = transportData;
@@ -668,8 +726,26 @@ async function generateAIPlan() {
     const formData = new FormData(document.getElementById('ai-form'));
     const dayMode = formData.get('dayMode');
     const baseLocation = formData.get('baseLocation') || 'pineTrees';
+    const targetDate = formData.get('targetDate');
     let seaCondition = formData.get('seaCondition') || 'calm';
     let weather = formData.get('weather') || 'sunny';
+    
+    // Calculate vacation day context if target date is provided
+    let dayNumber = null;
+    let accommodationInfo = null;
+    let locationContext = '';
+    
+    if (targetDate) {
+        const selectedDate = new Date(targetDate);
+        const vacationStart = new Date('2025-08-22');
+        dayNumber = Math.floor((selectedDate - vacationStart) / (1000 * 60 * 60 * 24)) + 1;
+        
+        // Get accommodation context
+        accommodationInfo = getAccommodationForDay(dayNumber);
+        locationContext = getLocationContextForDay(dayNumber);
+        
+        console.log(`📅 Generiram plan za Dan ${dayNumber}: ${accommodationInfo.name} - ${locationContext}`);
+    }
     
     // Weather override - koristi real weather data ako je dostupno
     if (currentWeatherData && currentWeatherData.current) {
@@ -720,6 +796,29 @@ async function generateAIPlan() {
             break;
         default:
             plan = planBeachDinner(seaCondition, weather);
+    }
+    
+    // Enrich plan with date context
+    if (dayNumber && accommodationInfo) {
+        plan.dayNumber = dayNumber;
+        plan.accommodationInfo = accommodationInfo;
+        plan.locationContext = locationContext;
+        plan.targetDate = targetDate;
+        
+        // Add accommodation info to title if relevant
+        if (dayNumber >= 4 && dayNumber <= 13) {
+            plan.title += ` - Dan ${dayNumber} (${accommodationInfo.name})`;
+        } else if (dayNumber === 1) {
+            plan.title += ` - Dan ${dayNumber} (Solun)`;
+        } else if (dayNumber === 2 || dayNumber === 3) {
+            plan.title += ` - Dan ${dayNumber} (Stafilos)`;
+        }
+        
+        // Add location context to tips
+        if (plan.tips && Array.isArray(plan.tips)) {
+            plan.tips.unshift(`📍 ${locationContext}`);
+            plan.tips.push(`🏨 Baziranje: ${accommodationInfo.name}, ${accommodationInfo.location}`);
+        }
     }
     
     // Enrich plan with weather data
